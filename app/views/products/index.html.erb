@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ジャケット画像</th>
+      <th>シングル・アルバム名</th>
+      <th>アーティスト</th>
+      <th>カテゴリー</th>
+      <th>レーベル</th>
+      <th>在庫数</th>
+      <th>入荷数</th>
+      <th>商品概要</th>
+      <th>販売中・販売停止中</th>
+      <th>商品単価</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.jacket_image %></td>
+        <td><%= product.product_name %></td>
+        <td><%= product.artist %></td>
+        <td><%= product.category_id %></td>
+        <td><%= product.label_id %></td>
+        <td><%= product.stock_quantity %></td>
+        <td><%= product.recieve_quantity %></td>
+        <td><%= product.product_text %></td>
+        <td><%= product.product_status %></td>
+        <td><%= product.unit_price %></td>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '商品登録', new_product_path %>
