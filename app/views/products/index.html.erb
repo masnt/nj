@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ジャケット画像</th>
       <th>シングル・アルバム名</th>
       <th>アーティスト</th>
       <th>カテゴリー</th>
@@ -21,6 +22,7 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
+        <td><%= product.jacket_image %></td>
         <td><%= product.product_name %></td>
         <td><%= product.artist %></td>
         <td><%= product.category_id %></td>

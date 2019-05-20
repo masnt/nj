@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_024304) do
+ActiveRecord::Schema.define(version: 2019_05_20_083946) do
+
+  create_table "pictures", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "picture_a"
+    t.string "picture_b"
+    t.string "picture_c"
+    t.string "product_image_id"
+  end
 
   create_table "product_images", force: :cascade do |t|
     t.integer "product_id"
-    t.string "picture_id"
     t.string "jacket_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
