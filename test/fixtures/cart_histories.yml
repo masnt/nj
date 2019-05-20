@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  cart_item_history_id: 1
+  family_name_history: MyString
+  first_name_history: MyString
+  family_name_kana_history: MyString
+  first_name_kana_history: MyString
+  postal_code_history: MyString
+  ship_address_history: MyString
+  howtopay_history: 1
+  amount_history: 1
+  other_name: MyString
+  other_name_kana: MyString
+  other_address: MyString
+  other_phone_number: MyString
+  ship_status: 1
+
+two:
+  user_id: 1
+  cart_item_history_id: 1
+  family_name_history: MyString
+  first_name_history: MyString
+  family_name_kana_history: MyString
+  first_name_kana_history: MyString
+  postal_code_history: MyString
+  ship_address_history: MyString
+  howtopay_history: 1
+  amount_history: 1
+  other_name: MyString
+  other_name_kana: MyString
+  other_address: MyString
+  other_phone_number: MyString
+  ship_status: 1
