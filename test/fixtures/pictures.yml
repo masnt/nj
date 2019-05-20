@@ -1,11 +1,36 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+<<<<<<< HEAD
+=======
+
+one:
+  picture_a: MyString
+  picture_b: MyString
+  picture_c: MyString
+  product_image_id: 1
+
+two:
+  picture_a: MyString
+  picture_b: MyString
+  picture_c: MyString
+  product_image_id: 1
+
+>>>>>>> 88e39857eae570029b15457b5c028221703bc71b
 # This model initially had no columns defined. If you add columns to the
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+<<<<<<< HEAD
 one: {}
 # column: value
 #
 two: {}
 # column: value
+=======
+
+# column: value
+#
+
+# column: value
+
+>>>>>>> 88e39857eae570029b15457b5c028221703bc71b
