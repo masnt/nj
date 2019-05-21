@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
 
-	has_many :product_images, dependent: :destroy
-	accepts_attachments_for :product_images, attachment: :picture
+	has_many :pictures, dependent: :destroy
+    attachment :jacket_image
 
 end
