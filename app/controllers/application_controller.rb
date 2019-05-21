@@ -11,11 +11,6 @@ class ApplicationController < ActionController::Base
 	protected
 
 
-	def set_current_user
-	 @cerrent_user = User.find_by(id session[:user_id])
-	end
-
-
 	def configure_permitted_parameters
 		devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name, :first_name,:family_name_kana, :first_name_kana, :postal_code, :address, :phone_number, :email])
 	end
@@ -26,9 +21,6 @@ class ApplicationController < ActionController::Base
 
 	def after_sign_out_path_for(resource)
 	    root_path
+	    # '5月21日段階でルーティングしている場合'
 	end
-	def user
-	  Articles.find_by(user_id: params[:user_id])
-	end
-
 end
