@@ -31,6 +31,4 @@ class ApplicationController < ActionController::Base
 	  Articles.find_by(user_id: params[:user_id])
 	end
 
-	end
-
 end
