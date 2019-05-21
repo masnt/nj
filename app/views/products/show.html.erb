@@ -10,13 +10,15 @@
   <%= @product.artist %>
 </p>
 
-<% if @product.present? %>
-  <% @product.each do |image| %>
-    <%= attachment_image_tag @product, :jacket_image, :fill, 200, 200 %>
+<p>
+  <strong>Jacket:</strong><br>
+  <%= attachment_image_tag @product, :jacket_image, :fill, 200, 200 %>
+</p>
+
+<strong>詳細画像:</strong><br>
+  <% @product.pictures.each do |image| %>
+    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
   <% end %>
-  <% else %>
-    <%= image_tag 'no_image.jpg', size: '200x200' %>
-<% end %>
 
 <br><strong>Category:</strong>
   <%= @product.category_id %>
