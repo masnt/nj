@@ -10,7 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :phone_number, null: false
       t.string :mail, null: false
       t.integer :password, null: false
-      t.boolean :admin, null: false, default: false 
+      t.boolean :admin, null: false, default: false
       t.boolean :user_delete, null: false
       t.integer :amount
 

@@ -20,6 +20,9 @@
 			<% if user_signed_in? %>
 				<nav>
 					<ul class="header-list nav navbar-nav navbar-right">
+						<li><% if current_user.admin? %>
+									<%= link_to "管理者ページ", "#" %>
+									<% end %></li>
 						<li class="header-list-item"><%= link_to "ホーム", '#' %></li>
 						<li class="header-list-item"><%= link_to "マイページ", "#" %></li>
 						<li class="header-list-item"><%= link_to "サインアウト",  destroy_user_session_path , method: :delete,  data: {confirm:'ログアウトしますか？'} %></li>
