@@ -1,0 +1,2 @@
+module Admin::CartHistoriesHelper
+end
