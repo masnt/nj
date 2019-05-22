@@ -1,4 +1,32 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'shopinformations/edit'
+  end
+  namespace :admin do
+    get 'inquiries/index'
+    get 'inquiries/show'
+  end
+  namespace :admin do
+    get 'product_reviews/index'
+    get 'product_reviews/show'
+  end
+  namespace :admin do
+    get 'categories/new'
+    get 'categories/edit'
+  end
+  namespace :admin do
+    get 'cart_histories/index'
+    get 'cart_histories/show'
+  end
+  namespace :admin do
+    get 'products/edit'
+    get 'products/new'
+  end
+  namespace :admin do
+    get 'users/edit'
+    get 'users/show'
+    get 'users/index'
+  end
   get 'users/confirm_new'
   get 'users/show'
   get 'users/edit'
