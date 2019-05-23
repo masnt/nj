@@ -19,16 +19,16 @@ ActiveRecord::Schema.define(version: 2019_05_21_062801) do
     t.string "first_name_history"
     t.string "family_name_kana_history"
     t.string "first_name_kana_history"
-    t.string "postal_code_history"
-    t.string "ship_address_history"
+    t.string "postal_code_history"     #送付先
+    t.string "ship_address_history"    #送付先
     t.integer "howtopay_history"
-    t.integer "amount_history"
-    t.string "other_name"
-    t.string "other_name_kana"
-    t.string "other_address"
+    t.integer "amount_history"  #合計金額保存
+    t.string "other_name"      #送付先変更
+    t.string "other_name_kana" #送付先変更
+    t.string "other_address"  #送付先変更
     t.string "other_phone_number"
-    t.integer "ship_status"
-    t.datetime "created_at", null: false
+    t.integer "ship_status"  #配送ステータス
+    t.datetime "created_at", null: false  #購入日
     t.datetime "updated_at", null: false
   end
 
