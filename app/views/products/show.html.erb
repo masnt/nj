@@ -1,55 +1,48 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Product name:</strong>
+  <strong>シングル・アルバム名</strong><br>
   <%= @product.product_name %>
 </p>
 
 <p>
-  <strong>Artist:</strong>
+  <strong>アーティスト名</strong><br>
   <%= @product.artist %>
 </p>
 
 <p>
-  <strong>Jacket:</strong><br>
   <%= attachment_image_tag @product, :jacket_image, :fill, 200, 200 %>
-</p>
+</p><br>
 
-<strong>詳細画像:</strong><br>
   <% @product.pictures.each do |image| %>
     <%= attachment_image_tag image, :image, :fill, 200, 200 %>
   <% end %>
 
-<br><strong>Category:</strong>
+<br><strong>商品カテゴリ</strong><br>
   <%= @product.category_id %>
 </p>
 
-<strong>Label:</strong>
+<strong>レーベル</strong><br>
   <%= @product.label_id %>
 </p>
 
 <p>
-  <strong>Stock quantity:</strong>
+  <strong>在庫数</strong><br>
   <%= @product.stock_quantity %>
 </p>
 
 <p>
-  <strong>Recieve quantity:</strong>
-  <%= @product.recieve_quantity %>
-</p>
-
-<p>
-  <strong>Product text:</strong>
+  <strong>商品概要</strong><br>
   <%= @product.product_text %>
 </p>
 
 <p>
-  <strong>Product status:</strong>
+  <strong>販売ステータス</strong><br>
   <%= @product.product_status %>
 </p>
 
 <p>
-  <strong>Unit price:</strong>
+  <strong>単価</strong><br>
   <%= @product.unit_price %>
 </p>
 
