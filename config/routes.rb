@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'categories/edit'
-  get 'categories/index'
-  get 'categories/new'
-  get 'categories/show'
   devise_for :users
   get 'users/confirm_new'
   get 'users/show'
@@ -15,6 +11,7 @@ Rails.application.routes.draw do
   resources :products
   resources :post_images, only: [:new, :create, :index, :show]
   resources :categories
+  resources :product_reviews
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 #                                     Controller#Action
