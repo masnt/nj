@@ -6,9 +6,9 @@
 <div class="container">
 	<% if params[:preview] %>
 		<div>
-			<p>Preview</p>
-			<%= @category.category_title%>
-			<%= @category_image%>
+			<p>カテゴリーページではこのように表示されます</p>
+			<%= @category.category_title %>
+			 <%= attachment_image_tag @category, :category_image, :fill, 200, 200, class: "img-rounded", fallback: "no_image.jpg",size:'100x100' %>
 		</div>
 	<% end %>
 	<%= form_for(@category) do |f| %>
