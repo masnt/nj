@@ -1,27 +1,33 @@
-<%# rendering header(admin) %>
 <div class="container">
 	<div class="row "><p class="lead">お問い合わせ詳細</p></div>
 
 	<div>受診日</div>
+
     <div>タイトル</div>
+
     <div>ユーザー名</div>
+
     <div>内容</div>
+
     <div>管理者返信内容</div>
+
     <div>返信する</div>
+
     <div>ユーザーメールアドレス</div>
+
     <div>返信本文</div>
+
     <div>送信ボタンsubmit</div>
 
-    <%#= form_for @inquiry do |f| %>
-	    <div><%#= f.inquiry_title %></div>
-	    <div><%#= f.inquiry_title %></div>
-	    <div><%#= f.user_name %></div>
-	    <div><%#= f.inquiry_text %></div>
+	    <div><%#= @inquiry.inquiry_datetime %></div>
+	    <div>お問い合わせタイトル</div>
+	    <div><%= @inquiry.inquiry_title %></div>
+	    <div><%#= @inquiry.user_name %></div>
+	    <div>お問い合わせ内容</div>
+	    <div><%= @inquiry.inquiry_text %></div>
 	    <div>管理者返信内容</div>
 	    <div>返信する</div>
 	    <div><%#= f.user_mail%></div>
 	    <div><%#= f.text_area :inquiry_answer_text, placeholder:'返信内容をご入力ください。', class: "col-xs-4 col-xs-4" %></div>
 	    <div><%#= f.submit '送信ボタン', class: "col-xs-4 col-xs-4 btn btn-primary active" %></div>
-	<%# end %>
 </div>
-<%# rendering footer %>

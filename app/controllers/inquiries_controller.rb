@@ -5,11 +5,11 @@
   end
 
   def show
-    #@inquiry = Inquiry.find(params[:id])
+    @inquiry = Inquiry.find(params[:id])
   end
 
   def new
-  @inquiry = Inquiry.new
+    @inquiry = Inquiry.new
   end
 
   def comfirm_new
@@ -21,7 +21,9 @@
 
   def create
     @inquiry = Inquiry.new(inquiry_params)
-    binding.pry
+    @inquiry.user_id = current_user.id
+    @inquiry #この行が無いと、インスタンス変数(@inquiry)かdbにuser_idが入らないみたいです。binding.pryしてる時に偶然エラー抜けました。（原因究明中）
+    #binding.pry
     if @inquiry.save
     flash[:notice] = "Send successfully!"
     redirect_to inquiries_complete_path
@@ -32,8 +34,8 @@
   end
 
   def complete
-    # render :action => 'complete'#要らない（各アクションでは、記述が無くても裏でrenderが動いている（らしい））
-    # session[:post] = nil
+    # render :action => 'complete' # ← 要らない（各アクションでは、記述が無くても裏でrenderが動いている（らしい））
+    # session[:post] = nil #確認画面は、SessionControllerではなくhidden.fieldで作成することにしました。
   end
 
     private
