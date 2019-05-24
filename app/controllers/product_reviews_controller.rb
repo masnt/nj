@@ -5,9 +5,11 @@ class ProductReviewsController < ApplicationController
   end
 
   def show
+  	@product_review = ProductReview.find(params[:id])
   end
 
   def index
+  	@product_reviews = ProductReview.all
   end
 
   def create
@@ -23,7 +25,7 @@ class ProductReviewsController < ApplicationController
 
 	  private
       def product_review_params
-          params.require(:product_review).permit( :review_title, :review_text, :rating ) # ← :products_id,を追加
+          params.require(:product_review).permit( :review_title, :review_text, :rating, :products_id )
       end
 
 end

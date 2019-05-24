@@ -1,2 +1,12 @@
-<h1>ProductReviews#show</h1>
-<p>Find me in app/views/product_reviews/show.html.erb</p>
+<div class="container">
+	<p>Product Name</p>
+	<%#= 商品名 %>
+    <p>この商品のレビュー</p>
+	<%= @products_reviews.each do |review| %>
+		<%= review.rating %>
+		<%= review.review_title %>
+		<%= review.review_text %>
+	<%= link_to "Destroy", product_review_path(@product_review.id), class: "btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?"} %>
+    <% end %>
+    <%= link_to "商品一覧に戻る", product_reviews_path, class: "btn-primary active", method: :get %>
+</div>
