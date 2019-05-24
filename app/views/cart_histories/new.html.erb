@@ -1,0 +1,9 @@
+<h1>届け先選択</h1>
+
+<%= form_for @cart_history do |f| %>
+	<label><%= f.radio_button :shipping_type, :登録住所 %>登録住所へ送る</label><br>
+	<label><%= f.radio_button :shipping_type, :別のお届け先 %>別のお届け先に送る</label><br>
+<% end %>
+<%= render 'form', cart_history: @cart_history %>
+
+

@@ -1,0 +1,13 @@
+<h2>購入確認ページ</h2><p>
+
+
+<%= form_for @cart_history do |f| %>
+
+  <strong>支払い方法</strong><br>
+<%= form.select :howtopay_history, Cart_history.howtopay_histories.keys, :selected=>Cart_history.howtopay_histories.keys[@cart_history.howtopay_history] %>
+<% end %>
+<p>
+  <strong>お届け先</strong><br>
+  <%= @cart_history.shipping_type %>
+</p>
+

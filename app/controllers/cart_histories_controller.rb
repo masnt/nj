@@ -4,6 +4,10 @@ class CartHistoriesController < ApplicationController
   end
 
   def new
+  	@cart_history = CartHistory.new
+  end
+
+  def comfirm_new
   end
 
   def create
@@ -13,6 +17,6 @@ class CartHistoriesController < ApplicationController
 
 
    def cart_history_params
-    params.require(:cart_history).permit(:howtopay_history)
+    params.require(:cart_history).permit(:howtopay_history,:other_name, :other_name_kana, :other_name_kana, :other_address, :shipping_type)
   end
 end

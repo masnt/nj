@@ -1,0 +1,19 @@
+
+  <div class="field">
+
+<%= form_for @cart_history do |f| %><br>
+
+    <%= f.label :お届け先宛て名 %>
+    <%= f.text_field :other_name %>
+    <%= f.label :フリガナ %>
+    <%= f.text_field :other_name_kana %>
+    <%= f.label :お電話番号 %>
+    <%= f.text_field :other_phone_number%>
+    <p> お届け先住所 </p>
+    <%= f.text_area :other_address %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "支払い方法選択画面へ進む"%>
+  </div>
+  <% end %>
