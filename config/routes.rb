@@ -13,10 +13,11 @@ Rails.application.routes.draw do
   resources :products
   resources :post_images, only: [:new, :create, :index, :show]
   resources :inquiries
+  resources :categories
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 
-#                    Prefix Verb   URI Pattern                                                                              Controller#Action
+#  Prefix Verb   URI Pattern                                                                              Controller#Action
 #          new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
 #              user_session POST   /users/sign_in(.:format)                                                                 devise/sessions#create
 #      destroy_user_session DELETE /users/sign_out(.:format)                                                                devise/sessions#destroy
@@ -32,7 +33,7 @@ end
 #                           PUT    /users(.:format)                                                                         devise/registrations#update
 #                           DELETE /users(.:format)                                                                         devise/registrations#destroy
 #                           POST   /users(.:format)                                                                         devise/registrations#create
-#     inquiries_comfirm_new GET    /inquiries/comfirm_new(.:format)                                                         inquiries#comfirm_new
+#     inquiries_comfirm_new POST   /inquiries/comfirm_new(.:format)                                                         inquiries#comfirm_new
 #        inquiries_complete GET    /inquiries/complete(.:format)                                                            inquiries#complete
 #         users_confirm_new GET    /users/confirm_new(.:format)                                                             users#confirm_new
 #                users_show GET    /users/show(.:format)                                                                    users#show
@@ -62,6 +63,14 @@ end
 #                           PATCH  /inquiries/:id(.:format)                                                                 inquiries#update
 #                           PUT    /inquiries/:id(.:format)                                                                 inquiries#update
 #                           DELETE /inquiries/:id(.:format)                                                                 inquiries#destroy
+#                categories GET    /categories(.:format)                                                                    categories#index
+#                           POST   /categories(.:format)                                                                    categories#create
+#              new_category GET    /categories/new(.:format)                                                                categories#new
+#             edit_category GET    /categories/:id/edit(.:format)                                                           categories#edit
+#                  category GET    /categories/:id(.:format)                                                                categories#show
+#                           PATCH  /categories/:id(.:format)                                                                categories#update
+#                           PUT    /categories/:id(.:format)                                                                categories#update
+#                           DELETE /categories/:id(.:format)                                                                categories#destroy
 #                refile_app        /attachments                                                                             #<Refile::App app_file="/home/vagrant/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/bundler/gems/refile-46b4178654e6/lib/refile/app.rb">
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 # rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
