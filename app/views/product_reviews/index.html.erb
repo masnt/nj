@@ -1,12 +1,22 @@
 <div class="container lead">
 <p>Product Review List</p>
 <tbody>
+	<tr>
+		<td>rating</td>
+		<td>Product Name</td>
+		<td>Review Title</td>
+		<td>Review Body</td>
+		<td>Delete</td>
+	</tr>
 	<% @product_reviews.each do |review| %>
 		<tr>
 			<td><%= review.rating %></td>
-			<td><%#= review. %></td>
+			<td><%#= link_to product_path(review.products_id), class: "product_#{review.product_id}" do %>
+				<%#= review. %>
+				<%# end%></td>
 			<td><%= review.review_title %></td>
 			<td><%= review.review_text %></td>
+			<td><%= link_to "Destroy", product_review_path(review.id), class: "destroy_#{review.id} btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?"} %></td>
 		</tr>
 	<% end %>
 	<%#= paginate(@product_reviews) %>

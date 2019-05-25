@@ -2,6 +2,7 @@ class ProductReviewsController < ApplicationController
 
   def new
   	@product_review = ProductReview.new
+  	#@product = Product.find(params[:id])
   end
 
   def show
@@ -14,6 +15,7 @@ class ProductReviewsController < ApplicationController
 
   def create
     @product_review = ProductReview.find(product_review_params)
+    #@product_review = Product.where( )
     if @product_review.save
     flash[:notice] = "Post successfully!"
     redirect_to product_review_path(@product_review.id)
@@ -21,6 +23,18 @@ class ProductReviewsController < ApplicationController
     flash[:notice] = "error, post failed"
     render :new
     end
+  end
+
+  def destroy
+	product_review = ProductReview.find(params[:id])
+
+	if product_review.destroy
+		flash[:notice] = "destroy successfully!"
+		redirect_to product_reviews_path
+	else
+		flash[:notice] = "destroy failed"
+		redirect_to product_reviews_path
+	end
   end
 
 	  private

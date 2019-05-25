@@ -14,7 +14,22 @@ Rails.application.routes.draw do
   resources :product_reviews
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
-#                                     Controller#Action
+#                    Prefix Verb   URI Pattern                                                                              Controller#Action
+#          new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
+#              user_session POST   /users/sign_in(.:format)                                                                 devise/sessions#create
+#      destroy_user_session DELETE /users/sign_out(.:format)                                                                devise/sessions#destroy
+#         new_user_password GET    /users/password/new(.:format)                                                            devise/passwords#new
+#        edit_user_password GET    /users/password/edit(.:format)                                                           devise/passwords#edit
+#             user_password PATCH  /users/password(.:format)                                                                devise/passwords#update
+#                           PUT    /users/password(.:format)                                                                devise/passwords#update
+#                           POST   /users/password(.:format)                                                                devise/passwords#create
+#  cancel_user_registration GET    /users/cancel(.:format)                                                                  devise/registrations#cancel
+#     new_user_registration GET    /users/sign_up(.:format)                                                                 devise/registrations#new
+#    edit_user_registration GET    /users/edit(.:format)                                                                    devise/registrations#edit
+#         user_registration PATCH  /users(.:format)                                                                         devise/registrations#update
+#                           PUT    /users(.:format)                                                                         devise/registrations#update
+#                           DELETE /users(.:format)                                                                         devise/registrations#destroy
+#                           POST   /users(.:format)                                                                         devise/registrations#create
 #         users_confirm_new GET    /users/confirm_new(.:format)                                                             users#confirm_new
 #                users_show GET    /users/show(.:format)                                                                    users#show
 #                users_edit GET    /users/edit(.:format)                                                                    users#edit
@@ -35,21 +50,22 @@ end
 #                           POST   /post_images(.:format)                                                                   post_images#create
 #            new_post_image GET    /post_images/new(.:format)                                                               post_images#new
 #                post_image GET    /post_images/:id(.:format)                                                               post_images#show
-#          new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
-#              user_session POST   /users/sign_in(.:format)                                                                 devise/sessions#create
-#      destroy_user_session DELETE /users/sign_out(.:format)                                                                devise/sessions#destroy
-#         new_user_password GET    /users/password/new(.:format)                                                            devise/passwords#new
-#        edit_user_password GET    /users/password/edit(.:format)                                                           devise/passwords#edit
-#             user_password PATCH  /users/password(.:format)                                                                devise/passwords#update
-#                           PUT    /users/password(.:format)                                                                devise/passwords#update
-#                           POST   /users/password(.:format)                                                                devise/passwords#create
-#  cancel_user_registration GET    /users/cancel(.:format)                                                                  devise/registrations#cancel
-#     new_user_registration GET    /users/sign_up(.:format)                                                                 devise/registrations#new
-#    edit_user_registration GET    /users/edit(.:format)                                                                    devise/registrations#edit
-#         user_registration PATCH  /users(.:format)                                                                         devise/registrations#update
-#                           PUT    /users(.:format)                                                                         devise/registrations#update
-#                           DELETE /users(.:format)                                                                         devise/registrations#destroy
-#                           POST   /users(.:format)                                                                         devise/registrations#create
+#                categories GET    /categories(.:format)                                                                    categories#index
+#                           POST   /categories(.:format)                                                                    categories#create
+#              new_category GET    /categories/new(.:format)                                                                categories#new
+#             edit_category GET    /categories/:id/edit(.:format)                                                           categories#edit
+#                  category GET    /categories/:id(.:format)                                                                categories#show
+#                           PATCH  /categories/:id(.:format)                                                                categories#update
+#                           PUT    /categories/:id(.:format)                                                                categories#update
+#                           DELETE /categories/:id(.:format)                                                                categories#destroy
+#           product_reviews GET    /product_reviews(.:format)                                                               product_reviews#index
+#                           POST   /product_reviews(.:format)                                                               product_reviews#create
+#        new_product_review GET    /product_reviews/new(.:format)                                                           product_reviews#new
+#       edit_product_review GET    /product_reviews/:id/edit(.:format)                                                      product_reviews#edit
+#            product_review GET    /product_reviews/:id(.:format)                                                           product_reviews#show
+#                           PATCH  /product_reviews/:id(.:format)                                                           product_reviews#update
+#                           PUT    /product_reviews/:id(.:format)                                                           product_reviews#update
+#                           DELETE /product_reviews/:id(.:format)                                                           product_reviews#destroy
 #                refile_app        /attachments                                                                             #<Refile::App app_file="/home/vagrant/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/bundler/gems/refile-46b4178654e6/lib/refile/app.rb">
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 # rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
