@@ -1,0 +1,2 @@
+module CartHistoriesHelper
+end

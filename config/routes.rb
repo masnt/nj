@@ -1,5 +1,40 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  get '/pay_choise', to: 'cart_histories#pay_choise'
+  get '/cart_histories/comfirm_new', to: 'cart_histories#comfirm_new'
+  get '/cart_histories/complete_new', to: 'cart_histories#complete_new'
+  resources :cart_histories
+
+
+  namespace :admin do
+    get 'shopinformations/edit'
+  end
+  namespace :admin do
+    get 'inquiries/index'
+    get 'inquiries/show'
+  end
+  namespace :admin do
+    get 'product_reviews/index'
+    get 'product_reviews/show'
+  end
+  namespace :admin do
+    get 'categories/new'
+    get 'categories/edit'
+  end
+  namespace :admin do
+    get 'cart_histories/index'
+    get 'cart_histories/show'
+  end
+  namespace :admin do
+    get 'products/edit'
+    get 'products/new'
+  end
+  namespace :admin do
+    get 'users/edit'
+    get 'users/show'
+    get 'users/index'
+  end
   get 'users/confirm_new'
   get 'users/show'
   get 'users/edit'
@@ -10,65 +45,33 @@ Rails.application.routes.draw do
   get 'users/complete_delete'
   resources :products
   resources :post_images, only: [:new, :create, :index, :show]
+
   resources :categories
   resources :product_reviews
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
-#                    Prefix Verb   URI Pattern                                                                              Controller#Action
-#          new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
-#              user_session POST   /users/sign_in(.:format)                                                                 devise/sessions#create
-#      destroy_user_session DELETE /users/sign_out(.:format)                                                                devise/sessions#destroy
-#         new_user_password GET    /users/password/new(.:format)                                                            devise/passwords#new
-#        edit_user_password GET    /users/password/edit(.:format)                                                           devise/passwords#edit
-#             user_password PATCH  /users/password(.:format)                                                                devise/passwords#update
-#                           PUT    /users/password(.:format)                                                                devise/passwords#update
-#                           POST   /users/password(.:format)                                                                devise/passwords#create
-#  cancel_user_registration GET    /users/cancel(.:format)                                                                  devise/registrations#cancel
-#     new_user_registration GET    /users/sign_up(.:format)                                                                 devise/registrations#new
-#    edit_user_registration GET    /users/edit(.:format)                                                                    devise/registrations#edit
-#         user_registration PATCH  /users(.:format)                                                                         devise/registrations#update
-#                           PUT    /users(.:format)                                                                         devise/registrations#update
-#                           DELETE /users(.:format)                                                                         devise/registrations#destroy
-#                           POST   /users(.:format)                                                                         devise/registrations#create
-#         users_confirm_new GET    /users/confirm_new(.:format)                                                             users#confirm_new
-#                users_show GET    /users/show(.:format)                                                                    users#show
-#                users_edit GET    /users/edit(.:format)                                                                    users#edit
-#              users_update GET    /users/update(.:format)                                                                  users#update
-#         users_show_mypage GET    /users/show_mypage(.:format)                                                             users#show_mypage
-#         users_update_user GET    /users/update_user(.:format)                                                             users#update_user
-#      users_confirm_delete GET    /users/confirm_delete(.:format)                                                          users#confirm_delete
-#     users_complete_delete GET    /users/complete_delete(.:format)                                                         users#complete_delete
-#                  products GET    /products(.:format)                                                                      products#index
-#                           POST   /products(.:format)                                                                      products#create
-#               new_product GET    /products/new(.:format)                                                                  products#new
-#              edit_product GET    /products/:id/edit(.:format)                                                             products#edit
-#                   product GET    /products/:id(.:format)                                                                  products#show
-#                           PATCH  /products/:id(.:format)                                                                  products#update
-#                           PUT    /products/:id(.:format)                                                                  products#update
-#                           DELETE /products/:id(.:format)                                                                  products#destroy
-#               post_images GET    /post_images(.:format)                                                                   post_images#index
-#                           POST   /post_images(.:format)                                                                   post_images#create
-#            new_post_image GET    /post_images/new(.:format)                                                               post_images#new
-#                post_image GET    /post_images/:id(.:format)                                                               post_images#show
-#                categories GET    /categories(.:format)                                                                    categories#index
-#                           POST   /categories(.:format)                                                                    categories#create
-#              new_category GET    /categories/new(.:format)                                                                categories#new
-#             edit_category GET    /categories/:id/edit(.:format)                                                           categories#edit
-#                  category GET    /categories/:id(.:format)                                                                categories#show
-#                           PATCH  /categories/:id(.:format)                                                                categories#update
-#                           PUT    /categories/:id(.:format)                                                                categories#update
-#                           DELETE /categories/:id(.:format)                                                                categories#destroy
-#           product_reviews GET    /product_reviews(.:format)                                                               product_reviews#index
-#                           POST   /product_reviews(.:format)                                                               product_reviews#create
-#        new_product_review GET    /product_reviews/new(.:format)                                                           product_reviews#new
-#       edit_product_review GET    /product_reviews/:id/edit(.:format)                                                      product_reviews#edit
-#            product_review GET    /product_reviews/:id(.:format)                                                           product_reviews#show
-#                           PATCH  /product_reviews/:id(.:format)                                                           product_reviews#update
-#                           PUT    /product_reviews/:id(.:format)                                                           product_reviews#update
-#                           DELETE /product_reviews/:id(.:format)                                                           product_reviews#destroy
-#                refile_app        /attachments                                                                             #<Refile::App app_file="/home/vagrant/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/bundler/gems/refile-46b4178654e6/lib/refile/app.rb">
-#        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
-# rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
-#        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
-# update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
-#      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
+
+
+  post 'inquiries/comfirm_new'
+  get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
+  resources :inquiries
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+
+
+
+
+
+
+
+
+
+
+
+  # 管理者
+  get '/index_order', to: 'cart_histories#index_order'
+  get '/user_history', to: 'cart_histories#user_history'
+
+
+
+end

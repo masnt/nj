@@ -1,0 +1,16 @@
+
+<%#  管理者のみが閲覧できます。%>
+
+<h1>Inquiry List</h1>
+	<% @inquiries.each do |inquiry| %>
+		<div><p>inquiry status</p>
+			<%#= inquiry.select :inquiry_status, Inquiry.inquiry_statuses.keys %>
+		</div>
+		<div class="inquiry_title">
+			<%= link_to inquiry_path(inquiry.id), class: "inquiry_#{inquiry.id}" do %>
+				<%= inquiry.inquiry_title %>
+			<% end %>
+			<p class="inquiry-text"><%= inquiry.inquiry_text %></p>
+		</div>
+	<% end %>
+
