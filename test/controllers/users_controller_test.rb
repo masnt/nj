@@ -1,13 +1,17 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-<<<<<<< HEAD
+
   test "should get edit" do
     get users_edit_url
-=======
+
   test "should get confirm_new" do
     get users_confirm_new_url
->>>>>>> a6ddae704f1881540696b031428095f77a0e78f4
+
+
+  test "should get confirm_new" do
+    get users_confirm_new_url
+
     assert_response :success
   end
 
@@ -16,8 +20,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-<<<<<<< HEAD
-=======
+
   test "should get edit" do
     get users_edit_url
     assert_response :success
@@ -48,5 +51,5 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
->>>>>>> a6ddae704f1881540696b031428095f77a0e78f4
+
 end

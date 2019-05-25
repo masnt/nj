@@ -1,24 +1,22 @@
 Rails.application.routes.draw do
   devise_for :users
+
   root to: 'products#index'
   get 'cart_histories/pay_choise' => 'cart_histories#pay_choise'
   get 'cart_histories/new' => 'cart_histories#new'
-  get 'cart_histories/comfirm_new' => 'cart_histories#comfirm_new'
 
   get 'products/index2' => 'products#index2'
   get 'shopinformations' => 'shopinformations#show'
   get 'shopinformations/new'
   post 'shopinformations/create' => 'shopinformations#create'
 
-  resources :cart_histories, only: [:create]
-  resources :shopinformations
-  resources :products
+
 
 
   get '/pay_choise', to: 'cart_histories#pay_choise'
   get '/cart_histories/comfirm_new', to: 'cart_histories#comfirm_new'
   get '/cart_histories/complete_new', to: 'cart_histories#complete_new'
-  resources :cart_histories
+  
 
 
   namespace :admin do
@@ -53,27 +51,25 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/edit'
   get 'users/update'
+
   patch 'users/:id' => 'users#update', as: 'update_user'
+
   get 'users/show_mypage'
   get 'users/update_user'
   get 'users/confirm_delete'
   get 'users/complete_delete'
   resources :products
   resources :post_images, only: [:new, :create, :index, :show]
+  resources :shopinformations
+  resources :cart_histories
+  resources :categories
+  resources :product_reviews
+  resources :inquiries
 
-  # devise_for :users
-
+  post 'inquiries/comfirm_new'
+  get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-
-
-
-
-
-
-
-
-
 
 
   # 管理者
