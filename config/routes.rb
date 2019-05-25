@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :users
 
   get '/pay_choise', to: 'cart_histories#pay_choise'
@@ -36,10 +35,6 @@ Rails.application.routes.draw do
     get 'users/show'
     get 'users/index'
   end
-
-  post 'inquiries/comfirm_new'
-  get 'inquiries/complete'
-
   get 'users/confirm_new'
   get 'users/show'
   get 'users/edit'
@@ -50,9 +45,12 @@ Rails.application.routes.draw do
   get 'users/complete_delete'
   resources :products
   resources :post_images, only: [:new, :create, :index, :show]
-
-  resources :inquiries
   resources :categories
+  resources :product_reviews
+
+  post 'inquiries/comfirm_new'
+  get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
+  resources :inquiries
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 

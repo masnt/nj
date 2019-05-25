@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_05_23_102031) do
 
-
   create_table "cart_histories", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "cart_item_history_id", null: false
