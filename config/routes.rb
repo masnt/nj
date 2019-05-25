@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
 
   get '/pay_choise', to: 'cart_histories#pay_choise'
   get '/cart_histories/comfirm_new', to: 'cart_histories#comfirm_new'
@@ -45,7 +46,9 @@ Rails.application.routes.draw do
   resources :products
   resources :post_images, only: [:new, :create, :index, :show]
 
-  devise_for :users
+  post 'inquiries/comfirm_new'
+  get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
+  resources :inquiries
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 

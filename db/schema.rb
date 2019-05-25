@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 2019_05_23_102031) do
   end
 
   create_table "inquiries", force: :cascade do |t|
-    t.datetime "inquiry_datetime", null: false
     t.string "inquiry_title", null: false
     t.text "inquiry_text", null: false
     t.integer "user_id", null: false
