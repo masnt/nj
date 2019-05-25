@@ -5,19 +5,11 @@
   end
 
   def show
-<<<<<<< HEAD
-    #@inquiry = Inquiry.find(params[:id])
-  end
-
-  def new
-  @inquiry = Inquiry.new
-=======
     @inquiry = Inquiry.find(params[:id])
   end
 
   def new
     @inquiry = Inquiry.new
->>>>>>> 523e4acfd5614be4b998c3b668f6c2b4a6687a6d
   end
 
   def comfirm_new
@@ -29,17 +21,11 @@
 
   def create
     @inquiry = Inquiry.new(inquiry_params)
-<<<<<<< HEAD
-    binding.pry
-    if @inquiry.save
-    flash[:notice] = "Send successfully!"
-=======
     @inquiry.user_id = current_user.id
     @inquiry
     if @inquiry.save
     flash[:notice] = "Send successfully!"
     binding.pry
->>>>>>> 523e4acfd5614be4b998c3b668f6c2b4a6687a6d
     redirect_to inquiries_complete_path
     else
     flash[:notice] = "error, sent failed"
