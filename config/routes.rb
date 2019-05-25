@@ -46,6 +46,12 @@ Rails.application.routes.draw do
   resources :products
   resources :post_images, only: [:new, :create, :index, :show]
 
+  resources :categories
+  resources :product_reviews
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+end
+
+
   post 'inquiries/comfirm_new'
   get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
   resources :inquiries
