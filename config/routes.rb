@@ -45,9 +45,10 @@ Rails.application.routes.draw do
   resources :products
   resources :post_images, only: [:new, :create, :index, :show]
 
-  resources :inquiries
+
   post 'inquiries/comfirm_new'
   get 'inquiries/complete'
+  resources :inquiries
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 

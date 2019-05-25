@@ -25,9 +25,21 @@
 	    <div><%#= @inquiry.user_name %></div>
 	    <div>お問い合わせ内容</div>
 	    <div><%= @inquiry.inquiry_text %></div>
+
 	    <div>管理者返信内容</div>
-	    <div>返信する</div>
-	    <div><%#= f.user_mail%></div>
-	    <div><%#= f.text_area :inquiry_answer_text, placeholder:'返信内容をご入力ください。', class: "col-xs-4 col-xs-4" %></div>
-	    <div><%#= f.submit '送信ボタン', class: "col-xs-4 col-xs-4 btn btn-primary active" %></div>
+
+	    <div class="row">返信する</div>
+	    <%# form_for @answer do |f|%>
+
+		<%# if @answer.errors.any? %>
+			<%#= @answer.errors.count %>
+			<%#= @answer.errors.full_messages.each do |message| %>
+				<%#= message %>
+			<%# end %>
+		<%# end %>
+
+	    <div><%#= f.user_mail :mail%></div>
+	    <div><%#= f.text_area :inquiry_answer_text, placeholder:'返信内容をご入力ください。', class: "col-xs-4" %></div>
+	    <div><%#= f.submit '送信ボタン', class: "col-xs-4 btn btn-primary active" %></div>
+	    <%# end %>
 </div>
