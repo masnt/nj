@@ -24,10 +24,10 @@ class CategoriesController < ApplicationController
   	elsif @category.save
 		flash[:notice] = "Add successfully!"
 		redirect_to categories_path
-	  else
+	else
 		flash[:notice] = "error, Add failed"
 		render :new
-	  end
+	end
   end
 
   def destroy

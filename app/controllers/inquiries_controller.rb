@@ -10,26 +10,28 @@
 
   def new
     @inquiry = Inquiry.new
+    #if params[:Editing]
   end
 
   def comfirm_new
     @inquiry = Inquiry.new(inquiry_params)
     # @time = Time.now.to_s(:db) (←日時を渡そうと思いましたが、問い合わせられた日時は、created_atカラムから取得します)
-    # binding.pry
-    # render :comfirm_new if @inquiry.valid? #メソッドを実行するとバリデーションが実行されます。バリデーションが通ればfalseを返し、引っかかればtrueを返します。(return if @user.valid?)
+    #メソッドを実行するとバリデーションが実行されます。バリデーションが通ればfalseを返し、引っかかればtrueを返します。(return if @inquiry.valid?)
+    render :new if @inquiry.invalid?
   end
 
   def create
     @inquiry = Inquiry.new(inquiry_params)
     @inquiry.user_id = current_user.id
     @inquiry
-    if @inquiry.save
-    flash[:notice] = "Send successfully!"
-    binding.pry
-    redirect_to inquiries_complete_path
+    if params[:back]
+      render :new
+    elsif @inquiry.save
+      flash[:notice] = "Send successfully!"
+      redirect_to inquiries_complete_path
     else
-    flash[:notice] = "error, sent failed"
-    render :comfirm_new
+      flash[:notice] = "error, sent failed"
+      render :comfirm_new
     end
   end
 

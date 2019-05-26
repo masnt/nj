@@ -50,6 +50,7 @@ Rails.application.routes.draw do
 
   post 'inquiries/comfirm_new'
   get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
+  post 'inquires/new'
   resources :inquiries
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
