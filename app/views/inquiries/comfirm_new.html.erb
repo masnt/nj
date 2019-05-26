@@ -4,7 +4,7 @@
 
 	<%= form_for @inquiry do |f| %>
 	<%#= @inquiry.inquiry_title %>
-		<div><%#= f.inquiry_title %></div>
+		<div><%#= f.inquiry_title %></div><%# ←保存した値しか呼び出せないようです %>
 	    <div><%#= f.inquiry_text %></div>
 	    <div><%= @inquiry.inquiry_title %></div>
 	    <div><%= @inquiry.inquiry_text %></div>
