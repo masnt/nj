@@ -46,5 +46,19 @@
   <%= @product.unit_price %>
 </p>
 
+<p>
+  <strong>数量</strong><br>
+  <%= form_for(@cart_item,url:product_add_path(@product.id)) do |f| %>
+  <%= f.number_field :purchase_quantity %>
+  <%= f.submit 'カートへ追加' %>
+</p>
+<% end %>
+
+<% if @product.favorited_by?(current_user) %>
+  <p>お気に入りに登録されている商品です</p>
+<% else %>
+<%= link_to 'お気に入りリストに追加' , product_like_path(@product.id) ,method: :post %><br>
+<% end %>
+
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

@@ -1,5 +1,5 @@
 class ChangeColumnToUser < ActiveRecord::Migration[5.2]
-  def up
+  def down
   	 change_column :users, :admin, :boolean, null: false, default: false
   end
 

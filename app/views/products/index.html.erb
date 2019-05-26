@@ -2,38 +2,13 @@
 
 <h1>商品一覧</h1>
 
-<<<<<<< HEAD
-=======
-<table class="product-list-item">
-  <thead>
-    <tr>
-      <th>ジャケット画像</th>
-      <th>シングル・アルバム名</th>
-      <th>アーティスト</th>
-      <th>カテゴリー</th>
-      <th>レーベル</th>
-      <th>在庫数</th>
-      <th>入荷数</th>
-      <th>商品概要</th>
-      <th>販売中・販売停止中</th>
-      <th>商品単価</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-</td>
-</table>
-
->>>>>>> 523e4acfd5614be4b998c3b668f6c2b4a6687a6d
-  <table class="product-list-item">
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= attachment_image_tag product, :jacket_image, :fill, 400, 400, format: 'jpeg' %></td>
+      	<%= link_to product_path(product.id) do %>
+	      <%= attachment_image_tag product, :jacket_image, :fill, 400, 400, format: 'jpeg'%></td>
+	    <% end %>
       </tr>
-<% end %>
+	<% end %>
 
-
-
-
-
-<%= link_to '商品登録', new_product_path %>
+	<%= link_to '商品登録', new_product_path %>

@@ -7,7 +7,7 @@
 		</div>
 		<div class='col-xs-4'>
 			<dl class="form-group col-xs-11 col-md-offset-1">
-				<%= search_form_for @q, url: '#' do |f| %>
+				<%= search_form_for @q, url: 'root' do |f| %>
 					<dt><%= f.text_field :product_name_cont, class: "form-control", placeholder: '商品名/アーティスト名'%></dt>
 					<dd><%= f.submit ("SEARCH"), class: 'search-btn' %></dd>
 				<% end %>

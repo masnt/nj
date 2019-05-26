@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'favorites/index'
+  get 'favorites/create'
+  get 'favorites/destroy'
+  get 'index/create'
+  get 'index/destroy'
   devise_for :users
 
   root to: 'products#index'
@@ -16,7 +21,8 @@ Rails.application.routes.draw do
   get '/pay_choise', to: 'cart_histories#pay_choise'
   get '/cart_histories/comfirm_new', to: 'cart_histories#comfirm_new'
   get '/cart_histories/complete_new', to: 'cart_histories#complete_new'
-  
+
+
 
 
   namespace :admin do
@@ -58,7 +64,15 @@ Rails.application.routes.draw do
   get 'users/update_user'
   get 'users/confirm_delete'
   get 'users/complete_delete'
-  resources :products
+
+  resources :products do
+    post '/add', to: 'products#add'
+    put '/add', to:'products#add'
+    post "like", to:'favorites#like'
+    put "like", to:'favorites#like'
+    delete "/unlike", to:'favorites#unlike'
+  resources :cart_items,only: [:create, :destory, :edit, :index]
+  end
   resources :post_images, only: [:new, :create, :index, :show]
   resources :shopinformations
   resources :cart_histories

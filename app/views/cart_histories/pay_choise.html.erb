@@ -6,9 +6,9 @@
 <%= form_for @cart_history do |f| %>
   <label><%= f.radio_button :howtopay_history, :銀行口座振込 %>銀行口座振込支払い</label><br>
   <label><%= f.radio_button :howtopay_history, :クレジットカード払い %>クレジットカード支払い
-　　　　　<%= f.label :カード番号 %><%= f.text_field :howtopay_history %>
-         <%= f.label :セキュリティコード %><%= f.text_field :howtopay_history %>
-　　　　　<%= f.label :有効期限 %><%= f.date_select :howtopay_history,discard_day: true %></label><br>
+　　　　　<%= f.label :カード番号 %><%= f.text_field :card_number %>
+         <%= f.label :セキュリティコード %><%= f.text_field :card_number %>
+　　　　　<%= f.label :有効期限 %><%= f.date_select :card_number,discard_day: true %></label><br>
   <label><%= f.radio_button :howtopay_history, :代金引換 %>代金引換</label>
 
 <div class="actions">

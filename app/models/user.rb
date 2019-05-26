@@ -4,8 +4,12 @@ class User < ApplicationRecord
   	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+    belongs_to :user
+    has_many :cart_items
+    has_many :cart_histories
+    has_many :favorites
+    has_many :fav_products,through: :favorites, source: :product
 
-  has_many :cart_histories
 
 # =========== ↓サインアップの際のバリデーション↓　==================
 	validates :first_name, :family_name, :first_name_kana, :family_name_kana, presence: true, length: { in: 1..20 }
