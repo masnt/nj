@@ -12,7 +12,6 @@
 
   def new
     @inquiry = Inquiry.new
-    binding.pry
     #if params[:Editing]
   end
 
