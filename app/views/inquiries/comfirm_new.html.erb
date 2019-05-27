@@ -1,23 +1,24 @@
-<div>
+<div class="container">
+<div class="row">
 	<p>Preview </p>
 
-	<%= form_for @inquiry, url: inquiries_complete_path, method: :get do |f| %>
+	<%= form_for @inquiry do |f| %>
 	<%#= @inquiry.inquiry_title %>
-		<div><%#= f.inquiry_title %></div>
+		<div><%#= f.inquiry_title %></div><%# ←保存した値しか呼び出せないようです %>
 	    <div><%#= f.inquiry_text %></div>
 	    <div><%= @inquiry.inquiry_title %></div>
 	    <div><%= @inquiry.inquiry_text %></div>
 	    <div><%= f.hidden_field :inquiry_title %></div>
 	    <div><%= f.hidden_field :inquiry_text %></div>
 	    <div><%#= @time.date_select :inquiry_datetime %></div>
-	    <div class="actions">
-		    <%= f.submit '送信する', class: "col-xs-4 col-xs-4 btn btn-primary active", data: { disable_with: '送信中 now sending'} %>
+		    <%= f.submit '送信する', class: "col-xs-8 btn btn-primary active", data: { disable_with: '送信中 now sending'} %>
 
-		    <%= link_to "Back", new_inquiry_path(@inquiry), class: "btn back", class: "back" %>
-
-		</div>
-			 <%# <div class="actions">
-			    <%= f.submit '前の画面に戻る', name: 'back', class: "col-xs-4 col-xs-4 btn btn-primary active"
-			  </div> %>
+		    <%#= link_to "Back", new_inquiry_path(@inquiry), class: "col-xs-8 btn back", class: "back" %>
+			<%#= f.submit "入力画面に戻る", name: "Editing", new_inquiry_path, method: :post, class: "col-xs-8 btn back" %>
+	<% end %>
+	<%= form_for @inquiry do |f| %>
+	    <div><%= f.hidden_field :inquiry_title %></div>
+	    <div><%= f.hidden_field :inquiry_text %></div>
+		<%= f.submit "入力画面に戻る", name: "back", class: "col-xs-8 btn back" %>
 	<% end %>
 </div>

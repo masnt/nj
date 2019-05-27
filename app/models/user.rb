@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
 
   has_many :cart_histories
+  has_many :inquiries
 
 # =========== ↓サインアップの際のバリデーション↓　==================
 	validates :first_name, :family_name, :first_name_kana, :family_name_kana, presence: true, length: { in: 1..20 }

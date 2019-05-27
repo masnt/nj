@@ -1,16 +1,32 @@
 
 <%#  管理者のみが閲覧できます。%>
-
-<h1>Inquiry List</h1>
-	<% @inquiries.each do |inquiry| %>
-		<div><p>inquiry status</p>
-			<%#= inquiry.select :inquiry_status, Inquiry.inquiry_statuses.keys %>
+<div class="container">
+		<h1>Inquiry List</h1>
+		<% @inquiries.each do |inquiry| %>
+			<div class="row">
+			    <div class="col-xs-2">
+			    	<%= inquiry.created_at.in_time_zone('Tokyo') %>
+			    </div>
+			    <div class="col-xs-2">
+			    	<%= inquiry.user_id %>
+			    </div>
+				<div class="col-xs-2">
+					<p>inquiry status</p>
+					<%#= inquiry.select :inquiry_status, Inquiry.inquiry_statuses.keys %>
+				</div>
+				<div class="col-xs-4 inquiry_title">
+					<%= link_to inquiry_path(inquiry.id), class: "inquiry_#{inquiry.id}" do %>
+						<%= inquiry.inquiry_title %>
+					<% end %>
+					<p class="inquiry-text">
+						<%= truncate(inquiry.inquiry_text, length: 30, omission: " • • • ") %></p>
+				</div>
+				<div class="col-xs-2">
+					<%= link_to '返信する', inquiry_path(inquiry.id), class: "btn btn-success" %>
+				</div>
+			</div>
+		<% end %>
+		<div class="col-xs-4 col-xs-offset-4">
+			<%= paginate(@inquiries) %>
 		</div>
-		<div class="inquiry_title">
-			<%= link_to inquiry_path(inquiry.id), class: "inquiry_#{inquiry.id}" do %>
-				<%= inquiry.inquiry_title %>
-			<% end %>
-			<p class="inquiry-text"><%= inquiry.inquiry_text %></p>
-		</div>
-	<% end %>
-
+</div>
