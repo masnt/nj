@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_05_27_072307) do
 
-
   create_table "cart_histories", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "cart_item_history_id", null: false
@@ -117,9 +116,7 @@ ActiveRecord::Schema.define(version: 2019_05_27_072307) do
     t.integer "unit_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "jacket_image_id"
     t.string "label"
-
   end
 
   create_table "shopinfomations", force: :cascade do |t|

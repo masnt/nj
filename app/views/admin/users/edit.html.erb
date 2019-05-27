@@ -1,2 +1,50 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class= "row">
+<div class="container">
+<h1>顧客情報編集</h1>
+
+<%= form_for @user, url: admin_user_path, method: :patch do |f| %>
+<div class="field row col-md-offset-4">
+<label><%= f.label :"姓" %><br />
+    <%= f.text_field :family_name %>
+</label>
+
+<label><%= f.label :"名" %><br />
+    <%= f.text_field :first_name %>
+</label>
+</div>
+
+<div class="field row col-md-offset-4">
+<label><%= f.label :"セイ" %><br />
+    <%= f.text_field :family_name_kana %>
+</label>
+
+<label><%= f.label :"メイ" %><br />
+    <%= f.text_field :first_name_kana %>
+</label>
+</div>
+
+<div class="field row col-md-offset-4">
+<%= f.label :"郵便番号 ※「-(ハイフン)」含む" %><br />
+<%= f.text_field :postal_code %>
+</div>
+
+
+<div class="field row col-md-offset-4">
+<%= f.label :"住所" %><br />
+<%= f.text_field :address, class:"col-xs-7" %>
+</div>
+
+<div class="field row col-md-offset-4">
+<%= f.label :"電話番号 ※「-(ハイフン)」含む" %><br />
+<%= f.text_field :phone_number, class:"col-xs-5" %>
+</div>
+
+<div class="field row col-md-offset-4">
+<%= f.label :"メールアドレス" %><br />
+<%= f.email_field :email, class:"col-xs-5" %>
+</div>
+
+<%= f.submit 'Update',  class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>

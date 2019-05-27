@@ -1,2 +1,38 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class= "row">
+  <div class="container">
+    <div class="col-xs-3">
+    <%= render 'admin/home/sidebar' %>
+</div>
+<div class="col-xs-9">
+<h1>顧客情報一覧</h1>
+<p><%= notice %><p>
+<table class="table table-space">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>フリガナ</th>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>電話番号</th>
+      <th>メールアドレス</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |users| %>
+      <tr>
+        <td><label><%= users.family_name %></label><label><%= users.first_name %></label></td>
+        <td><label><%= users.family_name_kana %></label><label><%= users.first_name_kana %></label></td>
+        <td><%= users.postal_code %></td>
+        <td><%= users.address %></td>
+        <td><%= users.phone_number %></td>
+        <td><%= users.email %></td>
+        <td><%= link_to "編集", edit_admin_user_path(users) %></td>
+        <td><%= link_to "削除", [:admin, users], method: :delete, data: { confirm: "本当によろしいですか?" }  %></td>
+      </tr>
+    <% end %>
+</table>
+</div>
+</div>
+</div>
