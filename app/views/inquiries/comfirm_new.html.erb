@@ -1,5 +1,6 @@
 <div>
 	<p>Preview </p>
+
 	<%= form_for @inquiry, url: inquiries_complete_path, method: :get do |f| %>
 	<%#= @inquiry.inquiry_title %>
 		<div><%#= f.inquiry_title %></div>
@@ -11,7 +12,9 @@
 	    <div><%#= @time.date_select :inquiry_datetime %></div>
 	    <div class="actions">
 		    <%= f.submit '送信する', class: "col-xs-4 col-xs-4 btn btn-primary active", data: { disable_with: '送信中 now sending'} %>
+
 		    <%= link_to "Back", new_inquiry_path(@inquiry), class: "btn back", class: "back" %>
+
 		</div>
 			 <%# <div class="actions">
 			    <%= f.submit '前の画面に戻る', name: 'back', class: "col-xs-4 col-xs-4 btn btn-primary active"

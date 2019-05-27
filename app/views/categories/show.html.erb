@@ -1,2 +1,13 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<% if flash[:notice] %>
+	<p class="flash"><%= flash[:notice] %>
+</p>
+<% end %>
+		 <%= attachment_image_tag @category, :category_image, :fill, 200, 200, class: "img-rounded", fallback: "no_image.jpg",size:'200x200' %>
+		 <p class="category-text"><%= @category.category_title %></p>
+
+<div>
+	<%# @category.each do |product| %>
+		 <%#= attachment_image_tag product, :jacket_image, :fill, 200, 200, class: "img-rounded", fallback: "no_image.jpg",size:'200x200' %>
+		 <%#= product.product.name %>
+	<%# end %>
+</div>

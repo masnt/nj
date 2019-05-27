@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   get 'users/confirm_delete'
   get 'users/complete_delete'
 
+
   resources :products do
     post '/add', to: 'products#add'
     put '/add', to:'products#add'
@@ -72,6 +73,10 @@ Rails.application.routes.draw do
   resources :shopinformations
   resources :cart_histories
   resources :inquiries
+  resources :post_images, only: [:new, :create, :index, :show]
+  resources :categories
+  resources :product_reviews
+
 
   post 'inquiries/comfirm_new'
   get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
