@@ -69,16 +69,13 @@ Rails.application.routes.draw do
     delete "/unlike", to:'favorites#unlike'
   resources :cart_items,only: [:create, :destory, :edit, :index]
   end
-  resources :post_images, only: [:new, :create, :index, :show]
   resources :shopinformations
   resources :cart_histories
-  resources :categories
-  resources :product_reviews
   resources :inquiries
 
   post 'inquiries/comfirm_new'
   get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
-  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
