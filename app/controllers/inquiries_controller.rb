@@ -3,7 +3,7 @@
   def index
     @inquiries = Inquiry.all
     @inquiries = Inquiry.page(params[:page])
-    #@inquiries = User.all
+    @user = User.all
   end
 
   def show
