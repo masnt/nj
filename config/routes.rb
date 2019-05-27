@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'home/top'
+  end
   get 'cart_items/show'
   get 'cart_items/create'
   get 'cart_items/destroy'
