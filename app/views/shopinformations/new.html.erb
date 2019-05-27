@@ -1,7 +1,7 @@
 <h1>SHOP INFORMATION<h1>
 
-<%= form_with model: @shopinformation, local:true do |form| %>
-  <%= form.text_field :shopinformation_text %>
+<%= form_for @shopinformation do |f| %>
+  <%= f.text_field :shopinformation_text %>
 
 <%= f.submit '投稿' %>
 

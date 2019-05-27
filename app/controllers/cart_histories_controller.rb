@@ -2,11 +2,12 @@ class CartHistoriesController < ApplicationController
 
 
   	def pay_choise
-  	@cart_history = CartHistory.new
+  	  @cart_history = CartHistory.new
   	end
 
  	 def new
-  	@cart_history = CartHistory.new
+  	  user = current_user
+  	  @cart_history = CartHistory.new
  	 end
 
 
@@ -62,10 +63,7 @@ class CartHistoriesController < ApplicationController
     private
 
     def cart_history_params
-    params.require(:cart_history).permit(:family_name_history, :first_name_history, :family_name_kana_history,
-    					:first_name_kana_history, :postal_code_history, :ship_address_history, :howtopay_history,
-
-    					:amount_history,:other_name, :other_name_kana, :other_address, :other_phone_number, :ship_status, :shipping_type)
+    params.require(:cart_history).permit(:family_name,:family_name_history, :first_name_history, :family_name_kana_history, :first_name_kana_history, :postal_code_history, :ship_address_history, :howtopay_history,:amount_history,:other_name, :other_name_kana, :other_address, :other_phone_number, :ship_status, :shipping_type, :user_id)
 
    end
 

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'index/create'
   get 'index/destroy'
   devise_for :users
+  resources :users, only: [:show, :edit, :update]
+
 
   root to: 'products#index'
   get 'cart_histories/pay_choise' => 'cart_histories#pay_choise'
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
 
   get 'products/index2' => 'products#index2'
   get 'shopinformations' => 'shopinformations#show'
-  get 'shopinformations/new'
+  get 'shopinformations/new' => 'shopinformations#show'
   post 'shopinformations/create' => 'shopinformations#create'
 
 
@@ -54,14 +56,8 @@ Rails.application.routes.draw do
     get 'users/index'
   end
   get 'users/confirm_new'
-  get 'users/show'
-  get 'users/edit'
-  get 'users/update'
-
-  patch 'users/:id' => 'users#update', as: 'update_user'
 
   get 'users/show_mypage'
-  get 'users/update_user'
   get 'users/confirm_delete'
   get 'users/complete_delete'
 

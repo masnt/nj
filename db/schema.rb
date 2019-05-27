@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_24_080236) do
+ActiveRecord::Schema.define(version: 2019_05_27_072307) do
 
   create_table "cart_histories", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -112,12 +112,12 @@ ActiveRecord::Schema.define(version: 2019_05_24_080236) do
     t.integer "stock_quantity", null: false
     t.integer "recieve_quantity"
     t.text "product_text"
-    t.integer "label_id", null: false
     t.integer "product_status", null: false
     t.integer "unit_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "jacket_image_id"
+    t.string "label"
   end
 
   create_table "shopinfomations", force: :cascade do |t|

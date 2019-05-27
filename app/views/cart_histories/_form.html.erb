@@ -3,17 +3,17 @@
 
 <%= form_for @cart_history do |f| %><br>
 
-    <%= f.label :お届け先宛て名 %>
-    <%= f.text_field :other_name %>
-    <%= f.label :フリガナ %>
-    <%= f.text_field :other_name_kana %>
-    <%= f.label :お電話番号 %>
-    <%= f.text_field :other_phone_number%>
+    <%= f.label :お届け先宛て名 %><br>
+    <%= f.text_field :other_name %><br>
+    <%= f.label :フリガナ %><br>
+    <%= f.text_field :other_name_kana %><br>
+    <%= f.label :お電話番号 %><br>
+    <%= f.text_field :other_phone_number%><br>
     <p> お届け先住所 </p>
     <%= f.text_area :other_address %>
   </div>
 
   <div class="actions">
-    <%= f.submit "支払い方法選択画面へ進む"%>
+    <%= f.submit "支払い方法選択画面へ進む"%><!--url指定-->
   </div>
   <% end %>

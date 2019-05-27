@@ -1,64 +1,70 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>シングル・アルバム名</strong><br>
-  <%= @product.product_name %>
-</p>
 
-<p>
-  <strong>アーティスト名</strong><br>
-  <%= @product.artist %>
-</p>
+<div class="container">
+   <div class="row">
+    <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+      <strong>シングル・アルバム名</strong><br>
+             <%= @product.product_name %>
+    </div>
+    <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+      <strong>アーティスト名</strong><br>
+             <%= @product.artist %>
+    </div>
+    <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+             <%= attachment_image_tag @product, :jacket_image, :fill, 300, 300 %>
+    </div>
+    <div class="field row col-md-offset-2" style="margin-bottom: 5px;">
+            <% @product.pictures.each do |image| %>
+             <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+            <% end %>
+    </div>
+    <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+      <strong>商品カテゴリ</strong><br>
+             <%= @product.category_id %>
+    </div>
+    <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+      <strong>レーベル</strong><br>
+              <%= @product.label %>
+    </div>
 
-<p>
-  <%= attachment_image_tag @product, :jacket_image, :fill, 200, 200 %>
-</p><br>
+    <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+      <strong>在庫数</strong><br>
+              <%= @product.stock_quantity %>
+    </div>>
+    <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+      <strong>商品概要</strong><br>
+            <%= @product.product_text %>
+    </div>
+    <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+      <strong>販売ステータス</strong><br>
+            <%= @product.product_status %>
+    </div>
+    <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+      <strong>単価</strong><br>
+            <%= @product.unit_price %>
+    </div>
+    <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+      <strong>数量</strong><br>
+            <%= form_for(@cart_item,url:product_add_path(@product.id)) do |f| %>
+            <%= f.number_field :purchase_quantity %>
+    </div>
 
-  <% @product.pictures.each do |image| %>
-    <%= attachment_image_tag image, :image, :fill, 200, 200 %>
-  <% end %>
-
-<br><strong>商品カテゴリ</strong><br>
-  <%= @product.category_id %>
-</p>
-
-<strong>レーベル</strong><br>
-  <%= @product.label_id %>
-</p>
-
-<p>
-  <strong>在庫数</strong><br>
-  <%= @product.stock_quantity %>
-</p>
-
-<p>
-  <strong>商品概要</strong><br>
-  <%= @product.product_text %>
-</p>
-
-<p>
-  <strong>販売ステータス</strong><br>
-  <%= @product.product_status %>
-</p>
-
-<p>
-  <strong>単価</strong><br>
-  <%= @product.unit_price %>
-</p>
-
-<p>
-  <strong>数量</strong><br>
-  <%= form_for(@cart_item,url:product_add_path(@product.id)) do |f| %>
-  <%= f.number_field :purchase_quantity %>
-  <%= f.submit 'カートへ追加' %>
-</p>
-<% end %>
+    <div class="actions" style="margin-bottom: 10px;">
+    <button class:"btn btn-primary col-xs-4 actions col-md-offset-4", style:"margin-bottom: 10px;" %>
+      <span class="glyphicon glyphicon-shopping-cart" ></span>
+          カートに追加
+    </button>
+    <% end %>
+  </div>
 
 <% if @product.favorited_by?(current_user) %>
   <p>お気に入りに登録されている商品です</p>
 <% else %>
 <%= link_to 'お気に入りリストに追加' , product_like_path(@product.id) ,method: :post %><br>
 <% end %>
+</div>
+</div>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
