@@ -1,0 +1,16 @@
+<h1>ショッピングカート</h1>
+<% @carts.each do |c| %>
+<ul>
+<%= attachment_image_tag c.product, :jacket_image, :fill, 200, 200 %>
+  <li><%= c.product.product_name %></li>
+  <li><%= c.product.artist %></li>
+  <li>¥<%= c.product.unit_price %>(税抜)</li>
+  <li><%= c.purchase_quantity %>個</li>
+  <li>¥<%= c.sub_total %>円(税込)<li>
+  <li><%= link_to "取り消し", cart_item_path(c), method: :delete %><li>
+</ul>
+<% end %>
+<p>合計数量: <%= @total_purchase_quantity %>個</p>
+<h4>合計金額: ¥<%= @total_price %>円(税込)</h4>
+
+<%= link_to '購入画面へ進む', '#' %>
