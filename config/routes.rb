@@ -1,10 +1,27 @@
 Rails.application.routes.draw do
+  get 'favorites/index'
+  get 'favorites/create'
+  get 'favorites/destroy'
+  get 'index/create'
+  get 'index/destroy'
   devise_for :users
+  resources :users, only: [:show, :edit, :update]
+
+
+  root to: 'products#index'
+  get 'cart_histories/pay_choise' => 'cart_histories#pay_choise'
+  get 'cart_histories/new' => 'cart_histories#new'
+
+  get 'products/index2' => 'products#index2'
+  get 'shopinformations' => 'shopinformations#show'
+  get 'shopinformations/new' => 'shopinformations#new'
+  post 'shopinformations/create' => 'shopinformations#create'
   root :to => 'products#index'
   get '/pay_choise', to: 'cart_histories#pay_choise'
   get '/cart_histories/comfirm_new', to: 'cart_histories#comfirm_new'
   get '/cart_histories/complete_new', to: 'cart_histories#complete_new'
-  resources :cart_histories
+
+
 
 
   namespace :admin do
@@ -42,18 +59,31 @@ Rails.application.routes.draw do
     get 'users/index'
   end
   get 'users/confirm_new'
-  get 'users/show'
-  get 'users/edit'
-  get 'users/update'
+
   get 'users/show_mypage'
-  get 'users/update_user'
   get 'users/confirm_delete'
   get 'users/complete_delete'
+
+
+  resources :products do
+    post '/add', to: 'products#add'
+    put '/add', to:'products#add'
+    post "like", to:'favorites#like'
+    put "like", to:'favorites#like'
+    delete "/unlike", to:'favorites#unlike'
+  resources :cart_items,only: [:create, :destory, :edit, :index]
+  end
+  resources :shopinformations
+  resources :cart_histories
+  resources :inquiries
+
   get 'users/cart'
   resources :products
+
   resources :post_images, only: [:new, :create, :index, :show]
   resources :categories
   resources :product_reviews
+
 
   post 'inquiries/comfirm_new'
   get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
@@ -62,14 +92,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
-
-
-
-
-
-
-
-
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
 

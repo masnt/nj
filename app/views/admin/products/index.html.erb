@@ -1,0 +1,27 @@
+
+<h1>商品一覧</h1>
+<table class="table table-hover table-inverse">
+<tr>
+  <th>シングル・アルバム名</th>
+  <th>アーティスト名</th>
+  <th>価格</th>
+  <th>販売ステータス</th>
+  <th>在庫数</th>
+  <th>削除</th>
+  <th>編集</th>
+  <th>商品レビュー</th>
+</tr>
+
+<% @products.each do |product| %>
+<tr class="new-table">
+  <td><%= product.product_name %></td>
+  <td><%= product.artist %></td>
+  <td><%= product.unit_price %></td>
+  <td><%= product.product_status %></td>
+  <td><%= product.stock_quantity %></td>
+  <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: '商品を削除しますか?' } %></td>
+  <td><%= link_to 'Edit', edit_product_path(product) %></td></td>
+  <td><%= link_to '商品レビュー', product_path(product) %></td></td>
+</tr>
+<% end %>
+</table>

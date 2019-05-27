@@ -7,16 +7,20 @@
 				<%= message %>
 			<% end %>
 		<% end %>
-			    <label class="inquiry_title">お問い合わせタイトル</label>
-			    <div class="row">
-					<%= f.text_field :inquiry_title, autofocus: true , placeholder:'お問い合わせ内容のタイトルをご入力ください。', class: "col-xs-8" %>
+		        <div class="row">
+				    <label class="inquiry_title col-xs-offset-2 col-xs-8">お問い合わせタイトル</label>
 				</div>
-			    <label class="inquiry_text">お問い合わせ内容</label>
 			    <div class="row">
-					<%= f.text_area :inquiry_text, placeholder:'お問い合わせ内容の本文をご入力ください。', class: "col-xs-8" %>
+					<%= f.text_field :inquiry_title, autofocus: true , placeholder:'お問い合わせ内容のタイトルをご入力ください。', class: "col-xs-offset-2 col-xs-8" %>
 				</div>
 				<div class="row">
-					<%= f.submit '確認', class: "col-xs-8 btn btn-primary active" %>
+				    <label class="inquiry_text col-xs-offset-2 col-xs-8">お問い合わせ内容</label>
+			    </div>
+			    <div class="row">
+					<%= f.text_area :inquiry_text, placeholder:'お問い合わせ内容の本文をご入力ください。', class: "col-xs-offset-2 col-xs-8", rows: "15" %>
+				</div>
+				<div class="row">
+					<%= f.submit '確認', class: "col-xs-offset-2 col-xs-8 btn btn-primary active" %>
 				</div>
 	<% end %>
 </div>

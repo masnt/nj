@@ -7,19 +7,40 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  def index2
+    @products = Product.all
+  end
+
+
   # GET /products/1
   # GET /products/1.json
   def show
+    @product = Product.find(params[:id])
+    @cart_item = CartItem.new
   end
+
+
+  def add
+    @product = Product.find(params[:product_id])
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.user_id = current_user.id
+    @cart_items.product_id = @product.id
+    @cart_item.save
+    redirect_to user_users_cart_path(current_user)
+  end
+
 
   # GET /products/new
   def new
     @product = Product.new
+    @product.pictures.build
   end
 
   # GET /products/1/edit
   def edit
   end
+
+
 
   # POST /products
   # POST /products.json
@@ -29,7 +50,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to @product, notice: '商品の登録が完了しました。' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -41,9 +62,11 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    @product = Product.find(params[:id])
+    @product.stock_quantity = @product.stock_quantity + params[:product][:recieve_quantity].to_i
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to @product, notice: '商品を更新しました。' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -57,7 +80,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to products_url, notice: '商品を削除しました' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +93,11 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:products).permit(:product_name, :artist, :stock_quantity, :recieve_quantity, :product_text, :product_status, :unit_price, :jacket_image)
+      params.require(:product).permit(:product_name, :artist, :stock_quantity, :recieve_quantity, :product_text, :category_id, :label, :product_status, :unit_price, :jacket_image, pictures_images: [] )
     end
-end
+
+    def cart_item_params
+      params.require(:cart_item).permit(:purcase_quantity)
+    end
+
+  end

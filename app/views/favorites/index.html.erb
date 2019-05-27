@@ -1,0 +1,21 @@
+<h1>お気に入りリスト</h1>
+
+<table class="table table-hover table-inverse">
+<tr>
+  <th>シングル・アルバム名</th>
+  <th>アーティスト名</th>
+  <th>価格</th>
+  <th>  </th>
+  <th>商品の詳細へ</th>
+</tr>
+
+<% @favorites.each do |favorite| %>
+<tr class="new-table">
+  <td><%= favorite.product.product_name %></td>
+  <td><%= favorite.product.artist %></td>
+  <td><%= favorite.product.unit_price %></td>
+  <td><%= link_to "お気に入りリストから削除", product_unlike_path(favorite.product.id), method: :delete %></td>
+  <td><%= link_to "商品詳細へ",product_path(favorite.product.id) %></td>
+</tr>
+<% end %>
+</table>

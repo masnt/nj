@@ -1,13 +1,28 @@
 class CartHistoriesController < ApplicationController
 
+
+  	def pay_choise
+  	  @cart_history = CartHistory.new
+  	end
+
+ 	 def new
+  	  user = current_user
+  	  @cart_history = CartHistory.new
+ 	 end
+
+
+ 	 def create
+  	@cart_history = CartHistory.new(cart_history_params)
+    @cart_history.save
+ 	 end
+
+
+
+
 	  def index  #購入履歴一覧
 
 	  	#@user = User.find(params[:id]) #current_user
 	  	#@cart_history = current_user.cart_histories #ユーザに紐ずいているcart_histories 全てを持ってくる
-	  end
-
-
-	  def pay_choise #お支払い方法選択
 	  end
 
 
@@ -18,15 +33,6 @@ class CartHistoriesController < ApplicationController
 
 	  def complete_new  #購入完了ページ
 	  end
-
-
-	  def new #お届け先入力
-	  end
-
-
-	  def create
-	  end
-
 
 	  def destroy
 	  end
@@ -57,9 +63,8 @@ class CartHistoriesController < ApplicationController
     private
 
     def cart_history_params
-    params.require(:cart_history).permit(:family_name_history, :first_name_history, :family_name_kana_history,
-    					:first_name_kana_history, :postal_code_history, :ship_address_history, :howtopay_history,
-    					:amount_history,:other_name, :other_name_kana, :other_address, :other_phone_number,:ship_status)
+    params.require(:cart_history).permit(:family_name,:family_name_history, :first_name_history, :family_name_kana_history, :first_name_kana_history, :postal_code_history, :ship_address_history, :howtopay_history,:amount_history,:other_name, :other_name_kana, :other_address, :other_phone_number, :ship_status, :shipping_type, :user_id)
+
    end
 
 

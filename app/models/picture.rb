@@ -1,5 +1,6 @@
 class Picture < ApplicationRecord
 
-	belongs_to :product_image
-	attachment :picture_a
+	belongs_to :product
+	attachment :image
+
 end
