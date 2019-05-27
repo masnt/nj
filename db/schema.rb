@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_22_115605) do
+ActiveRecord::Schema.define(version: 2019_05_24_140246) do
 
   create_table "cart_histories", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 2019_05_22_115605) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_title", null: false
-    t.string "category_image", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category_image_id"
   end
 
   create_table "category_items", force: :cascade do |t|
@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 2019_05_22_115605) do
   end
 
   create_table "inquiries", force: :cascade do |t|
-    t.datetime "inquiry_datetime", null: false
     t.string "inquiry_title", null: false
     t.text "inquiry_text", null: false
     t.integer "user_id", null: false
@@ -92,6 +91,7 @@ ActiveRecord::Schema.define(version: 2019_05_22_115605) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "product_id"
+    t.string "image_id"
   end
 
   create_table "product_reviews", force: :cascade do |t|
@@ -115,7 +115,6 @@ ActiveRecord::Schema.define(version: 2019_05_22_115605) do
     t.integer "unit_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "jacket_image_id"
   end
 
   create_table "shopinfomations", force: :cascade do |t|
@@ -133,10 +132,8 @@ ActiveRecord::Schema.define(version: 2019_05_22_115605) do
     t.string "postal_code", null: false
     t.string "address", null: false
     t.string "phone_number", null: false
-    t.string "mail", null: false
-    t.integer "password", null: false
     t.boolean "admin", default: false, null: false
-    t.boolean "user_delete", null: false
+    t.boolean "user_delete", default: false, null: false
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

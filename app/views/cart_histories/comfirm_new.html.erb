@@ -1,0 +1,37 @@
+<h1>購入確認画面</h1>
+<div class="center">
+<table class="table" border="3" bordercolor="black">
+	<tr>
+		<th>会員情報<br>
+            名前：<%#= @cart_history.%><br>
+            電話番号:<%#= @cart_history.%><br>
+            メールアドレス:<%#= @cart_history.%><br>
+            郵便番号:<%#= @cart_history.%><br>
+            住所:<%#= @cart_history.%><br>
+		</th>
+	</tr>
+</table><br>
+
+<table class="table" border="3" bordercolor="black">
+<tr>
+	<th>
+		<a>選択した支払い方法選択</a>
+	</th>
+</tr>
+</table><br>
+
+<table class="table" border="3" bordercolor="black">
+	<tr>
+	<th>
+		商品の合計
+	</th>
+</tr>
+</table>
+
+<%= link_to "戻る", cart_histories_path,class: "btn btn-success"%> <!--リンク先は未定-->
+<%= link_to "購入", cart_histories_path,class: "btn btn-danger"%><!--本来はcreateに飛ばす-->
+
+</div>
+
+
+

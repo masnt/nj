@@ -4,6 +4,10 @@ class User < ApplicationRecord
   	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
+  has_many :cart_histories
+  has_many :inquiries
+
 # =========== ↓サインアップの際のバリデーション↓　==================
 	VALID_POSRAL_CODE = /\d{3}-\d{4}/
 	VALID_EMAIL = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
@@ -12,6 +16,6 @@ class User < ApplicationRecord
 	validates :address, presence: true, length: { in: 4..30 }
 	validates :phone_number, presence: true, length: { in: 12..13 }
 	validates :email, presence: true, length: { in: 6..30 }, format: { with: VALID_EMAIL }
-
   	has_many :cart_items, dependent: :destroy
+
 end

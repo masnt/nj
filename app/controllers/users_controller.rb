@@ -36,11 +36,16 @@ class UsersController < ApplicationController
 
   private
   
-    def user_params
-      params.require(:user, :cart_item).permit(:product_name, :artist, :stock_quantity, :cart_item_id, :product_id, :purchase_quantity, :sub_total, :user_id, :unit_price, :amount)
-    end
+  def user_params
+    params.require(:user, :cart_item).permit(:product_name, :artist, :stock_quantity, :cart_item_id, :product_id, :purchase_quantity, :sub_total, :user_id, :unit_price, :amount)
+  end
 
-    def cart_item_params
-      params.require(:cart_item).permit(:purchase_quantity , :cart_item_id)
-    end
+  def cart_item_params
+    params.require(:cart_item).permit(:purchase_quantity , :cart_item_id)
+  end
+  
+  def self.inquiry_reply
+    InquiryMailer.report(User.third).deliver_now
+  end
+
 end
