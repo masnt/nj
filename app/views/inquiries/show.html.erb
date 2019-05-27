@@ -9,34 +9,40 @@
 
 	<div class="row">
 		<div class="col-xs-offset-2 col-xs-2"><%= @inquiry.created_at.in_time_zone('Tokyo') %></div>
-	    <div class="col-xs-2"><%= @inquiry.user_id %></div>
+	    <div class="col-xs-2"><%= @user.family_name %>
+	    	                  <%= @user.first_name %><br>
+	    	                  (<%= @user.family_name_kana %>
+	    	                  <%= @user.first_name_kana %>)
+	    	                  </div>
 	    <div class="col-xs-2"><%= @inquiry.inquiry_title %></div>
-	    <div class="col-xs-4"><%= @inquiry.inquiry_text %></div>
+	    <div class="col-xs-4"><%= simple_format(@inquiry.inquiry_text) %></div>
 	</div>
 
 	<div class="row">
-	    <div class="col-xs-offset-5 col-xs-4">ユーザー名<%#= @inquiry.family_name %> (mail:<%= @inquiry.user_id %>)さんへ返信する</div>
+	    <div class="col-xs-offset-4 col-xs-4">
+	    	ユーザー名
+	    	<%= @user.family_name %>
+	    	<%= @user.first_name %>
+	    	(mail:<%= @user.email %>)さんへ返信する
+	    </div>
 	</div>
 	<div class="row">
 	    <div class="col-xs-offset-5 col-xs-4">管理者返信内容</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-offset-5 col-xs-2">返信本文</div>
-	</div>
-		    <%# form_for @answer do |f|%>
+		<%= form_for @reply do |f| %>
+			<% if @reply.errors.any? %>
+				<%= @reply.errors.count %>
+				<%= @reply.errors.full_messages.each do |message| %>
+					<%= message %>
+			    <% end %>
+		    <% end %>
 
-			<%# if @answer.errors.any? %>
-				<%#= @answer.errors.count %>
-				<%#= @answer.errors.full_messages.each do |message| %>
-					<%#= message %>
-				<%# end %>
-			<%# end %>
-
-		    <div><%#= f.user_mail :mail%></div>
-		    <div><%#= f.text_area :inquiry_answer_text, placeholder:'返信内容をご入力ください。', class: "col-xs-4" %></div>
-		    <div><%#= f.submit '送信ボタン', class: "col-xs-4 btn btn-primary active" %></div>
-		    <%# end %>
-	<div class="row">
-	    <div class="col-xs-2 col-xs-offset-5 btn btn-success">送信ボタンsubmit</div>
-	</div>
+		    <%= f.text_area :inquiry_text, placeholder:'返信内容をご入力ください。', class: "col-xs-offset-4 col-xs-4" %>
+		    <div class="row">
+			    <%= f.submit '送信ボタン', class: "col-xs-offset-4 col-xs-4 btn btn-success active" %>
+		    </div>
+	    <% end %>
+    </div>
+	<div><%= link_to 'Back to index', :controller => "inquiries", :action => "index", class: "col-xs-4 col-xs-4 btn btn-success active" %></div>
 </div>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-
+  root :to => 'products#index'
   get '/pay_choise', to: 'cart_histories#pay_choise'
   get '/cart_histories/comfirm_new', to: 'cart_histories#comfirm_new'
   get '/cart_histories/complete_new', to: 'cart_histories#complete_new'

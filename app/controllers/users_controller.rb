@@ -22,4 +22,8 @@ class UsersController < ApplicationController
 
   def complete_delete
   end
+
+  def self.inquiry_reply
+    InquiryMailer.report(User.third).deliver_now
+  end
 end

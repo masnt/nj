@@ -8,6 +8,8 @@
 
   def show
     @inquiry = Inquiry.find(params[:id])
+    @user = User.find(@inquiry.user_id)
+    @reply = Inquiry.new
   end
 
   def new

@@ -1,4 +1,5 @@
 class InquiryMailer < ApplicationMailer
+  default from: 'naganojacket@gmail.com'
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -8,7 +9,6 @@ class InquiryMailer < ApplicationMailer
     @user = User.find(3)
     mail(to: @user.email, subject: '【Nagajake】お問い合わせの件')
     @inquiry = Inquiry.find(26)
-    @inquiry
   end
 end
 
