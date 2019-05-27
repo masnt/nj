@@ -2,6 +2,8 @@
 
   def index
     @inquiries = Inquiry.all
+    @inquiries = Inquiry.page(params[:page])
+    @user = User.all
   end
 
   def show

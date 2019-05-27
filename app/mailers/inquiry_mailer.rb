@@ -6,9 +6,9 @@ class InquiryMailer < ApplicationMailer
   #   en.inquiry_mailer.inquiry_reply.subject
   #
   def inquiry_reply
-    @user = params[:user]
-    mail (to: @user.email,
-         subject: '【Nagareco】お問い合わせの件')
-    @inquiry = Inquiry.find(params[:id])
+    @user = User.find(3)
+    @inquiry = Inquiry.find(26)
+    mail(to: @user.email, subject: '【Nagajake】お問い合わせの件')
+    #@inquiry = Inquiry.find(26) このようにmailメソッドの下に来ると、受け渡し先のviewで@inquiryの値がnilになります
   end
 end
