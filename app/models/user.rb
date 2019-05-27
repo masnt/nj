@@ -4,9 +4,12 @@ class User < ApplicationRecord
   	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+    has_many :cart_items
+    has_many :cart_histories
+    has_many :favorites
+    has_many :fav_products,through: :favorites, source: :product
+    has_many :inquiries
 
-  has_many :cart_histories
-  has_many :inquiries
 
 # =========== ↓サインアップの際のバリデーション↓　==================
 	VALID_POSRAL_CODE = /\d{3}-\d{4}/
