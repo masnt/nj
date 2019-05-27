@@ -8,6 +8,12 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    get 'home/top'
+  end
+  get 'cart_items/show'
+  get 'cart_items/create'
+  get 'cart_items/destroy'
+  namespace :admin do
     get 'shopinformations/edit'
   end
   namespace :admin do
@@ -43,6 +49,7 @@ Rails.application.routes.draw do
   get 'users/update_user'
   get 'users/confirm_delete'
   get 'users/complete_delete'
+  get 'users/cart'
   resources :products
   resources :post_images, only: [:new, :create, :index, :show]
   resources :categories
