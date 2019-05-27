@@ -65,6 +65,7 @@ Rails.application.routes.draw do
 
 
 
+
   # 管理者
   get '/index_order', to: 'cart_histories#index_order'
   get '/user_history', to: 'cart_histories#user_history'

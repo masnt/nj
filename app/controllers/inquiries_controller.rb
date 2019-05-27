@@ -43,6 +43,12 @@
     # session[:post] = nil
   end
 
+  def sendmail
+    user = User.find(3)
+    @mail = InquiryMailer.sendmail_comfirm(user).deliver_now
+    render plain: 'メール送信を完了しました'
+  end
+
     private
       def inquiry_params
           params.require(:inquiry).permit(:inquiry_datetime, :inquiry_title, :inquiry_text, :user_id )
