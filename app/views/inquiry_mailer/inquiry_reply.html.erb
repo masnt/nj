@@ -4,11 +4,16 @@
   <meta content="text/html; charset=UTF-8" />
 </head>
 <body>
-  <hr /> <%# hr = horizontal rule（水平方向の罫線）%>
-  <h2><%= @user.name %> 様</h2>
+  <hr /> <%# ← hr = horizontal rule（水平方向の罫線）%>
+  <h2><%= @user.family_name %>
+      <%= @user.first_name %> 様</h2>
   <p>
-    この度は「Nagareco」を利用頂きましてありがとうございます。
+    この度は「Nagareco」を利用頂きましてありがとうございます。<br>
+    以下のお問い合わせ内容にご返信致します。
   </p>
+  <% binding.pry %>
+  <p>お問い合わせ日時</p>
+  <%= @inquiry.created_at.in_time_zone('Tokyo') %>
   <p>お問い合わせ内容</p>
   <p>タイトル</p>
   <p><%= @inquiry.inquiry_title %></p>
