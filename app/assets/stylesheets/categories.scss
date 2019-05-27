@@ -3,14 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .grid-layout {
-display:grid;gap:0.5em;grid-template-columns:1fr 1fr;
+display:grid;gap:0.5em;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-.category-box {
+.cate-box {
 	positon: relative;
 }
-.category-box-text {
+.cate-box p {
 	positon: abusolute;
 	top: 50%;
 	left: 50%;
+}
+.cate-img {
 }

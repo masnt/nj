@@ -8,6 +8,7 @@ class User < ApplicationRecord
     has_many :cart_histories
     has_many :favorites
     has_many :fav_products,through: :favorites, source: :product
+    has_many :inquiries
 
 
 # =========== ↓サインアップの際のバリデーション↓　==================
