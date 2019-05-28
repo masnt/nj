@@ -7,7 +7,8 @@
   <li>¥<%= c.product.unit_price %>(税抜)</li>
   <li><%= c.purchase_quantity %>個</li>
   <li>¥<%= c.sub_total %>円(税込)<li>
-  <li><%= link_to "取り消し", cart_items_destroy_path(c), method: :delete %><li>
+  <li><%= link_to "取り消し",
+  cart_item_path(c.id), method: :delete %><li>
 </ul>
 <% end %>
 <p>合計数量: <%= @total_purchase_quantity %>個</p>
