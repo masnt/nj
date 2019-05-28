@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   get 'index/destroy'
   devise_for :users
   resources :users, only: [:show, :edit, :update] do
-    get 'users/cart', to: "users#cart"
+  get 'users/cart', to: "users#cart"
   end
 
+  resources :cart_items,only: [:create,:destroy]
 
   root to: 'products#index'
   get 'cart_histories/pay_choise' => 'cart_histories#pay_choise'
@@ -29,8 +30,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'home/top'
   end
-  get 'cart_items/show'
-  get 'cart_items/create'
+  #get 'cart_items/show'
+  #get 'cart_items/create'
 
   namespace :admin do
     get 'shopinformations/edit'
@@ -68,7 +69,7 @@ Rails.application.routes.draw do
 
 
   resources :products do
-    resources :cart_items,only: [:create, :edit, :index]
+    resources :cart_items,only: [ :edit, :index]
     patch '/add', to: 'products#add'
     put '/add', to:'products#add'
     post "like", to:'favorites#like'
@@ -82,7 +83,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :post_images, only: [:new, :create,:destroy, :index, :show]
+  resources :post_images, only: [:new, :create, :destroy , :index, :show]
   resources :categories
   resources :product_reviews
 
