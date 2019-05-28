@@ -16,16 +16,21 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
-    @cart_item = CartItem.new
+    #@cart_item = CartItem.new
   end
 
 
   def add
     @product = Product.find(params[:product_id])
-    @cart_item = CartItem.new(cart_item_params)
+    @product.update(product_params)
+    @cart_item = CartItem.new
     @cart_item.user_id = current_user.id
-    @cart_items.product_id = @product.id
+    @cart_item.product_id = @product.id
+    @cart_item.purchase_quantity = @product.select_stock
+    #@tax = 6
+    @cart_item.sub_total = @product.recieve_quantity * @product.unit_price * 1.08
     @cart_item.save
+
     redirect_to user_users_cart_path(current_user)
   end
 
@@ -45,8 +50,8 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new
-    @product.save(product_params)
+    @product = Product.new(product_params)
+    @product.save
 
     respond_to do |format|
       if @product.save
@@ -93,11 +98,11 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:product_name, :artist, :stock_quantity, :recieve_quantity, :product_text, :category_id, :label, :product_status, :unit_price, :jacket_image, pictures_images: [] )
+      params.require(:product).permit(:product_name, :artist, :stock_quantity, :recieve_quantity,:select_stock, :product_text, :category_id, :label, :product_status, :unit_price, :jacket_image, pictures_images: [] )
     end
 
     def cart_item_params
-      params.require(:cart_item).permit(:purcase_quantity)
+      params.require(:cart_item).permit(:purcase_quantity, :product_id, :user_id)
     end
 
   end
