@@ -55,7 +55,7 @@
 
 　<div class="field">
     <%= form.label :カテゴリ %>
-    <%= form.number_field :category_id %>
+    <%= form.select :category_id, Product.category_ids.keys, :selected=>Product.category_ids[@product.category_id] %>
   </div>
 
 

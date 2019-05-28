@@ -31,7 +31,7 @@
     <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
       <strong>在庫数</strong><br>
               <%= @product.stock_quantity %>
-    </div>>
+    </div>
     <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
       <strong>商品概要</strong><br>
             <%= @product.product_text %>
@@ -57,11 +57,11 @@
     <% end %>
   </div>
 
-<%# if @product.favorited_by?(current_user) %>
-  <!-- <p>お気に入りに登録されている商品です</p> -->
-<%# else %>
-<%#= link_to 'お気に入りリストに追加' , product_like_path(@product.id) ,method: :post %><br>
-<%# end %>
+<% if @product.favorited_by?(current_user) %>
+  <p>お気に入りに登録されている商品です</p>
+<% else %>
+<%= link_to 'お気に入りリストに追加' , product_like_path(@product.id) ,method: :post %><br>
+<% end %>
 </div>
 </div>
 
