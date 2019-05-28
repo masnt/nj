@@ -11,7 +11,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @u = User.ransack(params[:q])
+    @users = @u.result
   end
 
   def update

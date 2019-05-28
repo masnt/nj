@@ -1,11 +1,22 @@
 <div class= "row">
   <div class="container">
-    <div class="col-xs-3">
+
     <%= render 'admin/home/sidebar' %>
-</div>
-<div class="col-xs-9">
-<h1>顧客情報一覧</h1>
+
+<div class="col-xs-9 col-lg-9">
+<h1>  顧客情報一覧</h1>
 <p><%= notice %><p>
+
+<dl class="form-group col-xs-9 col-md-offset-1">
+  <%= search_form_for(@u, url:admin_users_index_path) do |f| %>
+    <dt><%= f.text_field :family_name_or_first_name_or_family_name_kana_or_first_name_kana_or_address_cont, class: "form-control", placeholder: '名前もしくは住所で検索'%></dt>
+    <dd><%= f.submit ("検索"), class: 'search-btn-user' %></dd>
+  <% end %>
+  </dl>
+
+
+
+
 <table class="table table-space">
   <thead>
     <tr>
@@ -28,8 +39,8 @@
         <td><%= users.address %></td>
         <td><%= users.phone_number %></td>
         <td><%= users.email %></td>
-        <td><%= link_to "編集", edit_admin_user_path(users) %></td>
-        <td><%= link_to "削除", [:admin, users], method: :delete, data: { confirm: "本当によろしいですか?" }  %></td>
+        <td class="btn-sm btn-success"><%= link_to "編集", edit_admin_user_path(users) %></td>
+        <td class="btn-sm btn-warning"><%= link_to "削除", [:admin, users], method: :delete, data: { confirm: "本当によろしいですか?" }  %></td>
       </tr>
     <% end %>
 </table>
