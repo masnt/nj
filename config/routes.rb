@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users
+  post 'inquiries/comfirm_new'
+  get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
+  post 'inquires/new'
+  resources :inquiries
+
   get 'favorites/index'
   get 'favorites/create'
   get 'favorites/destroy'
   get 'index/create'
   get 'index/destroy'
-  devise_for :users
   resources :users, only: [:show, :edit, :update]
 
 
@@ -85,10 +90,6 @@ Rails.application.routes.draw do
   resources :product_reviews
 
 
-  post 'inquiries/comfirm_new'
-  get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
-  post 'inquires/new'
-  resources :inquiries
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 

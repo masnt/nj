@@ -7,12 +7,18 @@ display:grid;gap:0.5em;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .cate-box {
-	positon: relative;
 }
-.cate-box p {
+.cate-img {
+	filter: brightness(100%);
+	filter: drop-shadow(4px 4px 8px #666);
+	transition: all .5s;
+}
+.cate-img:hover {
+	filter: brightness(70%);
+	transform: translateY(-5px);
+}
+.cate-text {
 	positon: abusolute;
 	top: 50%;
 	left: 50%;
-}
-.cate-img {
 }

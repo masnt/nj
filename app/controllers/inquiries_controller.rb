@@ -19,6 +19,7 @@
 
   def comfirm_new
     @inquiry = Inquiry.new(inquiry_params)
+    @inquiry.user_id = current_user.id
     # @time = Time.now.to_s(:db) (←日時を渡そうと思いましたが、問い合わせられた日時は、created_atカラムから取得します)
     #メソッドを実行するとバリデーションが実行されます。バリデーションが通ればfalseを返し、引っかかればtrueを返します。(return if @inquiry.valid?)
     render :new if @inquiry.invalid?
@@ -46,7 +47,7 @@
 
   def sendmail
     user = User.find(3)
-    @mail = InquiryMailer.sendmail_comfirm(user).deliver_now
+    @mail = InquiryMailer.inquiry_reply(user).deliver_now
     render plain: 'メール送信を完了しました'
   end
 
