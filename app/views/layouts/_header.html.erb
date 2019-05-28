@@ -1,9 +1,11 @@
 <header class="navbar navbar-fixed-top navbar-default">
 	<div class="row">
 		<div class='col-xs-2'>
-			<div id="logo">
-				<h2>NAGAJAKE</h2>
-			</div>
+			<%= link_to products_path do %>
+				<div id="logo">
+					<h2>NAGAJAKE</h2>
+				</div>
+			<% end %>
 		</div>
 		<div class='col-xs-4'>
 			<dl class="form-group col-xs-11 col-md-offset-1">
@@ -14,7 +16,7 @@
 			</dl>
 		</div>
 		<div class='col-xs-1'>
-			<%= link_to "カテゴリ", "#", class:"btn btn-info col-xs-12", style:"margin-top: 22px; color: white;" %>
+			<%= link_to "カテゴリ", categories_path, class:"btn btn-info col-xs-12", style:"margin-top: 22px; color: white;" %>
 		</div>
 		<div class='col-xs-5 row'>
 			<% if user_signed_in? %>
