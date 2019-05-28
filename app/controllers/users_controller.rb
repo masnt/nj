@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!
 
 
   def edit
   	 @user = User.find(params[:id])
   end
-  
-  before_action :authenticate_user!
+
 
   def cart
-    @user = current_user
+    @user = User.find(params[:user_id])
     @carts = @user.cart_items
     @total_price = @carts.sum(:sub_total)
     @total_purchase_quantity = @carts.sum(:purchase_quantity)
@@ -21,16 +21,19 @@ class UsersController < ApplicationController
   end
 
   def show
-  	 @user = User.find(params[:id])
+  	 @user = current_user
   end
 
   def update
   	 @user = User.find(params[:id])
-  if @user.update(user_params)
+     @user.update(user_params)
      redirect_to user_path(@user.id)
-  end
+
+
 end
 
+
+ 
 
   def confirm_new
   end
@@ -53,8 +56,11 @@ end
         params.require(:user).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postal_code, :address, :phone_number, :email)
     end
 
-  
-  def user_params
+
+
+  def user_item_params
+
+ 
     params.require(:user, :cart_item).permit(:product_name, :artist, :stock_quantity, :cart_item_id, :product_id, :purchase_quantity, :sub_total, :user_id, :unit_price, :amount)
   end
 
