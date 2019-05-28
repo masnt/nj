@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
 	def set_search
 	    @q = Product.ransack(params[:q])
-	    @products = @q.result.page(params[:page]).per(3)
+	    @products = @q.result
 	end
 
 	protected
