@@ -6,6 +6,7 @@ class Product < ApplicationRecord
 	has_many :pictures, dependent: :destroy
 	has_many :favorites
 	has_many :users, through: :favorites
+    has_many :product_reviews
     attachment :jacket_image
     accepts_attachments_for :pictures, attachment: :image
 

@@ -15,10 +15,11 @@ class ProductReviewsController < ApplicationController
 
   def create
     @product_review = ProductReview.new(product_review_params)
-    @product_review.product_id = ProductReview.find(params[:product_id])
+    @product = Product.find(params[:product_id])
+    @product_review.product_id = @product.id
     if @product_review.save
     flash[:notice] = "Post successfully!"
-    redirect_to product_review_path(@product_review.id)
+    redirect_to product_reviews_path
     else
     flash[:notice] = "error, post failed"
     render :new

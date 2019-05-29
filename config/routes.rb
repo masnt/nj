@@ -102,7 +102,7 @@ Rails.application.routes.draw do
   resources :inquiries
 
 
-
+  resources :product_reviews
   resources :post_images, only: [:new, :create, :destroy , :index, :show]
   resources :categories
  
