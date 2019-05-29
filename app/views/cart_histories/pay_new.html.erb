@@ -3,7 +3,7 @@
 
 
 
-<%= form_for(@cart_history, url:cart_history_path(@cart_history.id)) do |f| %>
+<%= form_for(@cart_history, url:user_cart_histories_path) do |f| %>
   <label><%= f.radio_button :howtopay_history, :銀行口座振込 %>銀行口座振込支払い</label><br>
 
 
@@ -20,4 +20,3 @@
 </div>
 
 <% end %>
-

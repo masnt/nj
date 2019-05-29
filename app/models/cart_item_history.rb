@@ -1,5 +1,6 @@
 class CartItemHistory < ApplicationRecord
-has_many :cart_histories
+belongs_to :cart_history
+belongs_to :user
 
 belongs_to :product
 

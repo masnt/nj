@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'favorites/index'
   get 'favorites/create'
   get 'favorites/destroy'
@@ -6,12 +7,17 @@ Rails.application.routes.draw do
   get 'index/destroy'
   devise_for :users
   resources :users, only: [:show, :edit, :update] do
-    get 'users/cart', to: "users#cart"
+  get'/pay_new', to: 'cart_histories#pay_new'
+  resources :cart_histories, only: [:create,:destroy]
+  get 'users/cart', to: "users#cart"
   end
 
+  resources :orders
+
+  resources :cart_items,only: [:create,:destroy]
 
   root to: 'products#index'
-  get 'cart_histories/pay_choise' => 'cart_histories#pay_choise'
+  get 'cart_hist/pay_choise' => 'cart_histories#pay_choise'
   get 'cart_histories/new' => 'cart_histories#new'
 
   get 'products/index2' => 'products#index2'
@@ -19,9 +25,11 @@ Rails.application.routes.draw do
   get 'shopinformations/new' => 'shopinformations#new'
   post 'shopinformations/create' => 'shopinformations#create'
   root :to => 'products#index'
-  get '/pay_choise', to: 'cart_histories#pay_choise'
+
   get '/cart_histories/comfirm_new', to: 'cart_histories#comfirm_new'
   get '/cart_histories/complete_new', to: 'cart_histories#complete_new'
+
+  get'/cart_history/address_new', to: 'cart_histories#address_new'
 
 
 
@@ -29,8 +37,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'home/top'
   end
-  get 'cart_items/show'
-  get 'cart_items/create'
+  #get 'cart_items/show'
+  #get 'cart_items/create'
 
   namespace :admin do
     get 'shopinformations/edit'
@@ -68,7 +76,7 @@ Rails.application.routes.draw do
 
 
   resources :products do
-    resources :cart_items,only: [:create, :edit, :index]
+    resources :cart_items,only: [ :edit, :index]
     patch '/add', to: 'products#add'
     put '/add', to:'products#add'
     post "like", to:'favorites#like'
@@ -77,12 +85,16 @@ Rails.application.routes.draw do
 
   end
   resources :shopinformations
-  resources :cart_histories
+  resources :cart_histories do
+  get '/cart_histories/pay_choise', to: 'cart_histories#pay_choise'
+  get '/comfirm', to:'cart_histories#comfirm'
+  get '/address', to:'cart_histories#address'
+  end
   resources :inquiries
 
 
 
-  resources :post_images, only: [:new, :create,:destroy, :index, :show]
+  resources :post_images, only: [:new, :create, :destroy , :index, :show]
   resources :categories
   resources :product_reviews
 

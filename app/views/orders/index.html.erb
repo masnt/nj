@@ -1,0 +1,42 @@
+<h1>受注一覧</h1>
+
+<div class="center">
+
+
+<table class="table" border="3" bordercolor="black">
+	<tr>
+		<th>カートID</th>
+		<th>名前</th>
+		<th>購入日</th>
+		<th>お支払い方法</th>
+		<!-- <th>単価</th>
+		<th>購入枚数</th> -->
+		<th>価格総計</th>
+		<th>送付先</th>
+		<th>ステータス</th>
+	</tr>
+	<% @orders.each do |orders| %>
+	<tr>
+		<td><%= orders.cart_history.id %></td>
+		<td><%= orders.cart_history.user.family_name %><%= orders.cart_history.user.first_name %></td>
+		<td><%= orders.created_at %></td>
+		<td><%= orders.cart_history.howtopay_history %></td>
+		<td><%= orders.cart_history.amount_history %></td>
+		<td><% if orders.cart_history.shipping_type == "登録住所" %>
+			<%= orders.cart_history.user.postal_code %><br>
+			<%= orders.cart_history.user.address %>
+			<% else %>
+			<%= orders.cart_history.other_postal_code %><br>
+			<%= orders.cart_history.other_address %>
+			<% end %>
+		<td><%= orders.cart_history.ship_status %><br>
+             <%= link_to '発送',order_path(orders.id),method: :delete, class: 'btn btn-primary'%>
+	    </td>
+	</tr>
+	<% end %>
+
+
+
+</table>
+
+</div>
