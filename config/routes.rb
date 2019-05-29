@@ -6,13 +6,15 @@ Rails.application.routes.draw do
   get 'index/destroy'
   devise_for :users
   resources :users, only: [:show, :edit, :update] do
+  get'/pay_new', to: 'cart_histories#pay_new'
+  resources :cart_histories, only: [:create,:destroy]
   get 'users/cart', to: "users#cart"
   end
 
   resources :cart_items,only: [:create,:destroy]
 
   root to: 'products#index'
-  get 'cart_histories/pay_choise' => 'cart_histories#pay_choise'
+  get 'cart_hist/pay_choise' => 'cart_histories#pay_choise'
   get 'cart_histories/new' => 'cart_histories#new'
 
   get 'products/index2' => 'products#index2'
@@ -20,9 +22,11 @@ Rails.application.routes.draw do
   get 'shopinformations/new' => 'shopinformations#new'
   post 'shopinformations/create' => 'shopinformations#create'
   root :to => 'products#index'
-  get '/pay_choise', to: 'cart_histories#pay_choise'
+
   get '/cart_histories/comfirm_new', to: 'cart_histories#comfirm_new'
   get '/cart_histories/complete_new', to: 'cart_histories#complete_new'
+
+  get'/cart_history/address_new', to: 'cart_histories#address_new'
 
 
 
@@ -78,7 +82,11 @@ Rails.application.routes.draw do
 
   end
   resources :shopinformations
-  resources :cart_histories
+  resources :cart_histories do
+  get '/cart_histories/pay_choise', to: 'cart_histories#pay_choise'
+  get '/comfirm', to:'cart_histories#comfirm'
+  get '/address', to:'cart_histories#address'
+  end
   resources :inquiries
 
 
