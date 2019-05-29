@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_064916) do
+ActiveRecord::Schema.define(version: 2019_05_29_044430) do
 
   create_table "cart_histories", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "cart_item_history_id", null: false
     t.string "family_name_history"
     t.string "first_name_history"
     t.string "family_name_kana_history"
@@ -27,20 +26,23 @@ ActiveRecord::Schema.define(version: 2019_05_28_064916) do
     t.string "other_name_kana"
     t.string "other_address"
     t.string "other_phone_number"
-    t.integer "ship_status"
+    t.integer "ship_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "shipping_type"
+    t.integer "shipping_type", default: 0
     t.integer "card_number"
+    t.string "other_postal_code"
   end
 
   create_table "cart_item_histories", force: :cascade do |t|
-    t.integer "cart_history_id", null: false
     t.integer "product_id", null: false
     t.integer "unit_price"
     t.integer "sub_total", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cart_history_id"
+    t.integer "buy_stock_history"
+    t.integer "user_id"
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -118,8 +120,8 @@ ActiveRecord::Schema.define(version: 2019_05_28_064916) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "label"
-    t.string "jacket_image_id"
     t.integer "select_stock"
+    t.string "jacket_image_id"
   end
 
   create_table "shopinfomations", force: :cascade do |t|
