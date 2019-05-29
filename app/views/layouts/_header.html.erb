@@ -22,23 +22,26 @@
 			<% if user_signed_in? %>
 				<nav>
 					<ul class="header-list nav navbar-nav navbar-right">
-						<li><% if current_user.admin? %>
+						<li>
+							<% if current_user.admin? %>
 									<%= link_to "管理者ページ", admin_home_top_path %>
-									<% end %></li>
+							<% end %>
+						</li>
 						<li class="header-list-item"><%= link_to "ホーム", products_path %></li>
 						<li class="header-list-item"><%= link_to "マイページ", show_mypage_path %></li>
 						<li class="header-list-item"><%= link_to "購入履歴",cart_histories_path  %></li>
-						<li class="header-list-item"><%= link_to "受注一覧",orders_path  %></li>
-						<li class="header-list-item"><%= link_to "サインアウト",  destroy_user_session_path , method: :delete,  data: {confirm:'ログアウトしますか？'} %></li>
+						<li class="header-list-item">
+							<%= link_to "受注一覧",orders_path  %></li>
+						<li class="header-list-item">
+							<%= link_to "サインアウト",  destroy_user_session_path , method: :delete,  data: {confirm:'ログアウトしますか？'} %>
+						</li>
 					</ul>
 				</nav>
 			<% else %>
 				 <nav>
 					<ul class="header-list nav navbar-nav navbar-right">
 						<li class="header-list-item"><%= link_to "ホーム", products_path %></li>
-
 						<li class="header-list-item"><%= link_to "新規登録の方", new_user_registration_path %></li>
-
 						<li class="header-list-item"><%= link_to "ログイン", new_user_session_path %></li>
 					</ul>
 				 </nav>

@@ -77,6 +77,7 @@ Rails.application.routes.draw do
   get 'admin/users/:id/edit' => 'admin/users#edit', as:'admin_users_edit'
   get 'admin/users/:id/' => 'admin/users#show', as:'admin_users_show'
   delete 'admin/users/destroy' => 'admin/users#destroy', as:'admin_users_destroy'
+  patch 'admin/users/:id/update' => 'admin/users#update', as:'admin_users_update'
 
   get 'users/confirm_new'
 
