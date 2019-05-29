@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_091024) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "product_id"
+    t.string "image_id"
   end
 
   create_table "product_reviews", force: :cascade do |t|
@@ -124,16 +125,15 @@ ActiveRecord::Schema.define(version: 2019_05_29_091024) do
     t.integer "unit_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "label"
     t.string "jacket_image_id"
+    t.string "label"
     t.integer "select_stock"
   end
 
-  create_table "shopinfomations", force: :cascade do |t|
-    t.text "shopinfomation_text", null: false
-    t.string "shopinfomation_image", null: false
+  create_table "shop_informations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "shopinformation_text"
   end
 
   create_table "users", force: :cascade do |t|
