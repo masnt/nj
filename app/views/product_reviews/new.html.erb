@@ -12,23 +12,23 @@
 		        	<p></p>
 		        	<%#= @product.product_name %>
 		        </div>
-			    <label class="product_review_title">Review Title</label>
+			    <label class="col-xs-offset-2 col-xs-8">Review Title</label>
 			    <div class="row">
-					<%= f.text_field :review_title, autofocus: true , placeholder:'レビューのタイトルをご入力ください。', class: "col-xs-7" %>
+					<%= f.text_field :review_title, autofocus: true , placeholder:'レビューのタイトルをご入力ください。', class: "col-xs-offset-2 col-xs-8" %>
 				</div>
-			    <label class="inquiry_text">Review Body</label>
+			    <label class="col-xs-offset-2 col-xs-8">Review Body</label>
 			    <div class="row">
-					<%= f.text_area :review_text, placeholder:'レビュー本文をご入力ください。', class: "col-xs-7" %>
+					<%= f.text_area :review_text, placeholder:'レビュー本文をご入力ください。', class: "col-xs-offset-2 col-xs-8" %>
 				</div>
-				<div><p>文字数注意文</p></div>
-				<div><p>5 star rating</p>
+				<div class="col-xs-offset-2 col-xs-8"><p>文字数注意文</p></div>
+				<div class="col-xs-offset-2 col-xs-8"><p>5 star rating</p>
 					<%#= f.select :rate, ProductReview.rates.keys %>
 				</div>
 				<div class="row">
-					<%= f.submit '編集を保存して注文一覧へ戻る', class: "col-xs-7 btn btn-primary active" %>
+					<%= f.submit '編集を保存して注文一覧へ戻る', class: "col-xs-offset-2 col-xs-8 btn btn-warning active" %>
 				</div>
 				<div class="row">
-					<%= f.submit '編集を保存せず注文履歴一覧へ戻る', class: "col-xs-7 btn btn-primary active" %>
+					<%= f.submit '編集を保存せず注文履歴一覧へ戻る', class: "col-xs-offset-2 col-xs-8 btn btn-warning active" %>
 				</div>
 	<% end %>
 </div>
