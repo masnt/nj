@@ -10,8 +10,12 @@ Rails.application.routes.draw do
   get 'favorites/destroy'
   get 'index/create'
   get 'index/destroy'
-  resources :users, only: [:show, :edit, :update]
 
+  resources :users, only: [:show, :edit, :update] do
+  get 'users/cart', to: "users#cart"
+  end
+
+  resources :cart_items,only: [:create,:destroy]
 
   root to: 'products#index'
   get 'cart_histories/pay_choise' => 'cart_histories#pay_choise'
@@ -32,9 +36,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'home/top'
   end
-  get 'cart_items/show'
-  get 'cart_items/create'
-  get 'cart_items/destroy'
+  #get 'cart_items/show'
+  #get 'cart_items/create'
+
   namespace :admin do
     get 'shopinformations/edit'
   end
@@ -71,21 +75,21 @@ Rails.application.routes.draw do
 
 
   resources :products do
-    post '/add', to: 'products#add'
+    resources :cart_items,only: [ :edit, :index]
+    patch '/add', to: 'products#add'
     put '/add', to:'products#add'
     post "like", to:'favorites#like'
     put "like", to:'favorites#like'
     delete "/unlike", to:'favorites#unlike'
-  resources :cart_items,only: [:create, :destory, :edit, :index]
+
   end
   resources :shopinformations
   resources :cart_histories
   resources :inquiries
 
-  get 'users/cart'
-  resources :products
 
-  resources :post_images, only: [:new, :create, :index, :show]
+
+  resources :post_images, only: [:new, :create, :destroy , :index, :show]
   resources :categories
   resources :product_reviews
 

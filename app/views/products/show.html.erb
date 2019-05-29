@@ -46,15 +46,14 @@
     </div>
     <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
       <strong>数量</strong><br>
-            <%= form_for(@cart_item,url:product_add_path(@product.id)) do |f| %>
-            <%= f.number_field :purchase_quantity %>
+            <%= form_for(@product,url: product_add_path(@product.id)) do |f| %>
+            <%= f.number_field :select_stock %>
     </div>
 
     <div class="actions" style="margin-bottom: 10px;">
-    <button class:"btn btn-primary col-xs-4 actions col-md-offset-4", style:"margin-bottom: 10px;" %>
-      <span class="glyphicon glyphicon-shopping-cart" ></span>
-          カートに追加
-    </button>
+   <button class= "btn btn-primary col-xs-4 actions col-md-offset-4", style="margin-bottom: 10px;" %>
+      <span class="glyphicon glyphicon-shopping-cart" ><%= f.submit 'カートに追加', class: 'btn btn-denger' %></span>
+   <!--  </button> -->
     <% end %>
   </div>
 <% if @product.favorited_by?(current_user) %>
