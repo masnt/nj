@@ -14,8 +14,8 @@ class ProductReviewsController < ApplicationController
   end
 
   def create
-    @product_review = ProductReview.find(product_review_params)
-    #@product_review = Product.where( )
+    @product_review = ProductReview.new(product_review_params)
+    @product_review.product_id = ProductReview.find(params[:product_id])
     if @product_review.save
     flash[:notice] = "Post successfully!"
     redirect_to product_review_path(@product_review.id)
@@ -39,7 +39,7 @@ class ProductReviewsController < ApplicationController
 
 	  private
       def product_review_params
-          params.require(:product_review).permit( :review_title, :review_text, :rating, :products_id )
+          params.require(:product_review).permit(:review_title, :review_text, :rating, :product_id)
       end
 
 end

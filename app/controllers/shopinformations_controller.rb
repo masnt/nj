@@ -5,7 +5,7 @@ class ShopinformationsController < ApplicationController
   end
 
   def show
-
+     @shopinformation = Shopinformation.find(1)
   end
 
   def create
