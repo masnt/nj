@@ -1,0 +1,73 @@
+<h1>購入確認画面</h1>
+<div class="center">
+<table class="table" border="3" bordercolor="black">
+	<tr>
+		<th>会員情報<br>
+            名前：<%= current_user.family_name %><%= current_user.first_name%><br>
+            電話番号:<%= current_user.phone_number%><br>
+            メールアドレス:<%= current_user.email%><br>
+            郵便番号:<%= current_user.postal_code%><br>
+            住所:<%= current_user.address %><br>
+		</th>
+	</tr>
+</table><br>
+
+<table class="table" border="3" bordercolor="black">
+<tr>
+	<th>
+		<%= link_to "お支払い方法選択", cart_history_cart_histories_pay_choise_path(@cart_history.id) %>
+	</th>
+	<td><%= @cart_history.howtopay_history %></td>
+</tr>
+</table><br>
+
+<table class="table" border="3" bordercolor="black">
+<tr>
+	<th colspan="2">
+		<%= link_to "お届け先変更", cart_history_address_path(@cart_history.id) %>
+	</th>
+</tr>
+<tr>
+	<td>宛名</td>
+	<td>
+		<%= @cart_history.other_name_kana %><br>
+		<%= @cart_history.other_name %>
+	</td>
+</tr>
+
+<tr>
+	<td>住所</td>
+	<td><%= @cart_history.other_postal_code %><br>
+		<%= @cart_history.other_address %></td>
+</tr>
+
+<tr>
+	<td>電話番号</td>
+	<td><%= @cart_history.other_phone_number %></td>
+</tr>
+
+</table><br>
+
+
+<table class="table" border="3" bordercolor="black">
+	<% @cart_items.each do |cart_item| %>
+	<tr>
+	<th><%= attachment_image_tag cart_item.product, :jacket_image, :fill, 80, 80 %><%= cart_item.product.product_name %><br>
+        <%= cart_item.product.artist %>
+	</th>
+	<th><h3><%= cart_item.purchase_quantity %>枚</h3></th>
+	<th><h3><%= cart_item.sub_total %>円</h3></th>
+</tr>
+<% end %>
+
+</table>
+<table class="table" border="3" bordercolor="black">
+<tr>
+	<th>送料</th><td>500円</td><th>購入合計金額</th><td><%= @cart_items.sum(:sub_total)+500 %>円</td>
+</tr>
+</table>
+
+<%= link_to "戻る", cart_histories_path,class: "btn btn-success"%> <!--リンク先は未定-->
+<%= link_to "購入", cart_history_path(@cart_history), method: :delete , class: "btn btn-danger"%>
+
+</div>

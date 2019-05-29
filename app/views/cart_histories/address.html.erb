@@ -1,0 +1,15 @@
+<h1>お届け先変更</h1>
+<%= form_for(@cart_history, url:cart_history_path(@cart_history.id)) do |f| %>
+   <h3>宛名</h3>：
+  <%= f.text_field :other_name %><br>
+  <h3>宛名(フリガナ）</h3>：
+  <%= f.text_field :other_name_kana %><br>
+  <h3>郵便番号</h3>：
+  <%= f.text_field :other_postal_code %><br>
+  <h3>住所</h3>：
+  <%= f.text_field :other_address %><br>
+  <h3>電話番号</h3>：
+  <%= f.text_field :other_phone_number %><br>
+  <%= f.submit 'お届け先変更'%>
+
+  <% end %>

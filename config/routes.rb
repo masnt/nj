@@ -1,18 +1,29 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+  post 'inquiries/comfirm_new'
+  get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
+  post 'inquires/new'
+  resources :inquiries
+
   get 'favorites/index'
   get 'favorites/create'
   get 'favorites/destroy'
   get 'index/create'
   get 'index/destroy'
-  devise_for :users
+
   resources :users, only: [:show, :edit, :update] do
+  get'/pay_new', to: 'cart_histories#pay_new'
+  resources :cart_histories, only: [:create,:destroy]
   get 'users/cart', to: "users#cart"
   end
+
+  resources :orders
 
   resources :cart_items,only: [:create,:destroy]
 
   root to: 'products#index'
-  get 'cart_histories/pay_choise' => 'cart_histories#pay_choise'
+  get 'cart_hist/pay_choise' => 'cart_histories#pay_choise'
   get 'cart_histories/new' => 'cart_histories#new'
 
   get 'products/index2' => 'products#index2'
@@ -20,9 +31,11 @@ Rails.application.routes.draw do
   get 'shopinformations/new' => 'shopinformations#new'
   post 'shopinformations/create' => 'shopinformations#create'
   root :to => 'products#index'
-  get '/pay_choise', to: 'cart_histories#pay_choise'
+
   get '/cart_histories/comfirm_new', to: 'cart_histories#comfirm_new'
   get '/cart_histories/complete_new', to: 'cart_histories#complete_new'
+
+  get'/cart_history/address_new', to: 'cart_histories#address_new'
 
 
 
@@ -80,7 +93,11 @@ Rails.application.routes.draw do
 
   end
   resources :shopinformations
-  resources :cart_histories
+  resources :cart_histories do
+  get '/cart_histories/pay_choise', to: 'cart_histories#pay_choise'
+  get '/comfirm', to:'cart_histories#comfirm'
+  get '/address', to:'cart_histories#address'
+  end
   resources :inquiries
 
 
@@ -90,10 +107,6 @@ Rails.application.routes.draw do
   resources :product_reviews
 
 
-  post 'inquiries/comfirm_new'
-  get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
-  post 'inquires/new'
-  resources :inquiries
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
@@ -109,7 +122,12 @@ Rails.application.routes.draw do
 
 end
 
-#                      Prefix Verb   URI Pattern                                                                              Controller#Action
+#  Prefix Verb   URI Pattern                                                                              Controller#Action
+#             favorites_index GET    /favorites/index(.:format)                                                               favorites#index
+#            favorites_create GET    /favorites/create(.:format)                                                              favorites#create
+#           favorites_destroy GET    /favorites/destroy(.:format)                                                             favorites#destroy
+#                index_create GET    /index/create(.:format)                                                                  index#create
+#               index_destroy GET    /index/destroy(.:format)                                                                 index#destroy
 #            new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
 #                user_session POST   /users/sign_in(.:format)                                                                 devise/sessions#create
 #        destroy_user_session DELETE /users/sign_out(.:format)                                                                devise/sessions#destroy
@@ -125,17 +143,25 @@ end
 #                             PUT    /users(.:format)                                                                         devise/registrations#update
 #                             DELETE /users(.:format)                                                                         devise/registrations#destroy
 #                             POST   /users(.:format)                                                                         devise/registrations#create
+#                   edit_user GET    /users/:id/edit(.:format)                                                                users#edit
+#                        user GET    /users/:id(.:format)                                                                     users#show
+#                             PATCH  /users/:id(.:format)                                                                     users#update
+#                             PUT    /users/:id(.:format)                                                                     users#update
+#                        root GET    /                                                                                        products#index
+#   cart_histories_pay_choise GET    /cart_histories/pay_choise(.:format)                                                     cart_histories#pay_choise
+#          cart_histories_new GET    /cart_histories/new(.:format)                                                            cart_histories#new
+#             products_index2 GET    /products/index2(.:format)                                                               products#index2
+#            shopinformations GET    /shopinformations(.:format)                                                              shopinformations#show
+#        shopinformations_new GET    /shopinformations/new(.:format)                                                          shopinformations#new
+#     shopinformations_create POST   /shopinformations/create(.:format)                                                       shopinformations#create
+#                             GET    /                                                                                        products#index
 #                  pay_choise GET    /pay_choise(.:format)                                                                    cart_histories#pay_choise
 #  cart_histories_comfirm_new GET    /cart_histories/comfirm_new(.:format)                                                    cart_histories#comfirm_new
 # cart_histories_complete_new GET    /cart_histories/complete_new(.:format)                                                   cart_histories#complete_new
-#              cart_histories GET    /cart_histories(.:format)                                                                cart_histories#index
-#                             POST   /cart_histories(.:format)                                                                cart_histories#create
-#            new_cart_history GET    /cart_histories/new(.:format)                                                            cart_histories#new
-#           edit_cart_history GET    /cart_histories/:id/edit(.:format)                                                       cart_histories#edit
-#                cart_history GET    /cart_histories/:id(.:format)                                                            cart_histories#show
-#                             PATCH  /cart_histories/:id(.:format)                                                            cart_histories#update
-#                             PUT    /cart_histories/:id(.:format)                                                            cart_histories#update
-#                             DELETE /cart_histories/:id(.:format)                                                            cart_histories#destroy
+#              admin_home_top GET    /admin/home/top(.:format)                                                                admin/home#top
+#             cart_items_show GET    /cart_items/show(.:format)                                                               cart_items#show
+#           cart_items_create GET    /cart_items/create(.:format)                                                             cart_items#create
+#          cart_items_destroy GET    /cart_items/destroy(.:format)                                                            cart_items#destroy
 # admin_shopinformations_edit GET    /admin/shopinformations/edit(.:format)                                                   admin/shopinformations#edit
 #       admin_inquiries_index GET    /admin/inquiries/index(.:format)                                                         admin/inquiries#index
 #        admin_inquiries_show GET    /admin/inquiries/show(.:format)                                                          admin/inquiries#show
@@ -151,18 +177,55 @@ end
 #            admin_users_show GET    /admin/users/show(.:format)                                                              admin/users#show
 #           admin_users_index GET    /admin/users/index(.:format)                                                             admin/users#index
 #           users_confirm_new GET    /users/confirm_new(.:format)                                                             users#confirm_new
-#                  users_show GET    /users/show(.:format)                                                                    users#show
-#                  users_edit GET    /users/edit(.:format)                                                                    users#edit
-#                users_update GET    /users/update(.:format)                                                                  users#update
 #           users_show_mypage GET    /users/show_mypage(.:format)                                                             users#show_mypage
-#           users_update_user GET    /users/update_user(.:format)                                                             users#update_user
 #        users_confirm_delete GET    /users/confirm_delete(.:format)                                                          users#confirm_delete
 #       users_complete_delete GET    /users/complete_delete(.:format)                                                         users#complete_delete
+#                 product_add POST   /products/:product_id/add(.:format)                                                      products#add
+#                             PUT    /products/:product_id/add(.:format)                                                      products#add
+#                product_like POST   /products/:product_id/like(.:format)                                                     favorites#like
+#                             PUT    /products/:product_id/like(.:format)                                                     favorites#like
+#              product_unlike DELETE /products/:product_id/unlike(.:format)                                                   favorites#unlike
+#          product_cart_items GET    /products/:product_id/cart_items(.:format)                                               cart_items#index
+#                             POST   /products/:product_id/cart_items(.:format)                                               cart_items#create
+#      edit_product_cart_item GET    /products/:product_id/cart_items/:id/edit(.:format)                                      cart_items#edit
 #                    products GET    /products(.:format)                                                                      products#index
 #                             POST   /products(.:format)                                                                      products#create
 #                 new_product GET    /products/new(.:format)                                                                  products#new
 #                edit_product GET    /products/:id/edit(.:format)                                                             products#edit
 #                     product GET    /products/:id(.:format)                                                                  products#show
+#                             PATCH  /products/:id(.:format)                                                                  products#update
+#                             PUT    /products/:id(.:format)                                                                  products#update
+#                             DELETE /products/:id(.:format)                                                                  products#destroy
+#                             GET    /shopinformations(.:format)                                                              shopinformations#index
+#                             POST   /shopinformations(.:format)                                                              shopinformations#create
+#         new_shopinformation GET    /shopinformations/new(.:format)                                                          shopinformations#new
+#        edit_shopinformation GET    /shopinformations/:id/edit(.:format)                                                     shopinformations#edit
+#             shopinformation GET    /shopinformations/:id(.:format)                                                          shopinformations#show
+#                             PATCH  /shopinformations/:id(.:format)                                                          shopinformations#update
+#                             PUT    /shopinformations/:id(.:format)                                                          shopinformations#update
+#                             DELETE /shopinformations/:id(.:format)                                                          shopinformations#destroy
+#              cart_histories GET    /cart_histories(.:format)                                                                cart_histories#index
+#                             POST   /cart_histories(.:format)                                                                cart_histories#create
+#            new_cart_history GET    /cart_histories/new(.:format)                                                            cart_histories#new
+#           edit_cart_history GET    /cart_histories/:id/edit(.:format)                                                       cart_histories#edit
+#                cart_history GET    /cart_histories/:id(.:format)                                                            cart_histories#show
+#                             PATCH  /cart_histories/:id(.:format)                                                            cart_histories#update
+#                             PUT    /cart_histories/:id(.:format)                                                            cart_histories#update
+#                             DELETE /cart_histories/:id(.:format)                                                            cart_histories#destroy
+#                   inquiries GET    /inquiries(.:format)                                                                     inquiries#index
+#                             POST   /inquiries(.:format)                                                                     inquiries#create
+#                 new_inquiry GET    /inquiries/new(.:format)                                                                 inquiries#new
+#                edit_inquiry GET    /inquiries/:id/edit(.:format)                                                            inquiries#edit
+#                     inquiry GET    /inquiries/:id(.:format)                                                                 inquiries#show
+#                             PATCH  /inquiries/:id(.:format)                                                                 inquiries#update
+#                             PUT    /inquiries/:id(.:format)                                                                 inquiries#update
+#                             DELETE /inquiries/:id(.:format)                                                                 inquiries#destroy
+#                  users_cart GET    /users/cart(.:format)                                                                    users#cart
+#                             GET    /products(.:format)                                                                      products#index
+#                             POST   /products(.:format)                                                                      products#create
+#                             GET    /products/new(.:format)                                                                  products#new
+#                             GET    /products/:id/edit(.:format)                                                             products#edit
+#                             GET    /products/:id(.:format)                                                                  products#show
 #                             PATCH  /products/:id(.:format)                                                                  products#update
 #                             PUT    /products/:id(.:format)                                                                  products#update
 #                             DELETE /products/:id(.:format)                                                                  products#destroy
@@ -188,11 +251,12 @@ end
 #                             DELETE /product_reviews/:id(.:format)                                                           product_reviews#destroy
 #       inquiries_comfirm_new POST   /inquiries/comfirm_new(.:format)                                                         inquiries#comfirm_new
 #          inquiries_complete GET    /inquiries/complete(.:format)                                                            inquiries#complete
-#                   inquiries GET    /inquiries(.:format)                                                                     inquiries#index
+#                inquires_new POST   /inquires/new(.:format)                                                                  inquires#new
+#                             GET    /inquiries(.:format)                                                                     inquiries#index
 #                             POST   /inquiries(.:format)                                                                     inquiries#create
-#                 new_inquiry GET    /inquiries/new(.:format)                                                                 inquiries#new
-#                edit_inquiry GET    /inquiries/:id/edit(.:format)                                                            inquiries#edit
-#                     inquiry GET    /inquiries/:id(.:format)                                                                 inquiries#show
+#                             GET    /inquiries/new(.:format)                                                                 inquiries#new
+#                             GET    /inquiries/:id/edit(.:format)                                                            inquiries#edit
+#                             GET    /inquiries/:id(.:format)                                                                 inquiries#show
 #                             PATCH  /inquiries/:id(.:format)                                                                 inquiries#update
 #                             PUT    /inquiries/:id(.:format)                                                                 inquiries#update
 #                             DELETE /inquiries/:id(.:format)                                                                 inquiries#destroy

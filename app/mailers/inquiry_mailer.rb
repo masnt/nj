@@ -5,11 +5,11 @@ class InquiryMailer < ApplicationMailer
   #
   #   en.inquiry_mailer.inquiry_reply.subject
   #
-  def inquiry_reply
+  def inquiry_reply(user)
     @user = User.find(3)
     @inquiry = Inquiry.find(26)
     mail(to: @user.email, subject: '【Nagajake】お問い合わせの件')
-    #@inquiry = Inquiry.find(26) このようにmailメソッドの下に来ると、受け渡し先のviewで@inquiryの値がnilになります
+    #@inquiry = Inquiry.find() このようにmailメソッドの下に来ると、受け渡し先のviewで@inquiryの値がnilになります
   end
 end
 
@@ -30,5 +30,3 @@ end
   # end
   #『rails s -b 0.0.0.0」でサーバーを起動し、以下のURLでpreviewを確認できます。
   #http://localhost:3000/rails/mailers/inquiry_mailer
-  end
-end

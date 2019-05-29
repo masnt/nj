@@ -2,7 +2,11 @@ class CartHistoriesController < ApplicationController
 
 
   	def pay_choise
-  	  @cart_history = CartHistory.new
+  	  @cart_history = CartHistory.find(params[:cart_history_id])
+  	end
+
+  	def pay_new
+    @cart_history = CartHistory.new
   	end
 
  	 def new
@@ -13,21 +17,38 @@ class CartHistoriesController < ApplicationController
 
  	 def create
   	@cart_history = CartHistory.new(cart_history_params)
-    @cart_history.save
+  	@cart_history.user_id = current_user.id
+  	@cart_history.save
+  	# binding.pry
+
+
+    redirect_to  cart_history_comfirm_path(@cart_history)
  	 end
 
 
 
 
 	  def index  #購入履歴一覧
-
-	  	#@user = User.find(params[:id]) #current_user
-	  	#@cart_history = current_user.cart_histories #ユーザに紐ずいているcart_histories 全てを持ってくる
+	  	@cart_item_history = CartItemHistory.where(user_id: current_user.id)
 	  end
 
 
 	  def comfirm_new  #購入確認ページ
-	  	#@cart_history = User.find(params[:id]) #current_user
+	  	@cart_history = current_user
+	  	@cart_item_history = CartHistory.new
+	  	@cart_items = CartItem.where(user_id: current_user.id)
+	  end
+	  def comfirm
+        @cart_history = CartHistory.find(params[:cart_history_id])
+        @cart_items = CartItem.where(user_id: current_user.id)
+	  end
+
+	  def address_new
+        @cart_history = CartHistory.new
+	  end
+
+	  def address
+       @cart_history = CartHistory.find(params[:cart_history_id])
 	  end
 
 
@@ -35,17 +56,43 @@ class CartHistoriesController < ApplicationController
 	  end
 
 	  def destroy
+	  	@cart_item = CartItem.where(user_id: current_user.id)
+	  	@cart_history = CartHistory.find(params[:id])
+	  	# @cart_history.amount_history = CartItem.sum(:sub_total)+500 kokodesu!!!
+	  	@order = Order.new
+	  	@cart_item.each do |cart_item|
+	  	@cart_item_history = CartItemHistory.new
+	  	@cart_item_history.product_id = cart_item.product_id
+	  	@cart_item_history.sub_total = cart_item.sub_total
+	  	@cart_item_history.unit_price = cart_item.product.unit_price
+	  	@cart_item_history.user_id = current_user.id
+	  	@cart_item_history.buy_stock_history = cart_item.purchase_quantity
+	  	@cart_item_history.cart_history_id = @cart_history.id
+	  	@cart_item_history.save
+        end
+        @cart_history.amount_history = CartItem.select("unit_price")
+        if @cart_history.other_address != nil
+        	@cart_history.shipping_type = 1
+        end
+        @cart_history.save
+        @order.cart_history_id = @cart_history.id
+        @order.save
+       @cart_item.delete_all
+
+       redirect_to cart_histories_complete_new_path
 	  end
 
 
 	  def update
+	  	@cart_history = CartHistory.find(params[:id])
+	  	@cart_history.update(cart_history_params)
+
+	  	redirect_to  cart_history_comfirm_path(@cart_history)
 	  end
 
 
-	  def show           #管理者:admin  受注詳細
-	  	#@cart_history = current_user.cart_histories
-	  	#お支払い方法とひもづける
-	  	#お届け先情報とひもづける
+	  def show
+
 
 
 	  end
@@ -63,8 +110,12 @@ class CartHistoriesController < ApplicationController
     private
 
     def cart_history_params
-    params.require(:cart_history).permit(:family_name,:family_name_history, :first_name_history, :family_name_kana_history, :first_name_kana_history, :postal_code_history, :ship_address_history, :howtopay_history,:amount_history,:other_name, :other_name_kana, :other_address, :other_phone_number, :ship_status, :shipping_type, :user_id)
+    params.require(:cart_history).permit(:family_name,:family_name_history, :first_name_history, :family_name_kana_history, :first_name_kana_history, :postal_code_history, :ship_address_history, :howtopay_history,:amount_history,:other_name, :other_name_kana, :other_address, :other_phone_number, :ship_status, :shipping_type, :user_id, :other_postal_code)
 
+   end
+
+   def cart_item_history_params
+   	params.require(:cart_item_history).permit(:product_id, :unit_price, :sub_total)
    end
 
 
