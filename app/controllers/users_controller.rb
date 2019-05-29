@@ -28,12 +28,10 @@ class UsersController < ApplicationController
   	 @user = User.find(params[:id])
      @user.update(user_params)
      redirect_to user_path(@user.id)
-
-
 end
 
 
- 
+
 
   def confirm_new
   end
@@ -59,8 +57,6 @@ end
 
 
   def user_item_params
-
- 
     params.require(:user, :cart_item).permit(:product_name, :artist, :stock_quantity, :cart_item_id, :product_id, :purchase_quantity, :sub_total, :user_id, :unit_price, :amount)
   end
 

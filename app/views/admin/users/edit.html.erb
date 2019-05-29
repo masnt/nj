@@ -1,7 +1,7 @@
 <h1 style="text-align: center;">顧客情報編集</h1>
 <div class= "row">
 <div class="container">
-<%= form_for @user, url: admin_user_path, method: :patch do |f| %>
+<%= form_for @user, url: admin_users_index_path, method: :patch do |f| %>
 <div class="field row col-md-offset-4">
 <label><%= f.label :"姓" %><br />
     <%= f.text_field :family_name %>

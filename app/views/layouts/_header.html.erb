@@ -23,7 +23,7 @@
 				<nav>
 					<ul class="header-list nav navbar-nav navbar-right">
 						<li><% if current_user.admin? %>
-									<%= link_to "管理者ページ", "#" %>
+									<%= link_to "管理者ページ", admin_home_top_path %>
 									<% end %></li>
 						<li class="header-list-item"><%= link_to "ホーム", products_path %></li>
 						<li class="header-list-item"><%= link_to "マイページ", "#" %></li>

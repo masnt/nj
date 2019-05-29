@@ -39,7 +39,7 @@
         <td><%= users.address %></td>
         <td><%= users.phone_number %></td>
         <td><%= users.email %></td>
-        <td class="btn-sm btn-success"><%= link_to "編集", edit_admin_user_path(users) %></td>
+        <td class="btn-sm btn-success"><%= link_to "編集", admin_users_edit_path(users) %></td>
         <td class="btn-sm btn-warning"><%= link_to "削除", [:admin, users], method: :delete, data: { confirm: "本当によろしいですか?" }  %></td>
       </tr>
     <% end %>
