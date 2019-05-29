@@ -7,6 +7,7 @@ class Admin::ProductsController < ApplicationController
     @product.pictures.build
     end
 
+
     def create
     @product = Product.new(product_params)
     @product.save
