@@ -1,4 +1,5 @@
 
+
 <%= form_with(model: product, local: true) do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation">
@@ -12,87 +13,90 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="container">
+   <div class="row">
+    <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%= form.label :商品名 %>
     <%= form.text_field :product_name %>
   </div>
 
-  <div class="field">
+<div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%= form.label :アーティスト %>
     <%= form.text_field :artist %>
   </div>
 
 
 
-  <div class="field">
+<div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%= form.label :ジャケット写真　%>
     <%= form.attachment_field :jacket_image %>
   </div>
 
+<div class="field row col-md-offset-4" style="margin-bottom: 5px;">
   <%if params[:action] == "edit" %>
     <%= attachment_image_tag @product, :jacket_image, :fill, 200, 200 %>
   <% end %>
+</div>
 
-
-  <div class="field">
+ <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%= form.label :詳細画像　%>
     <%= form.attachment_field :pictures_images, multiple: true %>
+</div>
 
+<div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%if params[:action] == "edit" %>
 　　   <% @product.pictures.each do |image| %>
     <%= attachment_image_tag image, :image, :fill, 100, 100 %>
     <% end %>
 　<% end %>
-
-
   </div>
 
-  <div class="field">
+ <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%= form.label :商品概要 %>
     <%= form.text_area :product_text %>
   </div>
 
 
-　<div class="field">
+<div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%= form.label :カテゴリ %>
-    <%= form.number_field :category_id %>
+    <%= form.select :category, Product.category_ids.keys, :selected=>Product.category_ids[@product.category_id] %>
   </div>
 
 
-  <div class="field">
+<div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%= form.label :レーベル %>
     <%= form.text_field :label %>
   </div>
 
+<div class="field row col-md-offset-4" style="margin-bottom: 5px;">
 <%if params[:action] == "edit" %>
 
-<div class="field">
     <%= form.label :入荷数 %>
     <%= form.text_field :recieve_quantity%>
-  </div>
-
 <% end %>
+</div>
 
+<div class="field row col-md-offset-4" style="margin-bottom: 5px;">
 <%if params[:action] == "new" %>
-
-　<div class="field">
     <%= form.label :在庫数 %>
     <%= form.text_field :stock_quantity %>
-  </div>
-
 <% end %>
+</div>
 
-  <div class="field">
+<div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%= form.label :販売ステータス %>
      <%= form.select :product_status, Product.product_statuses.keys, :selected=>Product.product_statuses[@product.product_status] %>
   </div>
 
-  <div class="field">
+<div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%= form.label :単価 %>
     <%= form.text_field :unit_price %>
   </div>
 
-  <div class="actions">
+<div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%= form.submit "商品を登録する"%>
-  </div>
+
 <% end %>
+</div>
+</div>
+</div>
