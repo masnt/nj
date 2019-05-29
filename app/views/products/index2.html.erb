@@ -20,8 +20,8 @@
   <td><%= product.product_status %></td>
   <td><%= product.stock_quantity %></td>
   <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: '商品を削除しますか?' } %></td>
-  <td><%= link_to 'Edit', edit_product_path(product) %></td></td>
-  <td><%= link_to '商品レビュー', product_path(product) %></td></td>
+  <td><%= link_to 'Edit', edit_product_path(product) %></td>
+  <td><%= link_to '商品レビュー', product_path(product) %></td>
 </tr>
 <% end %>
 </table>

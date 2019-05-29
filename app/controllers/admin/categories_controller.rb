@@ -1,4 +1,7 @@
 class Admin::CategoriesController < ApplicationController
+
+before_action :admin_user
+
   def new
   	@category = Category.new
   end
@@ -15,5 +18,11 @@ class Admin::CategoriesController < ApplicationController
 		flash[:notice] = "error, Add failed"
 		render :new
 	end
+  end
+
+  private
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
   end
 end
