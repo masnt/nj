@@ -1,4 +1,7 @@
 class Admin::ProductsController < ApplicationController
+
+    before_action :admin_user
+
     def edit
     end
 
@@ -6,6 +9,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new
     @product.pictures.build
     end
+
 
     def create
     @product = Product.new(product_params)
@@ -57,5 +61,9 @@ class Admin::ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:product_name, :artist, :stock_quantity, :recieve_quantity, :product_text, :category_id, :label, :product_status, :unit_price, :jacket_image, pictures_images: [] )
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
   end
