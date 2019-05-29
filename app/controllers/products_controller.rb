@@ -31,7 +31,6 @@ class ProductsController < ApplicationController
     @cart_item.sub_total = @product.select_stock * @product.unit_price * 1.08
 
     # @cart_item.sub_total = @cart_item.purchase_quantity.to_i * (@product.unit_price.to_i * 1.08)
-
     @cart_item.save
 
     redirect_to user_users_cart_path(current_user)
