@@ -9,8 +9,8 @@
 		</div>
 		<div class='col-xs-4'>
 			<dl class="form-group col-xs-11 col-md-offset-1">
-				<%= search_form_for @q, url: 'root' do |f| %>
-					<dt><%= f.text_field :product_name_cont, class: "form-control", placeholder: '商品名/アーティスト名'%></dt>
+				<%= search_form_for @q, url: root_path do |f| %>
+					<dt><%= f.text_field :product_name_or_artist_cont, class: "form-control", placeholder: '商品名/アーティスト名'%></dt>
 					<dd><%= f.submit ("SEARCH"), class: 'search-btn' %></dd>
 				<% end %>
 			</dl>
@@ -23,7 +23,7 @@
 				<nav>
 					<ul class="header-list nav navbar-nav navbar-right">
 						<li><% if current_user.admin? %>
-									<%= link_to "管理者ページ", "#" %>
+									<%= link_to "管理者ページ", admin_home_top_path %>
 									<% end %></li>
 						<li class="header-list-item"><%= link_to "ホーム", products_path %></li>
 						<li class="header-list-item"><%= link_to "マイページ", "#" %></li>

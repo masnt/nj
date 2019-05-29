@@ -1,3 +1,27 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.caption {
+    position: relative;
+}
+.caption .text {
+    position: absolute;
+    top: 70%;
+    left: 37%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+.caption .text p {
+    margin: 0;
+    color: white;
+    font-size: 120%;
+}
+.caption:hover .text {
+    opacity: 1;
+}
+.caption:hover img {
+    -webkit-filter: brightness(32%);
+}

@@ -1,14 +1,25 @@
 <p id="notice"><%= notice %></p>
-
 <h1>商品一覧</h1>
-
+<div class="row">
+  <div class="container">
   <tbody>
     <% @products.each do |product| %>
       <tr>
-      	<%= link_to product_path(product.id) do %>
-	      <%= attachment_image_tag product, :jacket_image, :fill, 400, 400, format: 'jpeg'%></td>
+      	<td><%= link_to product_path(product.id) do %>
+            <div class="column col-md-4 caption">
+                <span class="text">
+                    <h4>商品名:<%= product.product_name %></h4>
+                    <p>アーティスト:<%= product.artist %></p>
+                    <p>価格：<%= product.unit_price %>円(税抜)</p>
+                </span>
+	            <%= attachment_image_tag product, :jacket_image, :fill, 350, 350, format: 'jpeg'%>
+            </div>
+          </td>
 	    <% end %>
       </tr>
-	<% end %>
+	  <% end %>
+	 </tbody>
+  </div>
+</div>
 
-	<%= link_to '商品登録', new_product_path %>
+<%= link_to '商品登録', new_product_path %>

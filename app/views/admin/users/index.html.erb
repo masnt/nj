@@ -1,2 +1,49 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class= "row">
+  <div class="container">
+
+    <%= render 'admin/home/sidebar' %>
+
+<div class="col-xs-9 col-lg-9">
+<h1>  顧客情報一覧</h1>
+<p><%= notice %><p>
+
+<dl class="form-group col-xs-9 col-md-offset-1">
+  <%= search_form_for(@u, url:admin_users_index_path) do |f| %>
+    <dt><%= f.text_field :family_name_or_first_name_or_family_name_kana_or_first_name_kana_or_address_cont, class: "form-control", placeholder: '名前もしくは住所で検索'%></dt>
+    <dd><%= f.submit ("検索"), class: 'search-btn-user' %></dd>
+  <% end %>
+  </dl>
+
+
+
+
+<table class="table table-space">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>フリガナ</th>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>電話番号</th>
+      <th>メールアドレス</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |users| %>
+      <tr>
+        <td><label><%= users.family_name %></label><label><%= users.first_name %></label></td>
+        <td><label><%= users.family_name_kana %></label><label><%= users.first_name_kana %></label></td>
+        <td><%= users.postal_code %></td>
+        <td><%= users.address %></td>
+        <td><%= users.phone_number %></td>
+        <td><%= users.email %></td>
+        <td class="btn-sm btn-success"><%= link_to "編集", admin_users_edit_path(users) %></td>
+        <td class="btn-sm btn-warning"><%= link_to "削除", [:admin, users], method: :delete, data: { confirm: "本当によろしいですか?" }  %></td>
+      </tr>
+    <% end %>
+</table>
+</div>
+</div>
+</div>

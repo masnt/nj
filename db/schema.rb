@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(version: 2019_05_28_064916) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "product_id"
-    t.string "product_image_id"
   end
 
   create_table "product_reviews", force: :cascade do |t|

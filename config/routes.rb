@@ -66,6 +66,8 @@ Rails.application.routes.draw do
     get 'users/edit'
     get 'users/show'
     get 'users/index'
+    delete 'users/destroy'
+    # ハラダ 5/29 delete追加
   end
   get 'users/confirm_new'
 
