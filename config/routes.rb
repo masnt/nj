@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'users/cart', to: "users#cart"
   end
 
+  get '/show_mypage', to:'users#show_mypage'
+
   resources :orders
 
   resources :cart_items,only: [:create,:destroy]
@@ -79,7 +81,6 @@ Rails.application.routes.draw do
 
   get 'users/confirm_new'
 
-  get 'users/show_mypage'
   get 'users/confirm_delete'
   get 'users/complete_delete'
 

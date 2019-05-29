@@ -24,8 +24,8 @@
 	</tr>
 	<% @cart_item_history.each do |cart_item_history| %>
 	<tr>
-		<td><%= cart_item_history.cart_history.id %></td>
-		<td><%= cart_item_history.created_at %></td>
+		<td><%= cart_item_history.cart_history_id %></td>
+		<td><%= cart_item_history.created_at.strftime("%Y-%m-%d %H:%M") %></td>
 		<td><%= cart_item_history.product.artist %>/<%= cart_item_history.product.product_name %></td>
 		<td><%= cart_item_history.unit_price %>円(税抜)</td>
 		<td><%= cart_item_history.buy_stock_history %></td>

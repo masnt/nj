@@ -36,6 +36,7 @@ class UsersController < ApplicationController
   end
 
   def show_mypage
+
   end
 
   def update_user
