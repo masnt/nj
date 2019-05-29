@@ -5,7 +5,8 @@
 		<% @inquiries.each do |inquiry| %>
 			<div class="row">
 			    <div class="col-xs-2">
-			    	<%= inquiry.created_at.in_time_zone('Tokyo') %>
+			    	<% time = inquiry.created_at.in_time_zone('Tokyo') %>
+			    	<%= time.strftime('%Y年%m月%d日 %H:%M:%S') %>
 			    </div>
 			    <div class="col-xs-2">
 			    	<%#= @user.family_name %>
