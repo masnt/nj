@@ -4,16 +4,16 @@
 
 <ul>
   <div class="row col-md-offset-2">
-    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to '商品一覧', '#' %></li>
-    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to '商品登録', '#' %></li>
-    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to '商品レビュー管理', '#' %></li>
+    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to '商品一覧',  products_index2_path %></li>
+    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to '商品登録', admin_products_new_path %></li>
+    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to '商品レビュー管理', product_reviews_path %></li>
   </div>
   <div class="row col-md-offset-2">
     <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to '顧客情報一覧', admin_users_index_path %></li>
-    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to 'お問い合わせ', '#' %></li>
-    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to 'カテゴリ一覧ページ' %></li>
+    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to 'お問い合わせ',  admin_inquiries_index_path %></li>
+    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to 'カテゴリ一覧ページ',  admin_categories_new_path %></li>
   </div>
   <div class="row col-md-offset-2">
-    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to 'ショップインフォ', '#' %></li>
-    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to '受注一覧', '#' %></li>
+    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to 'ショップインフォ', shopinformations_new_path %></li>
+    <li class="admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active"><%= link_to '受注一覧', admin_cart_histories_index_path %></li>
 </ul>
