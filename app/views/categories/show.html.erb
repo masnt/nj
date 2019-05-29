@@ -4,10 +4,13 @@
 <% end %>
 		 <%= attachment_image_tag @category, :category_image, :fill, 200, 200, class: "img-rounded", fallback: "no_image.jpg",size:'200x200' %>
 		 <p class="category-text"><%= @category.category_title %></p>
+		 <%= link_to 'Back to index', :controller => "categories", :action => "index", class: "col-xs-4 col-xs-4 btn btn-success active" %>
 
 <div>
-	<%# @category.each do |product| %>
-		 <%#= attachment_image_tag product, :jacket_image, :fill, 200, 200, class: "img-rounded", fallback: "no_image.jpg",size:'200x200' %>
-		 <%#= product.product.name %>
-	<%# end %>
+	<% @category_products.each do |product| %>
+		<%= link_to product_path(product.id) do %>
+			 <%= attachment_image_tag product, :jacket_image, :fill, 200, 200, class: "img-rounded", fallback: "no_image.jpg",size:'200x200' %>
+			 <%= product.product_name %>
+		 <% end %>
+	<% end %>
 </div>

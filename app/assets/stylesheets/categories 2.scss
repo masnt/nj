@@ -7,12 +7,28 @@ display:grid;gap:0.5em;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .cate-box {
-	positon: relative;
-}
-.cate-box p {
-	positon: abusolute;
-	top: 50%;
-	left: 50%;
+	position: relative;
 }
 .cate-img {
+	filter: brightness(100%);
+	filter: drop-shadow(4px 4px 8px #666);
+	transition: all .5s;
+}
+.cate-img:hover {
+	filter: brightness(70%);
+	transform: translateY(-5px);
+}
+.cate-text {
+	position: absolute;
+	top: 46%;
+    left: 35%;
+	z-index: 10;
+	color: #fff;
+	text-shadow: 5px 5px 5px #000, -5px -5px 5px #000;
+	font-size: 20px;
+	font-family: 'proxima-nova', sans-serif;
+	font-weight: 600;
+}
+.cate-text:hover {
+		transform: translateY(-5px);
 }
