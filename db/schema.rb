@@ -125,8 +125,8 @@ ActiveRecord::Schema.define(version: 2019_05_29_091024) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "label"
-    t.string "jacket_image_id"
     t.integer "select_stock"
+    t.string "jacket_image_id"
   end
 
   create_table "shopinfomations", force: :cascade do |t|
