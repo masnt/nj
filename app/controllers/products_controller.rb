@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
     @cart_item.product_id = @product.id
     @cart_item.purchase_quantity = @product.select_stock
     #@tax = 6
-    @cart_item.sub_total = @cart_item.purchase_quantity.to_i * (@product.unit_price.to_i * 1.08)
+    @cart_item.sub_total = @product.select_stock * @product.unit_price * 1.08
     @cart_item.save
 
     redirect_to user_users_cart_path(current_user)
@@ -62,6 +62,7 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /products/1

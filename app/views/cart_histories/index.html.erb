@@ -4,30 +4,43 @@
 <table class="table" border="3" bordercolor="black">
 	<tr>
 		<th>名前</th>
-		<th>古田和杜<%#= @user.family_name %><%#= @user.first_name %></th>
+		<th><%= current_user.family_name %><%= current_user.first_name %></th>
 		<th>メールアドレス</th>
-		<th>test@test.com<%#= @user.mail %></th>
+		<th><%= current_user.email %></th>
 	</tr>
 </table>
 
 
 <table class="table" border="3" bordercolor="black">
 	<tr>
+		<th>カートID</th>
 		<th>購入日</th>
 		<th>購入内容</th>
+		<th>単価</th>
+		<th>購入枚数</th>
 		<th>価格総計</th>
 		<th>送付先</th>
 		<th>ステータス</th>
 	</tr>
-	<%#= @cart_history.each do |cart_history| %>
+	<% @cart_item_history.each do |cart_item_history| %>
 	<tr>
-		<td>test<%#= cart_history.cart_item_history.created_at %></td>
-		<td>test<%#= cart_history.cart_item_history.product.product_name %></td>
-		<td>test<%#= cart_history.cart_item_history.amount_history %></td>
-		<td>test<%#= cart_history.cart_item_history.ship_address_history %></td>
-		<td>test<%#= cart_history.cart_item_history.ship_status %></td>
+		<td><%= cart_item_history.cart_history.id %></td>
+		<td><%= cart_item_history.created_at %></td>
+		<td><%= cart_item_history.product.artist %>/<%= cart_item_history.product.product_name %></td>
+		<td><%= cart_item_history.unit_price %>円(税抜)</td>
+		<td><%= cart_item_history.buy_stock_history %></td>
+		<td><%= cart_item_history.sub_total %>円(税込)</td>
+		<td><% if cart_item_history.cart_history.shipping_type == "登録住所" %>
+			<%= cart_item_history.cart_history.user.postal_code %><br>
+			<%= cart_item_history.cart_history.user.address %>
+			<% else %>
+			<%= cart_item_history.cart_history.other_postal_code %><br>
+			<%= cart_item_history.cart_history.other_address %>
+			<% end %>
+		</td>
+		<td><%= cart_item_history.cart_history.ship_status %></td>
 	</tr>
-	<%# end %>
+	<% end %>
 
 
 
