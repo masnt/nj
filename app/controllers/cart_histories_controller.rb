@@ -58,7 +58,7 @@ class CartHistoriesController < ApplicationController
 	  def destroy
 	  	@cart_item = CartItem.where(user_id: current_user.id)
 	  	@cart_history = CartHistory.find(params[:id])
-	  	# @cart_history.amount_history = CartItem.sum(:sub_total)+500 kokodesu!!!
+	  	@cart_history.amount_history = (CartItem.sum(:sub_total)+500)
 	  	@order = Order.new
 	  	@cart_item.each do |cart_item|
 	  	@cart_item_history = CartItemHistory.new
@@ -70,7 +70,6 @@ class CartHistoriesController < ApplicationController
 	  	@cart_item_history.cart_history_id = @cart_history.id
 	  	@cart_item_history.save
         end
-        @cart_history.amount_history = CartItem.select("unit_price")
         if @cart_history.other_address != nil
         	@cart_history.shipping_type = 1
         end
