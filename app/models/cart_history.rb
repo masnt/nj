@@ -5,6 +5,7 @@ class CartHistory < ApplicationRecord
     enum ship_status: { 準備中: 0, 発送: 1}
 
 	belongs_to :user
+	has_many :orders
 	has_many :cart_item_histories
 
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'favorites/index'
   get 'favorites/create'
   get 'favorites/destroy'
@@ -10,6 +11,8 @@ Rails.application.routes.draw do
   resources :cart_histories, only: [:create,:destroy]
   get 'users/cart', to: "users#cart"
   end
+
+  resources :orders
 
   resources :cart_items,only: [:create,:destroy]
 

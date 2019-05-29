@@ -58,6 +58,8 @@ class CartHistoriesController < ApplicationController
 	  def destroy
 	  	@cart_item = CartItem.where(user_id: current_user.id)
 	  	@cart_history = CartHistory.find(params[:id])
+	  	# @cart_history.amount_history = CartItem.sum(:sub_total)+500 kokodesu!!!
+	  	@order = Order.new
 	  	@cart_item.each do |cart_item|
 	  	@cart_item_history = CartItemHistory.new
 	  	@cart_item_history.product_id = cart_item.product_id
@@ -73,6 +75,8 @@ class CartHistoriesController < ApplicationController
         	@cart_history.shipping_type = 1
         end
         @cart_history.save
+        @order.cart_history_id = @cart_history.id
+        @order.save
        @cart_item.delete_all
 
        redirect_to cart_histories_complete_new_path
