@@ -73,13 +73,14 @@ Rails.application.routes.draw do
     get 'products/edit'
     get 'products/new'
   end
-  namespace :admin do
-    get 'users/edit'
-    get 'users/show'
-    get 'users/index'
-    delete 'users/destroy'
+   namespace :admin do
+    # resources :users
+    #  get 'users/edit'
+     # get 'users/show'
+     get 'users/index'
+    # delete 'users/destroy'
     # ハラダ 5/29 delete追加
-  end
+   end
 
   get 'admin/users/:id/edit' => 'admin/users#edit', as:'admin_users_edit'
   get 'admin/users/:id/' => 'admin/users#show', as:'admin_users_show'
