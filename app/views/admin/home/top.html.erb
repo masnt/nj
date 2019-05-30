@@ -9,9 +9,10 @@
   <div class="row col-md-offset-2">
     <%= link_to '顧客情報一覧', admin_users_index_path, class:"admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active" %>
     <%= link_to 'お問い合わせ', inquiries_path, class:"admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active" %>
-    <%= link_to 'カテゴリ一覧ページ', categories_path, class:"admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active" %>
+    <%= link_to 'カテゴリ登録', new_category_path, class:"admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active" %>
   </div>
   <div class="row col-md-offset-2" style="margin-bottom: 10px;">
     <%= link_to 'ショップインフォ',    new_admin_shopinformation_path, class:"admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active" %>
     <%= link_to '受注一覧',  orders_path, class:"admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active" %>
+    <%= link_to 'カテゴリ編集', categories_path, class:"admin_page col-xs-3 col-lg-3 btn btn-default btn-lg active" %>
   </div>

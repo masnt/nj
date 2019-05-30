@@ -7,11 +7,20 @@
 <div class="grid-layout">
 	<% @categories.each do |category| %>
 		<div class="row">
+			<% if current_user.admin? %>
+			<%= link_to edit_category_path(category), class: "category_#{category.id}" do %>
+			    <div class="cate-box card">
+				    <%= attachment_image_tag category, :category_image, :fill, 200, 200, class: "img-rounded cate-img card-img", fallback: "no_image.jpg",size:'200x200' %>
+					    <p class="cate-text"><%= category.category_title %></p>
+				</div>
+			<% end %>
+			<% else %>
 			<%= link_to category_path(category), class: "category_#{category.id}" do %>
 			    <div class="cate-box card">
 				    <%= attachment_image_tag category, :category_image, :fill, 200, 200, class: "img-rounded cate-img card-img", fallback: "no_image.jpg",size:'200x200' %>
 					    <p class="cate-text"><%= category.category_title %></p>
 				</div>
+			<% end %>
 			<% end %>
 		</div>
 	<% end %>

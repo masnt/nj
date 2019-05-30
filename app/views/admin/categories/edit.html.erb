@@ -1,14 +1,33 @@
+<% if flash[:notice] %>
+	<p class="flash"><%= flash[:notice] %>
+</p>
+<% end %>
 <div class="container">
+	<% if params[:preview] %>
+		<div class="row">
+			<p class="col-xs-offset-4 col-xs-4">カテゴリーページではこのように表示されます</p>
+		</div>
+		<div class="cate-box row">
+			<p class="cate-text"><%= @category.category_title %></p>
+			 <p class="col-xs-offset-5 col-xs-4"><%= attachment_image_tag @category, :category_image, :fill, 200, 200, class: "img-rounded cate-img", fallback: "no_image.jpg",size:'100x100' %></p>
+	    </div>
+	<% end %>
 	<div class="row">
 		<p class="lead">Editing Category</p>
 		<%= form_for(@category) do |f| %>
+		<% if @category.errors.any? %>
+			<%= @category.errors.count %>
+			<%= @category.errors.full_messages.each do |message| %>
+				<%= message %>
+			<% end %>
+		<% end %>
 			<p>Category Title</p>
 			<%= f.text_field :category_title, class:"category_title" %>
 			<p>Category Image</p>
 		    <%= attachment_image_tag @category, :category_image, :fill, 200, 200, class: "img-rounded", fallback: "no_image.jpg",size:'200x200' %>
 			<%= f.attachment_field :category_image %>
 			<%= f.submit 'Update', class: "btn btn-primary col-xs-2" %>
-			<%= f.submit 'Preview', name: "preview", class: "col-xs-2 col-xs-offset-1 btn btn-default active" %>
+			<%= f.submit 'Preview', name: "preview", class: "col-xs-offset-4 col-xs-4 btn btn-default active" %>
 		<% end %>
 		<%= link_to 'Back', categories_path, class: "back btn btn-info btn-border col-xs-2 col-xs-offset-1" %>
 		<%= link_to 'Destroy', category_path(@category.id), class: "destroy_#{@category.id} btn-sm btn-danger col-xs-2 col-xs-offset-1", method: :delete, data: { confirm: "Are you sure?"} %>

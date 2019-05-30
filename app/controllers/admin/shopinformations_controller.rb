@@ -6,6 +6,13 @@ class Admin::ShopinformationsController < ApplicationController
     @shopinformations = Shopinformation.new
   end
 
+  def create
+    @shopinformation = Shopinformation.new(shopinformation_params)
+    @shopinformation.save
+
+    redirect_to shopinformations_path
+  end
+
 
   def edit
     
@@ -14,6 +21,10 @@ class Admin::ShopinformationsController < ApplicationController
 
 
   private
+
+  def shopinformation_params
+  params.require(:shopinformation).permit(:shopinfomation_text)
+  end
 
   def admin_user
     redirect_to(root_url) unless current_user.admin?

@@ -1,13 +1,6 @@
 class ShopinformationsController < ApplicationController
 
 
-  def create
-    @shopinformation = Shopinformation.new(shopinformation_params)
-    @shopinformation.save
-
-    redirect_to shopinformations_path
-  end
-
   def index
     @shopinformations = Shopinformation.all
   end

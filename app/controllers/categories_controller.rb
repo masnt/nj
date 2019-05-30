@@ -46,25 +46,13 @@ class CategoriesController < ApplicationController
   	if params[:preview]
   		flash[:notice] = "Preview now"
   	    render :edit
-  	elsif @category.save
-		flash[:notice] = "Add successfully!"
+  	elsif @category.update(category_params)
+		flash[:notice] = "Update successfully!"
 		redirect_to categories_path
 	else
-		flash[:notice] = "error, Add failed"
-		render :new
+		flash[:notice] = "error, Update failed"
+		render :edit
 	end
-  end
-
-  def destroy
-		category = Category.find(params[:id])
-
-		if category.destroy
-			flash[:notice] = "destroy successfully!"
-			redirect_to categories_path
-		else
-			flash[:notice] = "destroy failed"
-			redirect_to edit_category_path
-		end
   end
 
 	private

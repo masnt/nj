@@ -63,7 +63,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-		category = Category.find(params[:id])
+		category = Category.find(category_params[:id])
 
 		if category.destroy
 			flash[:notice] = "destroy successfully!"

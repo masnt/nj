@@ -3,12 +3,12 @@
 <table class="table" border="3" bordercolor="black">
 	<th>
 
-<% @Shopinformations.each do |s| %>
+<% @shopinformations.each do |s| %>
 
 <%= s.shopinfomation_text %>
 
 <% end %>
 </th>
 </table>
-<%= link_to "編集", edit_shopinformation_path(@Shopinformations) %>
+<%= link_to "編集", edit_admin_shopinformation_path(@shopinformations) %>
 </div>

@@ -31,6 +31,7 @@ class ProductsController < ApplicationController
       @cart_item.save
       redirect_to user_users_cart_path(current_user.id)
     else
+      @review = ProductReview.where(product_id: @product.id)
       flash[:notice] = "在庫数を超えています"
       render :show
     end

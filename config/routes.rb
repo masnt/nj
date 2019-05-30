@@ -65,6 +65,10 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'categories/new'
     get 'categories/edit'
+    post 'categories/create'
+    put 'categories/update'
+    patch 'categories/update'
+    delete 'categories/destory'
   end
   namespace :admin do
     get 'cart_histories/index'
@@ -120,7 +124,7 @@ Rails.application.routes.draw do
 
   resources :product_reviews
   resources :post_images, only: [:new, :create, :destroy , :index, :show]
-  get '/categories/:id/edit', to:'categories#edit'
+  #get '/categories/:id/edit', to:'categories#edit'
   resources :categories
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
