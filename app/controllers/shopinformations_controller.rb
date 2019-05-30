@@ -1,26 +1,21 @@
 class ShopinformationsController < ApplicationController
 
-  def new
-    @Shopinformations = Shopinformation.new
-  end
+
   def create
-    @Shopinformation = Shopinformation.new(shopinformation_params)
-    @Shopinformation.save
+    @shopinformation = Shopinformation.new(shopinformation_params)
+    @shopinformation.save
 
     redirect_to shopinformations_path
   end
 
   def index
-    @Shopinformations = Shopinformation.all
+    @shopinformations = Shopinformation.all
   end
 
-  def edit
-    @Shopinformations = Shopinformation.find(1)
-  end
 
   def update
-    @Shopinformations = Shopinformation.find(params[:id])
-    @Shopinformations.update(shopinformation_params)
+    @shopinformations = Shopinformation.find(params[:id])
+    @shopinformations.update(shopinformation_params)
 
     redirect_to shopinformations_path
   end

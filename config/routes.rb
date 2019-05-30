@@ -25,7 +25,6 @@ Rails.application.routes.draw do
 
   resources :orders
 
-  resources :shopinformations
 
   resources :cart_items,only: [:create,:destroy]
 
@@ -43,6 +42,7 @@ Rails.application.routes.draw do
   get'/cart_history/address_new', to: 'cart_histories#address_new'
 
 
+ 
 
 
   namespace :admin do
@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   #get 'cart_items/create'
 
   namespace :admin do
-    get 'shopinformations/edit'
+    resources :shopinformations
   end
   namespace :admin do
     get 'inquiries/index'
@@ -95,6 +95,8 @@ Rails.application.routes.draw do
 
   get 'users/confirm_delete'
   get 'users/complete_delete'
+
+  resources :shopinformations, only: [:index,:new,:show]
 
 
   resources :products do

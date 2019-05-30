@@ -13,7 +13,7 @@ class Product < ApplicationRecord
     accepts_attachments_for :pictures, attachment: :image
 
     enum product_status:[:販売中, :販売停止中]
-    #enum category_id:[:JPOP,:HIPHOP,:ROCK,:PIANO,:COUNTRY,:CLASSIC,:BLUES,:POP,:BGM,:HAPPY,:RAP,:TREND]
+
     def favorited_by?(user)
         favorites.where(user_id: user.id).exists?
     end
