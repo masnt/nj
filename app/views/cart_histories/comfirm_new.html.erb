@@ -2,50 +2,69 @@
 <div class="center">
 <table class="table" border="3" bordercolor="black">
 	<tr>
-		<th>会員情報<br>
-            名前：<%= @cart_history.family_name %><%= @cart_history.first_name%><br>
-            電話番号:<%= @cart_history.phone_number%><br>
-            メールアドレス:<%= @cart_history.email%><br>
-            郵便番号:<%= @cart_history.postal_code%><br>
-            住所:<%= @cart_history.address %><br>
-		</th>
+		<th class="table_width"><p class="line">会員情報</p></th>
+           <td> <span class="box5">
+            [名前] <%= current_user.family_name%><%= current_user.first_name%><br>
+            [電話番号]<%= current_user.phone_number%><br>
+            [メールアドレス]<%= current_user.email%><br>
+           [郵便番号]<%= current_user.postal_code%><br></span>
+             <span class="box5">[住所]<%= current_user.address %><br></span>
+		</td>
+
 	</tr>
 </table><br>
 
 <table class="table" border="3" bordercolor="black">
 <tr>
-	<th>
-		<%= link_to "お支払い方法選択", user_pay_new_path(current_user) %>
+	<th class="table_width">
+		<%= link_to "お支払い方法選択※クリックして下さい", user_pay_new_path(current_user) %>
 	</th>
 </tr>
 </table><br>
 
 <table class="table" border="3" bordercolor="black">
 <tr>
-	<th>
-		<%= link_to "お届け先変更", cart_history_address_new_path(current_user) %>
+	<th colspan="2">
+		<%= link_to "お届け先変更をする場合※クリックして下さい", cart_history_address_new_path(current_user) %>
 	</th>
 </tr>
+<tr>
+	<td class="table_width center1"><h6>宛名</h6></td>
+	<td>
+	</td>
+</tr>
+
+<tr>
+	<td class="table_width center1"><h6>住所</h6></td>
+	<td></td>
+</tr>
+
+<tr>
+	<td class="table_width center1"><h6>電話番号</h6></td>
+	<td></td>
+</tr>
+
 </table><br>
 
 
 <table class="table" border="3" bordercolor="black">
 	<% @cart_items.each do |cart_item| %>
 	<tr>
-	<th><%= attachment_image_tag cart_item.product, :jacket_image, :fill, 80, 80 %><%= cart_item.product.product_name %><br>
+	<th class="table_width"><span class="box5"><%= attachment_image_tag cart_item.product, :jacket_image, :fill, 90, 90 %><br></span><%= cart_item.product.product_name %>/
         <%= cart_item.product.artist %>
 	</th>
-	<th><h3><%= cart_item.purchase_quantity %>枚</h3></th>
-	<th><h3><%= cart_item.sub_total %>円</h3></th>
+	<th class="table_width2"><h3 class="line3">[購入枚数]<br><%= cart_item.purchase_quantity %>枚<br>
+	</h3></th>
+	<th><h3 ><p class="line"><%= cart_item.sub_total %>円</h3></p></th>
 </tr>
 <% end %>
 
 </table>
 <table class="table" border="3" bordercolor="black">
 <tr>
-	<th>送料</th><td>500円</td><th>購入合計金額</th><td><%= @cart_items.sum(:sub_total)+500 %>円</td>
-</tr>
+	<th class="table_width"><h4>送料</h4></th><td><h4>500円</h4></td><th class="table_width"><h4>購入合計金額</h4></th><td><h4><%= @cart_items.sum(:sub_total)+500 %>円</h4></td>
+</tr></h4>
 </table>
-<%= link_to "戻る", cart_histories_path,class: "btn btn-success"%> <!--リンク先は未定-->
+<%= link_to "戻る",  user_users_cart_path(current_user.id),class: "btn btn-success"%> <!--リンク先は未定-->
 
 

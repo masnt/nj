@@ -14,7 +14,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update] do
   get'/pay_new', to: 'cart_histories#pay_new'
-  resources :cart_histories, only: [:create,:destroy]
+  resources :cart_histories, only: [:create,:destroy] do
+  delete '/back_destroy', to: 'cart_histories#back_destroy'
+  end
   get 'users/cart', to: "users#cart"
   end
 
@@ -116,7 +118,6 @@ Rails.application.routes.draw do
 
 
   # 管理者
-  get '/index_order', to: 'cart_histories#index_order'
   get '/user_history', to: 'cart_histories#user_history'
 
 
