@@ -1,6 +1,6 @@
 class ShopinformationsController < ApplicationController
 
-  
+
   def create
     @shopinformation = Shopinformation.new(shopinformation_params)
     @shopinformation.save
@@ -26,3 +26,4 @@ def shopinformation_params
 params.require(:shopinformation).permit(:shopinfomation_text)
 end
 end
+

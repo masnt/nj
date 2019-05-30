@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   resources :orders
 
 
-  
   resources :cart_items,only: [:create,:destroy]
 
   root to: 'products#index'
@@ -75,6 +74,11 @@ Rails.application.routes.draw do
     get 'products/edit'
     get 'products/new'
   end
+
+    #  get 'users/edit'
+     # get 'users/show'
+    # delete 'users/destroy'
+    # ハラダ 5/29 delete追加
   namespace :admin do
     get 'users/index'
     # ハラダ 5/30 ルーティングエラーが起こるためnamespeceにindexだけ残して他をadmin/user関連のルーティングを外して、
@@ -105,7 +109,7 @@ Rails.application.routes.draw do
     delete "/unlike", to:'favorites#unlike'
   end
 
-  
+
   resources :cart_histories do
   get '/cart_histories/pay_choise', to: 'cart_histories#pay_choise'
   get '/comfirm', to:'cart_histories#comfirm'
@@ -116,6 +120,7 @@ Rails.application.routes.draw do
 
   resources :product_reviews
   resources :post_images, only: [:new, :create, :destroy , :index, :show]
+  get '/categories/:id/edit', to:'categories#edit'
   resources :categories
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -21,7 +21,7 @@
     </div>
     <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
       <strong>商品カテゴリ</strong><br>
-             <%= @product.category_id %>
+             <%#= @product.category_id %>
     </div>
     <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
       <strong>レーベル</strong><br>
@@ -70,42 +70,43 @@
             <div class=""><% time = review.created_at.in_time_zone('Tokyo') %>
                   <%= time.strftime('%Y年%m月%d日 %H:%M:%S') %> に投稿</div>
           <% end %>
-          <p>サルワカさん、ありがとう</p>
         </div>
       </div>
     </div>
   </div>
 
+
       <% if user_signed_in? %>
-        <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
-          <%= f.submit 'カートに追加', class: 'btn btn-success' %>
+        <div class="field row" style="margin-bottom: 5px;">
+          <%= f.submit 'カートに追加', class: 'col-xs-offset-4 col-xs-4 btn btn-success' %>
         </div>
       <% else %>
-        <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
-
-          <%# f.submit 'カートに追加', class: 'btn btn-denger' %>
-          <%= link_to  'カートに追加', new_user_session_path,class: 'btn btn-danger' %>
+        <div class="field row" style="margin-bottom: 5px;">
+          <%= link_to  'カートに追加', new_user_session_path,class: 'col-xs-offset-4 col-xs-4 btn btn-danger' %>
         </div>
-      <!--  </button> -->
        <% end %>
      <% end %>
 
     <% if user_signed_in? %>
       <% if @product.favorited_by?(current_user) %>
-        <p>お気に入りに登録されている商品です</p>
+      <div class="center">
+        <div class="alert alert-info text-center" role="alert"><strong>お気に入り登録されている商品です</strong>
+      </div>
+    </div>
       <% else %>
-      <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
-        <%= link_to 'お気に入りリストに追加' , product_like_path(@product.id) ,method: :post %>
+      <div class="field row" style="margin-bottom: 5px;">
+        <%= link_to 'お気に入りリストに追加' , product_like_path(@product.id) ,method: :post,class: "col-xs-offset-4 col-xs-4 btn btn-warning" %>
       </div>
       <% end %>
     <% else %>
-        <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
-        <%= link_to 'お気に入りリストに追加' , new_user_session_path %>
+        <div class="field row"  style="margin-bottom: 5px;">
+        <%= link_to 'お気に入りリストに追加' , new_user_session_path ,class: "col-xs-offset-4 col-xs-4 btn btn-warning"%>
         </div>
     <% end %>
 
    </div>
 </div>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+</div>
+<%#
+<%= link_to 'Edit', edit_product_path(@product) %>
+<%= link_to '商品一覧へ', products_path ,class: "glyphicon glyphicon-chevron-left"%>
