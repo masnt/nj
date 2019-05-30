@@ -31,6 +31,8 @@
     @inquiry
     if params[:back]
       render :new
+    elsif params[:stop]
+      render params[:index]
     elsif @inquiry.save
       flash[:notice] = "Send successfully!"
       redirect_to inquiries_complete_path
