@@ -59,13 +59,21 @@
 <%# end %>
   </div>
   <div class="row">
-    <p class="col-xs-offset-4 col-xs-4 lead">Product Reviews</p>
-    <% @review.each do |review| %>
-      <div class="col-xs-offset-4 col-xs-4"><%= review.review_title %></div>
-      <div class="col-xs-offset-4 col-xs-4"><%= review.review_text %></div>
-      <div class="col-xs-offset-4 col-xs-4"><% time = review.created_at.in_time_zone('Tokyo') %>
-            <%= time.strftime('%Y年%m月%d日 %H:%M:%S') %> に投稿</div>
-    <% end %>
+    <div class="hidden_box">
+      <div class="col-xs-offset-4 col-xs-4">
+        <label for="label1">Product Reviews</label>
+        <input type="checkbox" id="label1"/>
+        <div class="hidden_show">
+          <% @review.each do |review| %>
+            <div class=""><%= review.review_title %></div>
+            <div class=""><%= review.review_text %></div>
+            <div class=""><% time = review.created_at.in_time_zone('Tokyo') %>
+                  <%= time.strftime('%Y年%m月%d日 %H:%M:%S') %> に投稿</div>
+          <% end %>
+          <p>サルワカさん、ありがとう</p>
+        </div>
+      </div>
+    </div>
   </div>
 
       <% if user_signed_in? %>
