@@ -9,10 +9,21 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-//= require jquery
 //= require bootstrap-sprockets
+//= require jquery.jscroll.min.js
+
+$(window).on('scroll', function() {
+    scrollHeight = $(document).height();
+    scrollPosition = $(window).height() + $(window).scrollTop();
+    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.0001) {
+  $('.jscroll').jscroll({
+    contentSelector: '.products-list',
+    nextSelector: 'span.next a'
+    });
+  }
+});
