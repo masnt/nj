@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :users
   post 'inquiries/comfirm_new'
   get 'inquiries/complete' #errorが起こるので、resourcesより上に記述しています。
@@ -19,11 +20,13 @@ Rails.application.routes.draw do
   end
   get 'users/cart', to: "users#cart"
   end
-
   get '/show_mypage', to:'users#show_mypage'
+
 
   resources :orders
 
+  resources :shopinformations
+  
   resources :cart_items,only: [:create,:destroy]
 
   root to: 'products#index'
@@ -31,9 +34,7 @@ Rails.application.routes.draw do
   get 'cart_histories/new' => 'cart_histories#new'
 
   get 'products/index2' => 'products#index2'
-  get 'shopinformations' => 'shopinformations#show'
-  get 'shopinformations/new' => 'shopinformations#new'
-  post 'shopinformations/create' => 'shopinformations#create'
+
   root :to => 'products#index'
 
   get '/cart_histories/comfirm_new', to: 'cart_histories#comfirm_new'
@@ -106,7 +107,7 @@ Rails.application.routes.draw do
     delete "/unlike", to:'favorites#unlike'
   end
 
-  resources :shopinformations
+  
   resources :cart_histories do
   get '/cart_histories/pay_choise', to: 'cart_histories#pay_choise'
   get '/comfirm', to:'cart_histories#comfirm'

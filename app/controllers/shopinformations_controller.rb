@@ -1,32 +1,34 @@
 class ShopinformationsController < ApplicationController
 
-#   def new
-#      @shop_information = Shopinformation.new
-#   end
+  def new
+    @Shopinformations = Shopinformation.new
+  end
+  def create
+    @Shopinformation = Shopinformation.new(shopinformation_params)
+    @Shopinformation.save
 
-#   def show
-#      @shop_information = Shopinformation.find(1)
-#   end
+    redirect_to shopinformations_path
+  end
 
-#   def create
-#         # ストロングパラメーターを使用
-#      @shop_information = Shopinformation.new(shopinformation_params)
-#         # DBへ保存する
-#      @shop_information.save
-#   end
+  def index
+    @Shopinformations = Shopinformation.all
+  end
 
-#   def edit
-#   end
+  def edit
+    @Shopinformations = Shopinformation.find(1)
+  end
 
-#   def update
-#       @shop_information = Shopinformation.find(1)
-#       @shop_information.update(shopinfomation_params)
-#       redirect_to @shop_information
-#   end
+  def update
+    @Shopinformations = Shopinformation.find(params[:id])
+    @Shopinformations.update(shopinformation_params)
 
-#    private
-#     def shopinformation_params
-#         params.require(:shopinformation).permit(:shopinformation_text, :shopinformation_image)
-#     end
+    redirect_to shopinformations_path
+  end
 
-# end
+private
+
+def shopinformation_params
+params.require(:shopinformation).permit(:shopinfomation_text)
+end
+end
+

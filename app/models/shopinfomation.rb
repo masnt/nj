@@ -1,2 +1,0 @@
-class Shopinfomation < ApplicationRecord
-end
