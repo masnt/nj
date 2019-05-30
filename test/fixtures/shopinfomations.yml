@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  shopinfomation_text: MyText
-  shopinfomation_image: MyString
-
-two:
-  shopinfomation_text: MyText
-  shopinfomation_image: MyString

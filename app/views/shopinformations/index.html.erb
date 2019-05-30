@@ -1,0 +1,14 @@
+<h1>ショップインフォメーション</h1>
+<div class="center">
+<table class="table" border="3" bordercolor="black">
+	<th>
+
+<% @Shopinformations.each do |s| %>
+
+<%= s.shopinfomation_text %>
+
+<% end %>
+</th>
+</table>
+<%= link_to "編集", edit_shopinformation_path(@Shopinformations) %>
+</div>
