@@ -58,11 +58,14 @@ class CartHistoriesController < ApplicationController
 	  def destroy
 	  	@cart_item = CartItem.where(user_id: current_user.id)
 	  	@cart_history = CartHistory.find(params[:id])
-	  	# @cart_history.amount_history = CartItem.sum(:sub_total)+500 kokodesu!!!
+	  	@cart_history.amount_history = (CartItem.sum(:sub_total)+500)
 	  	@order = Order.new
 	  	@cart_item.each do |cart_item|
 	  	@cart_item_history = CartItemHistory.new
 	  	@cart_item_history.product_id = cart_item.product_id
+	  	@product = Product.find(cart_item.product_id)
+	  	@product.stock_quantity -= cart_item.purchase_quantity
+	  	@product.save
 	  	@cart_item_history.sub_total = cart_item.sub_total
 	  	@cart_item_history.unit_price = cart_item.product.unit_price
 	  	@cart_item_history.user_id = current_user.id
@@ -70,13 +73,13 @@ class CartHistoriesController < ApplicationController
 	  	@cart_item_history.cart_history_id = @cart_history.id
 	  	@cart_item_history.save
         end
-        @cart_history.amount_history = CartItem.select("unit_price")
         if @cart_history.other_address != nil
         	@cart_history.shipping_type = 1
         end
         @cart_history.save
         @order.cart_history_id = @cart_history.id
         @order.save
+
        @cart_item.delete_all
 
        redirect_to cart_histories_complete_new_path
@@ -117,6 +120,7 @@ class CartHistoriesController < ApplicationController
    def cart_item_history_params
    	params.require(:cart_item_history).permit(:product_id, :unit_price, :sub_total)
    end
+
 
 
 end
