@@ -10,6 +10,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer :label_id, null: false
       t.integer :product_status, null: false
       t.integer :unit_price, null: false
+      t.string :jacket_image_id
 
       t.timestamps
     end

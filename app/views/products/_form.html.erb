@@ -59,7 +59,8 @@
 
 <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%= form.label :カテゴリ %>
-    <%= form.select :category, Product.category_ids.keys, :selected=>Product.category_ids[@product.category_id] %>
+    <%= form.number_field :category_id %>
+    <!-- select :category, Product.category_ids.keys, :selected=>Product.category_ids[@product.category_id] %> -->
   </div>
 
 

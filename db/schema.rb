@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2019_05_29_054602) do
     t.datetime "updated_at", null: false
     t.integer "cart_history_id"
     t.integer "buy_stock_history"
-    t.integer "user_id"
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -96,13 +95,10 @@ ActiveRecord::Schema.define(version: 2019_05_29_054602) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.string "picture_a"
-    t.string "picture_b"
-    t.string "picture_c"
+    t.string "image_id"
+    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "product_id"
-    t.string "product_image_id"
   end
 
   create_table "product_reviews", force: :cascade do |t|
@@ -123,11 +119,11 @@ ActiveRecord::Schema.define(version: 2019_05_29_054602) do
     t.text "product_text"
     t.integer "product_status", null: false
     t.integer "unit_price", null: false
+    t.string "jacket_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "label"
     t.integer "select_stock"
-    t.string "jacket_image_id"
   end
 
   create_table "shopinfomations", force: :cascade do |t|

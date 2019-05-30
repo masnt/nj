@@ -3,6 +3,7 @@ class ProductReviewsController < ApplicationController
   def new
   	@product_review = ProductReview.new
   	#@product = Product.find(params[:id])
+    #@your_review = ProductReview.where(product)#schemaにuser_id追加（時間あれば）
   end
 
   def show
@@ -11,6 +12,7 @@ class ProductReviewsController < ApplicationController
 
   def index
   	@product_reviews = ProductReview.all
+    @product = Product.all
   end
 
   def create
@@ -19,7 +21,7 @@ class ProductReviewsController < ApplicationController
     @product_review.product_id = @product.id
     if @product_review.save
     flash[:notice] = "Post successfully!"
-    redirect_to product_reviews_path
+    redirect_to product_path(@product.id)
     else
     flash[:notice] = "error, post failed"
     render :new
