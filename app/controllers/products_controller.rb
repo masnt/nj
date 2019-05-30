@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     #@cart_item = CartItem.new
+    @review = ProductReview.where(product_id: @product.id)
   end
 
   def add
