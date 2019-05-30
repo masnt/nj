@@ -59,8 +59,12 @@
 
 <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
     <%= form.label :カテゴリ %>
-    <%= form.number_field :category_id %>
-    <!-- select :category, Product.category_ids.keys, :selected=>Product.category_ids[@product.category_id] %> -->
+  
+    <%#= form.select :category, Product.category_ids.keys, :selected=>Product.category_ids[@product.category_id] %>
+    <%= form.collection_select :category_id, Category.all, :id, :category_title %>
+    <%#= f.collection_select <属性名>, <プルダウンメニュー表示用の配列データ>, <valueとして扱うカラム名>,  <表示用のカラム名>, <オプション> %>
+    <%#= form.number_field :category_id %>
+    <%# select :category, Product.category_ids.keys, :selected=>Product.category_ids[@product.category_id] %>
   </div>
 
 

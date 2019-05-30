@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   resources :orders
 
   resources :shopinformations
-  
+
   resources :cart_items,only: [:create,:destroy]
 
   root to: 'products#index'
@@ -107,7 +107,7 @@ Rails.application.routes.draw do
     delete "/unlike", to:'favorites#unlike'
   end
 
-  
+
   resources :cart_histories do
   get '/cart_histories/pay_choise', to: 'cart_histories#pay_choise'
   get '/comfirm', to:'cart_histories#comfirm'
@@ -118,6 +118,7 @@ Rails.application.routes.draw do
 
   resources :product_reviews
   resources :post_images, only: [:new, :create, :destroy , :index, :show]
+  get '/categories/:id/edit', to:'categories#edit'
   resources :categories
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
