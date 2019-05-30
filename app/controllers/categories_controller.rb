@@ -9,16 +9,6 @@ class CategoriesController < ApplicationController
 
   def edit
   	@category = Category.find(params[:id])
-  	if params[:preview]
-  		flash[:notice] = "Preview now"
-  	    render :edit
-  	elsif @category.save
-		flash[:notice] = "Add successfully!"
-		redirect_to categories_path
-	else
-		flash[:notice] = "error, Add failed"
-		render :new
-	end
   end
 
   def show
@@ -53,12 +43,15 @@ class CategoriesController < ApplicationController
 
   def update
 	@category = Category.find(params[:id])
-	if @category.update(category_params)
-		flash[:notice] = "Update successfully!"
+  	if params[:preview]
+  		flash[:notice] = "Preview now"
+  	    render :edit
+  	elsif @category.save
+		flash[:notice] = "Add successfully!"
 		redirect_to categories_path
 	else
-		flash[:notice] = "error, Update failed"
-		redirect_to edit_category_path(@category.id)
+		flash[:notice] = "error, Add failed"
+		render :new
 	end
   end
 
