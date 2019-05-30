@@ -1,6 +1,7 @@
-<div class="container lead">
-<p>Product Review List</p>
-<tbody>
+<div class="container">
+<p class="lead">Product Review List</p>
+<div class="row">
+<table class="table table-hover">
 	<tr>
 		<td>rating</td>
 		<td>Product Name</td>
@@ -11,14 +12,17 @@
 	<% @product_reviews.each do |review| %>
 		<tr>
 			<td><%= review.rating %></td>
-			<td><%#= link_to product_path(review.products_id), class: "product_#{review.product_id}" do %>
-				<%#= review. %>
-				<%# end%></td>
+			<td><%= link_to product_path(review.product_id), class: "product_#{review.product_id}" do %>
+				<%#= @product.product.name(prrams:review.product_id) %>
+				<% end%></td>
 			<td><%= review.review_title %></td>
 			<td><%= review.review_text %></td>
 			<td><%= link_to "Destroy", product_review_path(review.id), class: "destroy_#{review.id} btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?"} %></td>
 		</tr>
 	<% end %>
-	<%#= paginate(@product_reviews) %>
-</tbody>
+	<div>
+			<%#= paginate(@product_reviews) %>
+	</div>
+</table>
+</div>
 </div>
