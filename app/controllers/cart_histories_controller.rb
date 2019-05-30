@@ -92,6 +92,7 @@ class CartHistoriesController < ApplicationController
 	  end
 
 
+
 	  def update
 	  	@cart_history = CartHistory.find(params[:id])
 	  	@cart_history.update(cart_history_params)

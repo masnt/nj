@@ -32,7 +32,12 @@
         </td>
         <td>
           <p></p>
-          <h4><%= c.purchase_quantity %>点:　¥<%= c.sub_total %>円(税込)</h4></td>
+          <% if c.product.stock_quantity == 0 %>
+            <h4 style="color: orange;">在庫切れ</h4>
+          <% else %>
+            <h4><%= c.purchase_quantity %>点:　¥<%= c.sub_total %>円(税込)</h4>
+          <% end %>
+        </td>
         <td>
           <p></p>
           <%= link_to "取り消し", cart_item_path(c.id), method: :delete, class:"btn btn-default" %>
@@ -44,7 +49,7 @@
   <div class="total_price">
     <h4>合計数量: <%= @total_purchase_quantity %>点</h4>
     <h3>合計金額: ¥<%= @total_price %>円(税込)</h3>
-    <%= link_to '購入画面へ進む', cart_histories_comfirm_new_path, class:"btn btn-warning col-lg-10", style:"color: #fff;" %>
+        <%= link_to '購入画面へ進む', cart_histories_comfirm_new_path, class:"btn btn-warning col-lg-10", style:"color: #fff;" %>
   </div>
 </div>
 

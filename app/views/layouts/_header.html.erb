@@ -29,9 +29,6 @@
 						</li>
 						<li class="header-list-item"><%= link_to "ホーム", products_path %></li>
 						<li class="header-list-item"><%= link_to "マイページ", show_mypage_path %></li>
-						<li class="header-list-item"><%= link_to "購入履歴",cart_histories_path  %></li>
-						<li class="header-list-item">
-							<%= link_to "受注一覧",orders_path  %></li>
 						<li class="header-list-item">
 							<%= link_to "サインアウト",  destroy_user_session_path , method: :delete,  data: {confirm:'ログアウトしますか？'} %>
 						</li>
