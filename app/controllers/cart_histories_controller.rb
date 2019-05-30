@@ -101,8 +101,11 @@ class CartHistoriesController < ApplicationController
 	  end
 
 
-	  def index_order    #管理者:admin  受注一覧
-        #@cart_history = CartHistory.all
+	  def back_destroy
+	  	@cart_history = CartHistory.find(params[:cart_history_id])
+	  	@cart_history.delete
+
+	  	redirect_to user_users_cart_path(current_user.id)
 	  end
 
 

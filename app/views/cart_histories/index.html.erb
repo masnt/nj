@@ -1,4 +1,4 @@
-<h1>購入履歴一覧</h1><br>
+<h1>購入履歴</h1><br>
 
 <div class="center">
 <table class="table" border="3" bordercolor="black">
@@ -25,24 +25,38 @@
 	</tr>
 	<% @cart_item_history.each do |cart_item_history| %>
 	<tr>
+
 		<td><%= cart_item_history.cart_history.id %></td>
 		<td><% time = cart_item_history.created_at.in_time_zone('Tokyo') %>
 			<%= time.strftime('%Y年%m月%d日 %H:%M:%S') %>
 		</td>
+
 		<td><%= cart_item_history.product.artist %>/<%= cart_item_history.product.product_name %></td>
 		<td><%= cart_item_history.unit_price %>円(税抜)</td>
-		<td><%= cart_item_history.buy_stock_history %></td>
-		<td><%= cart_item_history.sub_total %>円(税込)</td>
+		<td><span class="font3"><%= cart_item_history.buy_stock_history %>枚</span></td>
+		<td><%= cart_item_history.sub_total %>円(税込)<br>
+            [<%= cart_item_history.cart_history.howtopay_history %>]
+		</td>
 		<td><% if cart_item_history.cart_history.shipping_type == "登録住所" %>
 			<%= cart_item_history.cart_history.user.postal_code %><br>
 			<%= cart_item_history.cart_history.user.address %>
 			<% else %>
+			宛名：<%= cart_item_history.cart_history.other_name %><br>
 			<%= cart_item_history.cart_history.other_postal_code %><br>
 			<%= cart_item_history.cart_history.other_address %>
 			<% end %>
 		</td>
+
+		<td><% if cart_item_history.cart_history.ship_status == "発送" %>
+			<span class="font2"><%= cart_item_history.cart_history.ship_status %></span>
+            <% else %>
+            <span class="font3"><%= cart_item_history.cart_history.ship_status %></span>
+            <% end %>
+		</td>
+
 		<td><%= cart_item_history.cart_history.ship_status %></td>
 		<td><%= link_to 'レビューを書く',  new_product_product_review_path(cart_item_history.product_id)  %></td>
+
 	</tr>
 	<% end %>
 
