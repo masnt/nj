@@ -20,7 +20,7 @@
 $(window).on('scroll', function() {
     scrollHeight = $(document).height();
     scrollPosition = $(window).height() + $(window).scrollTop();
-    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.0001) {
+    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.04) {
   $('.jscroll').jscroll({
     contentSelector: '.products-list',
     nextSelector: 'span.next a'

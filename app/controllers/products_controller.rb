@@ -52,6 +52,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    binding.pry
     @product.save
 
     respond_to do |format|

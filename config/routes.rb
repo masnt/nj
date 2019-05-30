@@ -74,11 +74,12 @@ Rails.application.routes.draw do
     get 'products/new'
   end
   namespace :admin do
-    get 'users/edit'
-    get 'users/show'
+    # get 'users/edit'
+    # get 'users/show'
     get 'users/index'
-    delete 'users/destroy'
-    # ハラダ 5/29 delete追加
+    # delete 'users/destroy'
+    # ハラダ 5/30 ルーティングエラーが起こるためnamespeceからadmin/user関連のルーティングを外して、
+    # 下に記載しています
   end
 
   get 'admin/users/:id/edit' => 'admin/users#edit', as:'admin_users_edit'
@@ -114,7 +115,7 @@ Rails.application.routes.draw do
   resources :product_reviews
   resources :post_images, only: [:new, :create, :destroy , :index, :show]
   resources :categories
- 
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
