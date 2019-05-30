@@ -26,7 +26,11 @@
 	<% @cart_item_history.each do |cart_item_history| %>
 	<tr>
 
-		<td><%= cart_item_history.cart_history.id %></td>
+		<td><%= cart_item_history.cart_history.id %><br>
+			<% if cart_item_history.cart_history.shipping_type != "登録住所" %>
+		     <h6 class="masnt">※お届け先変更</h6>
+			<% end %>
+		</td>
 		<td><% time = cart_item_history.created_at.in_time_zone('Tokyo') %>
 			<%= time.strftime('%Y年%m月%d日 %H:%M:%S') %>
 		</td>
@@ -38,8 +42,9 @@
             [<%= cart_item_history.cart_history.howtopay_history %>]
 		</td>
 		<td><% if cart_item_history.cart_history.shipping_type == "登録住所" %>
-			<%= cart_item_history.cart_history.user.postal_code %><br>
-			<%= cart_item_history.cart_history.user.address %>
+			宛名:<%= cart_item_history.cart_history.family_name_history %><%= cart_item_history.cart_history.first_name_history %><br>
+			<%= cart_item_history.cart_history.postal_code_history %><br>
+			<%= cart_item_history.cart_history.ship_address_history %>
 			<% else %>
 			宛名：<%= cart_item_history.cart_history.other_name %><br>
 			<%= cart_item_history.cart_history.other_postal_code %><br>
@@ -53,6 +58,7 @@
             <span class="font3"><%= cart_item_history.cart_history.ship_status %></span>
             <% end %>
 		</td>
+
 		<td><%= link_to 'レビューを書く',  new_product_product_review_path(cart_item_history.product_id)  %></td>
 
 	</tr>
