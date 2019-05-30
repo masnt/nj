@@ -14,11 +14,12 @@ class ProductReviewsController < ApplicationController
   end
 
   def create
-    @product_review = ProductReview.find(product_review_params)
-    #@product_review = Product.where( )
+    @product_review = ProductReview.new(product_review_params)
+    @product = Product.find(params[:product_id])
+    @product_review.product_id = @product.id
     if @product_review.save
     flash[:notice] = "Post successfully!"
-    redirect_to product_review_path(@product_review.id)
+    redirect_to product_reviews_path
     else
     flash[:notice] = "error, post failed"
     render :new
@@ -39,7 +40,7 @@ class ProductReviewsController < ApplicationController
 
 	  private
       def product_review_params
-          params.require(:product_review).permit( :review_title, :review_text, :rating, :products_id )
+          params.require(:product_review).permit(:review_title, :review_text, :rating, :product_id)
       end
 
 end

@@ -1,5 +1,5 @@
 <div class="container">
-	<%= form_for @product_review do |f| %>
+	<%= form_for(@product_review, url: product_product_reviews_path) do |f| %>
 
 		<% if @product_review.errors.any? %>
 			<%= @product_review.errors.count %>
@@ -20,9 +20,11 @@
 			    <div class="row">
 					<%= f.text_area :review_text, placeholder:'レビュー本文をご入力ください。', class: "col-xs-offset-2 col-xs-8" %>
 				</div>
-				<div class="col-xs-offset-2 col-xs-8"><p>文字数注意文</p></div>
+				<div class="col-xs-offset-2 col-xs-8"><p></p></div>
 				<div class="col-xs-offset-2 col-xs-8"><p>5 star rating</p>
-					<%#= f.select :rate, ProductReview.rates.keys %>
+					<%= f.select :rating, ProductReview.rates.keys %>
+					<%#= f.select :status, ProductReview.statuses.keys %>
+					<%#= form.select :rate, ProductReview.rates.keys, :selected=>ProductReview.rates[@product_review.rate_status] %>
 				</div>
 				<div class="row">
 					<%= f.submit '編集を保存して注文一覧へ戻る', class: "col-xs-offset-2 col-xs-8 btn btn-warning active" %>
