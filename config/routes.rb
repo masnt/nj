@@ -74,6 +74,11 @@ Rails.application.routes.draw do
     get 'products/edit'
     get 'products/new'
   end
+
+    #  get 'users/edit'
+     # get 'users/show'
+    # delete 'users/destroy'
+    # ハラダ 5/29 delete追加
   namespace :admin do
     get 'users/index'
     # ハラダ 5/30 ルーティングエラーが起こるためnamespeceにindexだけ残して他をadmin/user関連のルーティングを外して、
