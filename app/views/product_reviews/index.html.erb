@@ -11,9 +11,9 @@
 	</tr>
 	<% @product_reviews.each do |review| %>
 		<tr>
-			<td><%= review.rating %></td>
+			<td><%#= review.rating %></td>
 			<td><%= link_to product_path(review.product_id) do %>
-				<%#= @product.product.name(params:review.product_id) %>
+				<%= review.product.product_name %>
 				<% end %></td>
 			<td><%= review.review_title %></td>
 			<td><%= review.review_text %></td>
