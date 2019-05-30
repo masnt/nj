@@ -2,8 +2,16 @@ class Admin::ShopinformationsController < ApplicationController
 
   before_action :admin_user
 
-  def edit
+  def new
+    @shopinformations = Shopinformation.new
   end
+
+
+  def edit
+    
+    @shopinformations = Shopinformation.find(params[:id])
+  end
+
 
   private
 

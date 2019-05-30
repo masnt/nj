@@ -69,6 +69,7 @@ class CartHistoriesController < ApplicationController
 	  	@cart_item_history.sub_total = cart_item.sub_total
 	  	@cart_item_history.unit_price = cart_item.product.unit_price
 	  	@cart_item_history.user_id = current_user.id
+        @cart_history.ship_address_history = current_user.address
 	  	@cart_item_history.buy_stock_history = cart_item.purchase_quantity
 	  	@cart_item_history.cart_history_id = @cart_history.id
 	  	@cart_item_history.save
@@ -76,6 +77,11 @@ class CartHistoriesController < ApplicationController
         if @cart_history.other_address != nil
         	@cart_history.shipping_type = 1
         end
+        @cart_history.family_name_history = current_user.family_name
+	  	@cart_history.first_name_history = current_user.first_name
+	  	@cart_history.family_name_kana_history = current_user.family_name_kana
+	  	@cart_history.first_name_kana_history = current_user.first_name_kana
+        @cart_history.postal_code_history = current_user.postal_code
         @cart_history.save
         @order.cart_history_id = @cart_history.id
         @order.save
