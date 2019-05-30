@@ -52,6 +52,30 @@
 
 
 
+<%# if @product.favorited_by?(current_user) %>
+  <!-- <p>お気に入りに登録されている商品です</p> -->
+<%# else %>
+<%#= link_to 'お気に入りリストに追加' , product_like_path(@product.id) ,method: :post %><br>
+<%# end %>
+  </div>
+  <div class="row">
+    <div class="hidden_box">
+      <div class="col-xs-offset-4 col-xs-4">
+        <label for="label1">Product Reviews</label>
+        <input type="checkbox" id="label1"/>
+        <div class="hidden_show">
+          <% @review.each do |review| %>
+            <div class=""><%= review.review_title %></div>
+            <div class=""><%= review.review_text %></div>
+            <div class=""><% time = review.created_at.in_time_zone('Tokyo') %>
+                  <%= time.strftime('%Y年%m月%d日 %H:%M:%S') %> に投稿</div>
+          <% end %>
+          <p>サルワカさん、ありがとう</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
       <% if user_signed_in? %>
         <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
           <%= f.submit 'カートに追加', class: 'btn btn-success' %>

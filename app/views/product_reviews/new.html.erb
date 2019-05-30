@@ -27,10 +27,14 @@
 					<%#= form.select :rate, ProductReview.rates.keys, :selected=>ProductReview.rates[@product_review.rate_status] %>
 				</div>
 				<div class="row">
-					<%= f.submit '編集を保存して注文一覧へ戻る', class: "col-xs-offset-2 col-xs-8 btn btn-warning active" %>
+					<%= f.submit '新規レビューを投稿', class: "col-xs-offset-2 col-xs-8 btn btn-warning active" %>
 				</div>
 				<div class="row">
-					<%= f.submit '編集を保存せず注文履歴一覧へ戻る', class: "col-xs-offset-2 col-xs-8 btn btn-warning active" %>
+					<%= link_to '新規レビューを保存せず購入履歴一覧へ戻る', cart_histories_path, class: "col-xs-offset-2 col-xs-8 btn btn-warning active" %>
 				</div>
 	<% end %>
+	<%#<div>貴方が以前に書いたレビュー</div>
+	<%# each %>
+	<%#= @your_review.review_title%>
+	<%# end %>
 </div>

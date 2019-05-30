@@ -3,14 +3,23 @@
     <% if user_signed_in? %>
       <nav>
         <ul class="footer-link nav navbar-nav navbar-right">
+<<<<<<< HEAD
           <!-- <li class="footer-list"><%#= link_to "Shopinfo", shopinformation_path(params[1]) %></li> -->
       		<li class="footer-list"><%= link_to "From", inquires_new_path %></li>
+=======
+          <li class="footer-list"><%= link_to "Shopinfo", "#" %></li>
+      		<li class="footer-list"><%= link_to "From",  new_inquiry_path %></li>
+>>>>>>> 77fca3a9a5513916a1d91345bcce534dee9ca4d8
         </ul>
       </nav>
     <% else %>
       <nav>
         <ul class="footer-link nav navbar-nav navbar-right">
+<<<<<<< HEAD
           <li class="footer-list"><%#= link_to "Shopinfo", shopinfomation_path() %></li>
+=======
+          <li class="footer-list"><%= link_to "Shopinfo", "#" %></li>
+>>>>>>> 77fca3a9a5513916a1d91345bcce534dee9ca4d8
         </ul>
       </nav>
     <% end %>
