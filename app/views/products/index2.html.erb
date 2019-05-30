@@ -14,14 +14,14 @@
 
 <% @products.each do |product| %>
 <tr class="new-table">
-  <td><%= product.product_name %></td>
+  <td><%= link_to product.product_name ,product_path(product) %></td>
   <td><%= product.artist %></td>
   <td><%= product.unit_price %></td>
   <td><%= product.product_status %></td>
   <td><%= product.stock_quantity %></td>
-  <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: '商品を削除しますか?' } %></td>
-  <td><%= link_to 'Edit', edit_product_path(product) %></td>
-  <td><%= link_to '商品レビュー', product_path(product) %></td>
+  <td><%= link_to '商品を削除する', product, method: :delete, data: { confirm: '商品を削除しますか?' },class: "btn btn-danger glyphicon glyphicon-trash" %></td>
+  <td><%= link_to '商品を編集する', edit_product_path(product),class: "btn btn-success glyphicon glyphicon-edit" %></td>
+  <td><%= link_to '商品レビュー', product_path(product),class: "btn btn-warning glyphicon glyphicon-comment" %></td>
 </tr>
 <% end %>
 </table>
