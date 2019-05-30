@@ -11,7 +11,6 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-
   # GET /products/1
   # GET /products/1.json
   def show
@@ -20,7 +19,6 @@ class ProductsController < ApplicationController
     @review = ProductReview.where(product_id: @product.id)
   end
 
-
   def add
     @product = Product.find(params[:product_id])
     @product.update(product_params)
@@ -28,15 +26,18 @@ class ProductsController < ApplicationController
     @cart_item.user_id = current_user.id
     @cart_item.product_id = @product.id
     @cart_item.purchase_quantity = @product.select_stock
-
     @cart_item.sub_total = @product.select_stock * @product.unit_price * 1.08
-
-    # @cart_item.sub_total = @cart_item.purchase_quantity.to_i * (@product.unit_price.to_i * 1.08)
-    @cart_item.save
-
-    redirect_to user_users_cart_path(current_user)
+    if (@product.stock_quantity - @cart_item.purchase_quantity) >= 0
+      @cart_item.save
+      redirect_to user_users_cart_path(current_user.id)
+    else
+      flash[:notice] = "在庫数を超えています"
+      render :show
+    end
+    # @cart_item.save
+    # redirect_to user_users_cart_path(current_user)
+    # if文を使って在庫数量オーバーを防いでいます。上の二行は修正場所がエラーが起きた場合のために元々のコードをコメントアウトしてます。
   end
-
 
   # GET /products/new
   def new
@@ -47,8 +48,6 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
   end
-
-
 
   # POST /products
   # POST /products.json
@@ -65,7 +64,6 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   # PATCH/PUT /products/1

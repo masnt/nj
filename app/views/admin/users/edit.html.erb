@@ -1,50 +1,52 @@
 <h1 style="text-align: center;">顧客情報編集</h1>
 <div class= "row">
-<div class="container">
-<%= form_for @user, url: admin_users_index_path, method: :patch do |f| %>
-<div class="field row col-md-offset-4">
-<label><%= f.label :"姓" %><br />
-    <%= f.text_field :family_name %>
-</label>
+	<div class="container">
+		<%= form_for @user, url: admin_users_update_path, method: :patch do |f| %>
+		<div class="field row col-md-offset-4">
+			<label>
+				<%= f.label :"姓" %><br />
+			    <%= f.text_field :family_name %>
+			</label>
 
-<label><%= f.label :"名" %><br />
-    <%= f.text_field :first_name %>
-</label>
-</div>
+			<label>
+				<%= f.label :"名" %><br />
+			    <%= f.text_field :first_name %>
+			</label>
+		</div>
 
-<div class="field row col-md-offset-4">
-<label><%= f.label :"セイ" %><br />
-    <%= f.text_field :family_name_kana %>
-</label>
+		<div class="field row col-md-offset-4">
+			<label>
+				<%= f.label :"セイ" %><br />
+			    <%= f.text_field :family_name_kana %>
+			</label>
 
-<label><%= f.label :"メイ" %><br />
-    <%= f.text_field :first_name_kana %>
-</label>
-</div>
+			<label>
+				<%= f.label :"メイ" %><br />
+			    <%= f.text_field :first_name_kana %>
+			</label>
+		</div>
+		<div class="field row col-md-offset-4">
+			<%= f.label :"郵便番号 ※「-(ハイフン)」含む" %><br />
+			<%= f.text_field :postal_code %>
+		</div>
+		<div class="field row col-md-offset-4">
+			<%= f.label :"住所" %><br />
+			<%= f.text_field :address, class:"col-xs-7" %>
+		</div>
 
-<div class="field row col-md-offset-4">
-<%= f.label :"郵便番号 ※「-(ハイフン)」含む" %><br />
-<%= f.text_field :postal_code %>
-</div>
+		<div class="field row col-md-offset-4">
+			<%= f.label :"電話番号 ※「-(ハイフン)」含む" %><br />
+			<%= f.text_field :phone_number, class:"col-xs-5" %>
+		</div>
 
-
-<div class="field row col-md-offset-4">
-<%= f.label :"住所" %><br />
-<%= f.text_field :address, class:"col-xs-7" %>
-</div>
-
-<div class="field row col-md-offset-4">
-<%= f.label :"電話番号 ※「-(ハイフン)」含む" %><br />
-<%= f.text_field :phone_number, class:"col-xs-5" %>
-</div>
-
-<div class="field row col-md-offset-4" style="margin-bottom: 10px;">
-<%= f.label :"メールアドレス" %><br />
-<%= f.email_field :email, class:"col-xs-5" %>
-</div>
-<div calss="field row col-md-offset-4 col-xs-3">
-<%= f.submit '完了',  class: "btn btn-primary col-md-offset-4 col-xs-3",style:"margin-bottom: 10px;" %>
-</div>
-<% end %>
-</div>
+		<div class="field row col-md-offset-4" style="margin-bottom: 10px;">
+			<%= f.label :"メールアドレス" %><br />
+			<%= f.email_field :email, class:"col-xs-5" %>
+		</div>
+		<div calss="field row col-md-offset-4 col-xs-3">
+			<%= f.submit '完了',  class: "btn btn-primary col-md-offset-4 col-xs-3",style:"margin-bottom: 10px;" %>
+		</div>
+		<% end %>
+		<%= link_to "戻る", admin_users_index_path, class:"btn btn-primary col-md-offset-4 col-xs-3", style:"color: #fff; margin-bottom: 10px;" %>
+	</div>
 </div>

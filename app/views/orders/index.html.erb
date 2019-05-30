@@ -9,8 +9,6 @@
 		<th>名前</th>
 		<th>購入日</th>
 		<th>お支払い方法</th>
-		<!-- <th>単価</th>
-		<th>購入枚数</th> -->
 		<th>価格総計</th>
 		<th>送付先</th>
 		<th>ステータス</th>
@@ -19,9 +17,9 @@
 	<tr>
 		<td><%= orders.cart_history.id %></td>
 		<td><%= orders.cart_history.user.family_name %><%= orders.cart_history.user.first_name %></td>
-		<td><%= orders.created_at %></td>
+		<td><%= orders.created_at.strftime("%Y-%m-%d %H:%M") %></td>
 		<td><%= orders.cart_history.howtopay_history %></td>
-		<td><%= orders.cart_history.amount_history %></td>
+		<td><%= orders.cart_history.amount_history %>円</td>
 		<td><% if orders.cart_history.shipping_type == "登録住所" %>
 			<%= orders.cart_history.user.postal_code %><br>
 			<%= orders.cart_history.user.address %>

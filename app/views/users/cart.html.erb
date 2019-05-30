@@ -1,49 +1,50 @@
 <h1>ショッピングカート</h1>
 
 <div class="container">
-<% @carts.each do |c| %>
+  <% @carts.each do |c| %>
 
-<table class="table table-space">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+  <table class="table table-space">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
     </thead>
     <tbody>
       <tr>
-    <td><p></p><%= attachment_image_tag c.product, :jacket_image, :fill, 200, 200, size:"200x200" %></td>
-    <td>
-      <h4>商品名:</h4>
-      <p>アーティスト名:</p>
-      <p>価格:</p>
-    </td>
-  <td><p></p>
-    <h4><%= c.product.product_name %></h4>
-  <p><%= c.product.artist %></p>
-  <p>¥<%= c.product.unit_price %>(税抜)</p>
-  </td>
-  <td><p></p>
-    <h4><%= c.purchase_quantity %>点:　¥<%= c.sub_total %>円(税込)</h4></td>
-  <td>
-    <p></p>
-    <%= link_to "取り消し", cart_item_path(c.id), method: :delete, class:"btn btn-default" %><td>
-    </tr>
+        <td>
+          <p></p>
+          <%= attachment_image_tag c.product, :jacket_image, :fill, 200, 200, size:"200x200" %>
+        </td>
+        <td>
+          <h4>商品名:</h4>
+          <p>アーティスト名:</p>
+          <p>価格:</p>
+        </td>
+        <td>
+          <p></p>
+          <h4><%= c.product.product_name %></h4>
+          <p><%= c.product.artist %></p>
+          <p>¥<%= c.product.unit_price %>(税抜)</p>
+        </td>
+        <td>
+          <p></p>
+          <h4><%= c.purchase_quantity %>点:　¥<%= c.sub_total %>円(税込)</h4></td>
+        <td>
+          <p></p>
+          <%= link_to "取り消し", cart_item_path(c.id), method: :delete, class:"btn btn-default" %>
+        </td>
+      </tr>
     </tbody>
-</table>
-
-<% end %>
-
-
-<div class="total_price">
-<h4>合計数量: <%= @total_purchase_quantity %>点</h4>
-<h3>合計金額: ¥<%= @total_price %>円(税込)</h3>
-<%= link_to '購入画面へ進む', cart_histories_comfirm_new_path, class:"btn btn-warning col-lg-10", style:"color: #fff;" %>
-
+  </table>
+  <% end %>
+  <div class="total_price">
+    <h4>合計数量: <%= @total_purchase_quantity %>点</h4>
+    <h3>合計金額: ¥<%= @total_price %>円(税込)</h3>
+    <%= link_to '購入画面へ進む', cart_histories_comfirm_new_path, class:"btn btn-warning col-lg-10", style:"color: #fff;" %>
+  </div>
 </div>
-</div>
-
 

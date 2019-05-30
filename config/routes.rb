@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'users/cart', to: "users#cart"
   end
 
+  get '/show_mypage', to:'users#show_mypage'
+
   resources :orders
 
   resources :cart_items,only: [:create,:destroy]
@@ -70,15 +72,17 @@ Rails.application.routes.draw do
     get 'products/new'
   end
   namespace :admin do
-    get 'users/edit'
-    get 'users/show'
-    get 'users/index'
-    delete 'users/destroy'
+    resources :users
     # ハラダ 5/29 delete追加
   end
+
+  get 'admin/users/:id/edit' => 'admin/users#edit', as:'admin_users_edit'
+  get 'admin/users/:id/' => 'admin/users#show', as:'admin_users_show'
+  delete 'admin/users/destroy' => 'admin/users#destroy', as:'admin_users_destroy'
+  patch 'admin/users/:id/update' => 'admin/users#update', as:'admin_users_update'
+
   get 'users/confirm_new'
 
-  get 'users/show_mypage'
   get 'users/confirm_delete'
   get 'users/complete_delete'
 
@@ -105,7 +109,6 @@ Rails.application.routes.draw do
   resources :product_reviews
   resources :post_images, only: [:new, :create, :destroy , :index, :show]
   resources :categories
- 
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

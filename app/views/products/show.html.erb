@@ -31,7 +31,7 @@
     <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
       <strong>在庫数</strong><br>
               <%= @product.stock_quantity %>
-    </div>>
+    </div>
     <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
       <strong>商品概要</strong><br>
             <%= @product.product_text %>
@@ -49,11 +49,6 @@
             <%= form_for(@product,url: product_add_path(@product.id)) do |f| %>
             <%= f.number_field :select_stock %>
     </div>
-
-   <button type="submit" class= "btn btn-primary col-xs-3 actions col-md-offset-4" >
-        <h4><span class="glyphicon glyphicon-shopping-cart" ></span>  カートに追加</h4>
-    </button>
-    <% end %>
 
 
 
@@ -73,9 +68,35 @@
     <% end %>
   </div>
 
+      <% if user_signed_in? %>
+        <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+          <%= f.submit 'カートに追加', class: 'btn btn-success' %>
+        </div>
+      <% else %>
+        <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
 
+          <%# f.submit 'カートに追加', class: 'btn btn-denger' %>
+          <%= link_to  'カートに追加', new_user_session_path,class: 'btn btn-danger' %>
+        </div>
+      <!--  </button> -->
+       <% end %>
+     <% end %>
 
-</div>
+    <% if user_signed_in? %>
+      <% if @product.favorited_by?(current_user) %>
+        <p>お気に入りに登録されている商品です</p>
+      <% else %>
+      <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+        <%= link_to 'お気に入りリストに追加' , product_like_path(@product.id) ,method: :post %>
+      </div>
+      <% end %>
+    <% else %>
+        <div class="field row col-md-offset-4" style="margin-bottom: 5px;">
+        <%= link_to 'お気に入りリストに追加' , new_user_session_path %>
+        </div>
+    <% end %>
+
+   </div>
 </div>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
