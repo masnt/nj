@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
 	def set_search
 	    @q = Product.ransack(params[:q])
-	    @products = @q.result
+	    @products = @q.result.page(params[:page]).per(6)
 	end
 
 	protected
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def after_sign_in_path_for(resource)
-	    users_show_mypage_path(current_user.id)
+	    user_path(current_user.id)
 	    #users_path(current_user.id)
 	end
 
