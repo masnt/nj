@@ -3,7 +3,7 @@
   def index
     @inquiries = Inquiry.all
     @inquiries = Inquiry.page(params[:page])
-    @user = User.all
+    @product = Product.all
   end
 
   def show
@@ -37,7 +37,7 @@
       flash[:notice] = "Send successfully!"
       redirect_to inquiries_complete_path
     else
-      flash[:notice] = "error, sent failed"
+      flash[:notice] = "error, sent failed" 
       render :comfirm_new
     end
   end
