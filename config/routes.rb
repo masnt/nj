@@ -14,7 +14,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update] do
   get'/pay_new', to: 'cart_histories#pay_new'
-  resources :cart_histories, only: [:create,:destroy]
+  resources :cart_histories, only: [:create,:destroy] do
+  delete '/back_destroy', to: 'cart_histories#back_destroy'
+  end
   get 'users/cart', to: "users#cart"
   end
 
@@ -72,8 +74,13 @@ Rails.application.routes.draw do
     get 'products/new'
   end
   namespace :admin do
+    get 'users/edit'
+    get 'users/show'
     get 'users/index'
+    delete 'users/destroy'
+    # ハラダ 5/29 delete追加
   end
+
   get 'admin/users/:id/edit' => 'admin/users#edit', as:'admin_users_edit'
   get 'admin/users/:id/' => 'admin/users#show', as:'admin_users_show'
   delete 'admin/users/destroy' => 'admin/users#destroy', as:'admin_users_destroy'
@@ -86,14 +93,15 @@ Rails.application.routes.draw do
 
 
   resources :products do
+    resources :product_reviews
     resources :cart_items,only: [ :edit, :index]
     patch '/add', to: 'products#add'
     put '/add', to:'products#add'
     post "like", to:'favorites#like'
     put "like", to:'favorites#like'
     delete "/unlike", to:'favorites#unlike'
-
   end
+
   resources :shopinformations
   resources :cart_histories do
   get '/cart_histories/pay_choise', to: 'cart_histories#pay_choise'
@@ -103,10 +111,10 @@ Rails.application.routes.draw do
   resources :inquiries
 
 
-
+  resources :product_reviews
   resources :post_images, only: [:new, :create, :destroy , :index, :show]
   resources :categories
-  resources :product_reviews
+ 
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -117,7 +125,6 @@ Rails.application.routes.draw do
 
 
   # 管理者
-  get '/index_order', to: 'cart_histories#index_order'
   get '/user_history', to: 'cart_histories#user_history'
 
 
